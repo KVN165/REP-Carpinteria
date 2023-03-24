@@ -139,7 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Inicio sesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -150,8 +150,8 @@
     <Compile Include="Insumos.xaml.cs">
       <DependentUpon>Insumos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Inicio sesion.xaml.cs">
+      <DependentUpon>Inicio sesion.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="productos.xaml">
