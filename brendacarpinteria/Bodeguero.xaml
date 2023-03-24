@@ -1,0 +1,38 @@
+﻿<Window x:Class="brendacarpinteria.Bodeguero"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:brendacarpinteria"
+        mc:Ignorable="d"
+        Title="Bodeguero" Height="450" Width="800" FontFamily="Cascadia Mono" Icon="/martillo.png">
+    <Grid Loaded="Grid_Loaded">
+        <Button x:Name="btnagregar" Content="Productos" HorizontalAlignment="Left" Margin="199,160,0,0" VerticalAlignment="Top" Click="btnagregar_Click" Height="64" Width="119" Background="#FFFF7500" Foreground="White"/>
+        <Button x:Name="btninsumos" Content="Insumos" HorizontalAlignment="Left" Margin="501,156,0,0" VerticalAlignment="Top" Width="119" Height="64" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White"/>
+        <Button x:Name="btnproveedores" Content="proveedores" HorizontalAlignment="Left" Margin="199,274,0,0" VerticalAlignment="Top" Height="64" Width="117" RenderTransformOrigin="1.499,-1.237" Click="btnproveedores_Click" Background="#FFFF7500" Foreground="White"/>
+        <Rectangle Height="48" Stroke="Black" VerticalAlignment="Top" Fill="#FFFF7500" Margin="0,-3,0,0"/>
+        <Label Content="Bodeguero" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0" RenderTransformOrigin="-0.373,0.68"/>
+        <Label x:Name="lblusuario" Content="Usuario :" HorizontalAlignment="Left" Margin="143,87,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="16"/>
+        <Label x:Name="lbus" Content="" HorizontalAlignment="Left" Margin="221,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.545,-0.231" FontFamily="Verdana" FontSize="16"/>
+        <Label x:Name="lblHora" HorizontalAlignment="Left" VerticalAlignment="Top" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18" Margin="538,62,0,0"/>
+        <Label x:Name="lblFecha" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="- - -" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16" RenderTransformOrigin="2.777,-2.486" Margin="468,0,0,303"/>
+        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click" Margin="715,0,0,392"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/flecha-hacia-atras.png" />
+            </Button.Background>
+        </Button>
+        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" Margin="14,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="73" Click="btncambiar_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.326"/>
+                    <TranslateTransform X="0.001" Y="0"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/usuario.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

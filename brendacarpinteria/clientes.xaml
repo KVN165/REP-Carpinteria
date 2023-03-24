@@ -1,0 +1,68 @@
+﻿<Window x:Class="brendacarpinteria.clientes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:brendacarpinteria"
+        mc:Ignorable="d"
+        Title="clientes" Height="500" Width="900" Icon="/martillo.png">
+    <Grid Margin="0,0,0,-6" >
+        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="46,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" Height="25"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="46,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
+        <Label Content="Apellido" HorizontalAlignment="Left" Margin="46,160,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="46,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="25" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="Direccion" HorizontalAlignment="Left" Margin="46,0,0,0" VerticalAlignment="Center" FontFamily="Verdana"/>
+        <TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="46,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="Clientes" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0"/>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="330" Margin="344,99,0,0" VerticalAlignment="Top" Width="502"  ChildChanged="WindowsFormsHost_ChildChanged"  >
+            <wf:DataGridView x:Name="dgvclientes" CellMouseClick="dgvclientes_CellMouseClick"  ReadOnly="True" ></wf:DataGridView>
+
+        </WindowsFormsHost>
+        <Label x:Name="txttel" Content="Telefono" HorizontalAlignment="Left" Margin="42,303,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txttel1" HorizontalAlignment="Left" Margin="46,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26" Click="btnbuscar_Click"   >
+            <Button.Background>
+                <ImageBrush ImageSource="/lupa (1).png" Stretch="Uniform"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.141"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <TextBox x:Name="txtbuscar1" HorizontalAlignment="Left" Margin="404,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="24"/>
+        <Label x:Name="bu_Copy" Content="Buscar:" HorizontalAlignment="Left" Margin="344,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.311,0.685" FontFamily="Verdana"/>
+        <ComboBox x:Name="cobbus" HorizontalAlignment="Left" Margin="630,53,0,0" VerticalAlignment="Top" Width="120" Height="24" Background="#FFFF5200" >
+            <ComboBoxItem Content="Nombre"/>
+            <ComboBoxItem Content="id"/>
+        </ComboBox>
+        <Button x:Name="btnrefresca" Content="" HorizontalAlignment="Left"  Margin="796,53,0,0" VerticalAlignment="Top" Height="24" Width="31" RenderTransformOrigin="0.5,0.5" Click="btnrefresca_Click" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.706"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/girar (1).png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="txtid" HorizontalAlignment="Left" Margin="71,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"  IsEnabled="False" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="42,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,-0.73" FontFamily="Verdana"/>
+        <Button x:Name="btnagregar" Content="Agregar" HorizontalAlignment="Left" Margin="42,428,0,0" VerticalAlignment="Top" Height="35" Width="81"  Background="#FFFF7500" Click="btnagregar_Click" />
+        <Button x:Name="btnactualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="157,428,0,0" VerticalAlignment="Top" Height="37" Width="80" RenderTransformOrigin="-0.637,1.325"  Background="#FFFF7500"  IsEnabled="False" Click="btnactualizar_Click" />
+        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Margin="832,0,0,453" VerticalAlignment="Bottom" Width="44" Height="34" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/flecha-hacia-atras.png" />
+            </Button.Background>
+        </Button>
+    </Grid>
+
+</Window>

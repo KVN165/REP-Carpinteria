@@ -1,0 +1,28 @@
+﻿<Window x:Class="brendacarpinteria.actualizar_usuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:brendacarpinteria"
+        mc:Ignorable="d"
+        Title="actualizar_usuario" Height="450" Width="800" Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
+    <Grid Loaded="Grid_Loaded">
+        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>
+        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White"  Margin="717,15,0,377" Click="btnregresar2_Click"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/flecha-hacia-atras.png" />
+            </Button.Background>
+        </Button>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="350,18,0,0" VerticalAlignment="Top" Width="134" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+        <Image HorizontalAlignment="Center" Height="100" Margin="0,89,0,0" VerticalAlignment="Top" Width="100" Source="/usuario.png" RenderTransformOrigin="0.486,0.824"/>
+        <Label Content="Nombre de usuario :" Margin="264,215,401,0" VerticalAlignment="Top" FontFamily="Verdana" RenderTransformOrigin="0.601,1.904"/>
+        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="417,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
+        <Label Content="contraseña :" HorizontalAlignment="Left" Margin="264,256,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtcontraseña" HorizontalAlignment="Left" Margin="417,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
+        <Label Content="confirmar contraseña :" HorizontalAlignment="Left" Margin="264,299,0,0" VerticalAlignment="Top" FontFamily="Verdana" RenderTransformOrigin="0.183,1.136"/>
+        <TextBox x:Name="txtconfirmar" HorizontalAlignment="Left" Margin="417,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
+        <Button Content="Actualizar" HorizontalAlignment="Center" Margin="0,365,0,0" VerticalAlignment="Top" Height="31" Background="#FFFF7500" Foreground="White" Click="Button_Click"/>
+        <Label x:Name="lblid" Content="" HorizontalAlignment="Left" Margin="43,119,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

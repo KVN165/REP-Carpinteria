@@ -1,0 +1,36 @@
+﻿<Window x:Class="brendacarpinteria.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:brendacarpinteria"
+        mc:Ignorable="d"
+        Title="Inicio de sesion" Height="450" Width="800" Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>
+
+        <Label x:Name="label_" Content="Usuario:" HorizontalAlignment="Left" Margin="197,200,0,0" VerticalAlignment="Top" Height="52" Width="102" FontFamily="Cascadia Mono" FontSize="15"/>
+        <Label x:Name="label__Copy" Content="Contraseña:" HorizontalAlignment="Left" Margin="195,244,0,0" VerticalAlignment="Top" Height="52" Width="114" FontFamily="Cascadia Mono" FontSize="15"/>
+        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="314,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="228"/>
+        <Button x:Name="btnacceder" Content="Accerder" HorizontalAlignment="Left" Margin="259,339,0,0" VerticalAlignment="Top" Width="115" Height="36" Click="btnacceder_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" Grid.IsSharedSizeScope="True" Foreground="White"/>
+        <Button x:Name="btnsalir" Content="Salir" HorizontalAlignment="Left" Margin="438,339,0,0" VerticalAlignment="Top" Width="117" Height="36" Click="btnsalir_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btnrecu" Content="Olvide mi contraseña ? " Margin="199,279,0,0" VerticalAlignment="Top" Background="{x:Null}" HorizontalAlignment="Left" Width="177" BorderBrush="{x:Null}" Foreground="#FF0C69FF" FontStyle="Italic" Height="25" FontFamily="Cascadia Mono" FontSize="13" Click="btnrecu_Click"/>
+        <Label Content="Inicio de sesión" HorizontalAlignment="Left" Margin="233,18,0,0" VerticalAlignment="Top" Width="488" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+        <Image HorizontalAlignment="Left" Height="111" Margin="300,86,0,0" VerticalAlignment="Top" Width="306" Source="/Diseño sin título.png"/>
+        <PasswordBox x:Name="passbox" HorizontalAlignment="Left" Margin="314,251,0,0" VerticalAlignment="Top" Width="228"/>
+        <Image HorizontalAlignment="Left" Height="62" Margin="33,10,0,0" VerticalAlignment="Top" Width="71" Source="/Carpinteria Brenada.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.394"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+    </Grid>
+</Window>

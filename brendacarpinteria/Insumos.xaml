@@ -1,0 +1,72 @@
+﻿<Window x:Class="brendacarpinteria.Insumos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:brendacarpinteria"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        mc:Ignorable="d"
+        Title="Insumos"  Height="500" Width="900" Icon="/martillo.png">
+    <Grid Margin="0,0,0,-6">
+        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="42,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="42,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
+        <Label Content="descripcion" HorizontalAlignment="Left" Margin="42,198,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtprecio1" HorizontalAlignment="Left" Margin="42,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="44" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="42,284,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtprecio" HorizontalAlignment="Left" Margin="42,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="Insumos" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0"/>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="330" Margin="314,95,0,0" VerticalAlignment="Top" Width="540" ChildChanged="WindowsFormsHost_ChildChanged" >
+            <wf:DataGridView x:Name="dgvinsumos" CellMouseClick="dgvinsumos_CellMouseClick" ReadOnly="True" ></wf:DataGridView>
+
+        </WindowsFormsHost>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="28" Margin="42,170,0,0" VerticalAlignment="Top" Width="211" ChildChanged="WindowsFormsHost_ChildChanged" RenderTransformOrigin="0.5,0.5" Loaded="WindowsFormsHost_Loaded" >
+            <wf:ComboBox x:Name="cmbemp"  ></wf:ComboBox>
+        </WindowsFormsHost>
+        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="38,352,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtcantidad1" HorizontalAlignment="Left" Margin="42,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26" Click="btnbuscar_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/lupa (1).png" Stretch="Uniform"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.141"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <TextBox x:Name="txtbuscar1" HorizontalAlignment="Left" Margin="404,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="24"/>
+        <Label x:Name="bu_Copy" Content="Buscar:" HorizontalAlignment="Left" Margin="344,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.311,0.685" FontFamily="Verdana"/>
+        <ComboBox x:Name="cobbus" HorizontalAlignment="Left" Margin="630,53,0,0" VerticalAlignment="Top" Width="120" Height="24" Background="#FFFF5200">
+            <ComboBoxItem Content="Nombre"/>
+            <ComboBoxItem Content="id"/>
+            <ComboBoxItem Content="empresa"/>
+        </ComboBox>
+        <Button x:Name="btnrefrescar" Content="" HorizontalAlignment="Left" Margin="796,53,0,0" VerticalAlignment="Top" Height="24" Width="31" RenderTransformOrigin="0.5,0.5" Click="btnrefrescar_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.706"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/girar (1).png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="txtid" HorizontalAlignment="Left" Margin="67,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TextBox_TextChanged" IsEnabled="False" FontFamily="Verdana" FontWeight="Bold"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="38,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,-0.73" FontFamily="Verdana"/>
+        <Button x:Name="btnagregar" Content="Agregar" HorizontalAlignment="Left" Margin="55,428,0,0" VerticalAlignment="Top" Height="35" Width="81" Click="Button_Click" Background="#FFFF7500"/>
+        <Label Content="Nombre de la empresa" HorizontalAlignment="Left" Margin="42,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.551,1.238"/>
+        <Button x:Name="btnactualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="157,428,0,0" VerticalAlignment="Top" Height="37" Width="80" RenderTransformOrigin="-0.637,1.325" Click="btnactualizar_Click_1" Background="#FFFF7500" IsEnabled="False"/>
+        <Button x:Name="btnregresar" Content="" HorizontalAlignment="Left" Margin="832,3,0,0" VerticalAlignment="Top" Width="44" Height="34" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar_Click_1">
+            <Button.Background>
+                <ImageBrush ImageSource="/flecha-hacia-atras.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>
