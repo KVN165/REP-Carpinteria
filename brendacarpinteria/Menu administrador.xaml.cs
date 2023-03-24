@@ -84,14 +84,6 @@ namespace brendacarpinteria
             c.Show();
             this.Close();
         }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            ClsUsuario a = new ClsUsuario();
-            lbus.Content = a.No;
-            lblFecha.Content = Convert.ToString(DateTime.Now.ToLongDateString());
-        }
-
         private void btnregresar2_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
@@ -104,6 +96,13 @@ namespace brendacarpinteria
             Proyecto_Carpinteria.Facturas f = new Proyecto_Carpinteria.Facturas();
             f.Show();
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ClsUsuario a = new ClsUsuario();
+            lbus.Content = a.No;
+            lblFecha.Content = Convert.ToString(DateTime.Now.ToLongDateString());
         }
     }
 }

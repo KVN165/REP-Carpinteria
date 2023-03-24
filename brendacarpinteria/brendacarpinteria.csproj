@@ -69,25 +69,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="actualizar usuario.xaml.cs">
-      <DependentUpon>actualizar usuario.xaml</DependentUpon>
+    <Compile Include="Actualizar usuario.xaml.cs">
+      <DependentUpon>Actualizar usuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="admin.xaml.cs">
-      <DependentUpon>admin.xaml</DependentUpon>
+    <Compile Include="Menu administrador.xaml.cs">
+      <DependentUpon>Menu administrador.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bodeguero.xaml.cs">
-      <DependentUpon>Bodeguero.xaml</DependentUpon>
+    <Compile Include="Menu bodeguero.xaml.cs">
+      <DependentUpon>Menu bodeguero.xaml</DependentUpon>
     </Compile>
-    <Compile Include="cajero.xaml.cs">
-      <DependentUpon>cajero.xaml</DependentUpon>
+    <Compile Include="Menu cajero.xaml.cs">
+      <DependentUpon>Menu cajero.xaml</DependentUpon>
     </Compile>
     <Compile Include="Carpinteria_BDDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Carpinteria_BDDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="clientes.xaml.cs">
-      <DependentUpon>clientes.xaml</DependentUpon>
+    <Compile Include="Clientes.xaml.cs">
+      <DependentUpon>Clientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clsclientes.cs" />
     <Compile Include="ClsDetalle.cs" />
@@ -102,32 +102,32 @@
       <DependentUpon>Facturas.xaml</DependentUpon>
     </Compile>
     <Compile Include="NRecuperarcontra.cs" />
-    <Compile Include="proveedores.xaml.cs">
-      <DependentUpon>proveedores.xaml</DependentUpon>
+    <Compile Include="Proveedores.xaml.cs">
+      <DependentUpon>Proveedores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="recuperacion.xaml.cs">
-      <DependentUpon>recuperacion.xaml</DependentUpon>
+    <Compile Include="Recuperacion.xaml.cs">
+      <DependentUpon>Recuperacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="usuarios.xaml.cs">
-      <DependentUpon>usuarios.xaml</DependentUpon>
+    <Compile Include="Usuarios.xaml.cs">
+      <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
-    <Page Include="actualizar usuario.xaml">
+    <Page Include="Actualizar usuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="admin.xaml">
+    <Page Include="Menu administrador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bodeguero.xaml">
+    <Page Include="Menu bodeguero.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="cajero.xaml">
+    <Page Include="Menu cajero.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="clientes.xaml">
+    <Page Include="Clientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,26 +154,26 @@
       <DependentUpon>Inicio sesion.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="productos.xaml">
+    <Page Include="Productos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="proveedores.xaml">
+    <Page Include="Proveedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="recuperacion.xaml">
+    <Page Include="Recuperacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="usuarios.xaml">
+    <Page Include="Usuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="productos.xaml.cs">
-      <DependentUpon>productos.xaml</DependentUpon>
+    <Compile Include="Productos.xaml.cs">
+      <DependentUpon>Productos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

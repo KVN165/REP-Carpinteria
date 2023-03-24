@@ -5,13 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
-        Title="Administrador" Height="450" Width="800" FontFamily="Cascadia Mono" Icon="/martillo.png">
-    <Grid Loaded="Grid_Loaded" Height="434" VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="21*"/>
-            <ColumnDefinition Width="372*"/>
-        </Grid.ColumnDefinitions>
+        WindowStartupLocation="CenterScreen"
+        Title="Administrador" Height="562.8" Width="976.4" FontFamily="Cascadia Mono" Icon="/martillo.png" Loaded="Window_Loaded">
+    <Grid>
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0" Grid.ColumnSpan="3"/>
         <Button x:Name="btnagregar" Content="Productos" HorizontalAlignment="Left" Margin="142,149,0,0" VerticalAlignment="Top" Click="btnagregar_Click" Height="64" Width="119" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
         <Button x:Name="btninsumos" Content="Insumos" HorizontalAlignment="Left" Margin="442,149,0,0" VerticalAlignment="Top" Width="119" Height="64" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
