@@ -50,7 +50,7 @@ namespace brendacarpinteria
         public string Ccon { get => ccon; set => ccon = value; }
         public  int Idusuario { get => idusuario; set => idusuario = value; }
 
-        private string cadenaconexion = "Data Source =MENDEZ\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+        private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
         SqlDataAdapter da;
         SqlCommand cmd;
         DataTable dt;

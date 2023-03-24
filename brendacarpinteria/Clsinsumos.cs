@@ -11,7 +11,7 @@ namespace brendacarpinteria
 {
     public class Clsinsumos
     {
-        private string cadenaconexion = "Data Source =MENDEZ\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+        private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
         SqlDataAdapter da;
         SqlCommand cmd;
         DataTable dt;

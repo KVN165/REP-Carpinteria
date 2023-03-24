@@ -11,7 +11,7 @@ namespace brendacarpinteria
 {
     internal class Clsclientes
     {
-        private string cadenaconexion = "Data Source =MENDEZ\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+        private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
         SqlDataAdapter da;
         SqlCommand cmd;
         DataTable dt;
