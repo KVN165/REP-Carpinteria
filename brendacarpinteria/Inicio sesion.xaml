@@ -4,24 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brendacarpinteria"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Inicio de sesion" Height="450" Width="800" Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
+        Title="Inicio de sesion" Height="480" Width="600" MinHeight="480" MinWidth="600"  Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="60"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="65"/>
+            <RowDefinition Height="Auto" MinHeight="35"/>
+            <RowDefinition Height="30" MinHeight="10"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+        </Grid.RowDefinitions>
 
-        <Label x:Name="label_" Content="Usuario:" HorizontalAlignment="Left" Margin="197,200,0,0" VerticalAlignment="Top" Height="52" Width="102" FontFamily="Cascadia Mono" FontSize="15"/>
-        <Label x:Name="label__Copy" Content="Contraseña:" HorizontalAlignment="Left" Margin="195,244,0,0" VerticalAlignment="Top" Height="52" Width="114" FontFamily="Cascadia Mono" FontSize="15"/>
-        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="314,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="228"/>
-        <Button x:Name="btnacceder" Content="Accerder" HorizontalAlignment="Left" Margin="259,339,0,0" VerticalAlignment="Top" Width="115" Height="36" Click="btnacceder_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" Grid.IsSharedSizeScope="True" Foreground="White"/>
-        <Button x:Name="btnsalir" Content="Salir" HorizontalAlignment="Left" Margin="438,339,0,0" VerticalAlignment="Top" Width="117" Height="36" Click="btnsalir_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" BorderBrush="White" Foreground="White"/>
-        <Button x:Name="btnrecu" Content="Olvide mi contraseña ? " Margin="199,279,0,0" VerticalAlignment="Top" Background="{x:Null}" HorizontalAlignment="Left" Width="177" BorderBrush="{x:Null}" Foreground="#FF0C69FF" FontStyle="Italic" Height="25" FontFamily="Cascadia Mono" FontSize="13" Click="btnrecu_Click"/>
-        <Label Content="Inicio de sesión" HorizontalAlignment="Left" Margin="233,18,0,0" VerticalAlignment="Top" Width="488" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
-        <Image HorizontalAlignment="Left" Height="111" Margin="300,86,0,0" VerticalAlignment="Top" Width="306" Source="/Diseño sin título.png"/>
-        <PasswordBox x:Name="passbox" HorizontalAlignment="Left" Margin="314,251,0,0" VerticalAlignment="Top" Width="228"/>
-        <Image HorizontalAlignment="Left" Height="62" Margin="33,10,0,0" VerticalAlignment="Top" Width="71" Source="/Carpinteria Brenada.png" RenderTransformOrigin="0.5,0.5">
+        <!-- Titulo Columna 1 y 2 Fila 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FFFF7500" BorderBrush="Black" BorderThickness="2"/>
+        <Image Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="50" Source="/Carpinteria Brenada.png">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -31,6 +34,38 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inicio de sesión" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+
+        <!-- Columna 1 y 2 Fila 2-->
+        <Image Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Source="/Diseño sin título.png"/>
+
+        <!-- Columna 1 Fila 3-->
+        <Label Grid.Column="0" Grid.Row="2" Content="Usuario:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Cascadia Mono" FontSize="15"/>
+
+        <!-- Columna 2 Fila 3-->
+        <TextBox x:Name="txtusuario" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Text="" Width="225" Height="20" TabIndex="0"/>
+
+        <!-- Columna 1 Fila 4-->
+        <Label Grid.Column="0" Grid.Row="3" Content="Contraseña:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Cascadia Mono" FontSize="15"/>
+
+        <!-- Columna 2 Fila 4-->
+        <PasswordBox x:Name="passbox" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="225" Height="20" TabIndex="1"/>
+
+        <!-- Columna 1 y 2 Fila 5-->
+        <Button x:Name="btnrecu" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Margin="10" Content="Olvidaste tu contraseña?" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0C69FF" FontStyle="Italic"  FontFamily="Cascadia Mono" FontSize="15" Click="btnrecu_Click" IsTabStop="False"/>
+
+        <!-- Columna 1 Fila 7-->
+        <Button x:Name="btnacceder" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Content="Accerder" Width="130" Height="40" Click="btnacceder_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" Grid.IsSharedSizeScope="True" Foreground="White"/>
+
+        <!-- Columna 2 Fila 7-->
+        <Button x:Name="btnsalir" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Salir" Margin="10" Width="130" Height="40" Click="btnsalir_Click" FontFamily="Cascadia Mono" Background="#FFFF7500" Foreground="White"/>
+
+
+
+
+
+
+
 
     </Grid>
 </Window>
