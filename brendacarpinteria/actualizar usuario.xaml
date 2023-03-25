@@ -5,24 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
-        Title="actualizar_usuario" Height="450" Width="800" Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
+        WindowStartupLocation="CenterScreen"
+        Title="Editar Perfil" Height="400" Width="550" MinHeight="400" MinWidth="550" Background="White" FontFamily="Cascadia Mono" Icon="/martillo.png">
     <Grid Loaded="Grid_Loaded">
-        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>
-        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White"  Margin="717,15,0,377" Click="btnregresar2_Click"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Fila 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500" Margin="0,0,-0.4,1.4"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Editar Perfil" Foreground="White" FontSize="30" FontFamily="Cascadia Mono" Height="39" Width="160"/>
+        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="50" Width="50" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
         </Button>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="350,18,0,0" VerticalAlignment="Top" Width="134" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
-        <Image HorizontalAlignment="Center" Height="100" Margin="0,89,0,0" VerticalAlignment="Top" Width="100" Source="/usuario.png" RenderTransformOrigin="0.486,0.824"/>
-        <Label Content="Nombre de usuario :" Margin="264,215,401,0" VerticalAlignment="Top" FontFamily="Verdana" RenderTransformOrigin="0.601,1.904"/>
-        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="417,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
-        <Label Content="contraseña :" HorizontalAlignment="Left" Margin="264,256,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcontraseña" HorizontalAlignment="Left" Margin="417,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
-        <Label Content="confirmar contraseña :" HorizontalAlignment="Left" Margin="264,299,0,0" VerticalAlignment="Top" FontFamily="Verdana" RenderTransformOrigin="0.183,1.136"/>
-        <TextBox x:Name="txtconfirmar" HorizontalAlignment="Left" Margin="417,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="22"/>
-        <Button Content="Actualizar" HorizontalAlignment="Center" Margin="0,365,0,0" VerticalAlignment="Top" Height="31" Background="#FFFF7500" Foreground="White" Click="Button_Click"/>
-        <Label x:Name="lblid" Content="" HorizontalAlignment="Left" Margin="43,119,0,0" VerticalAlignment="Top"/>
-
+        <Image  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Width="50" Margin="5" Source="Carpinteria Brenada.png"/>
+        <!--Fila 2-->
+        <Image Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="90" MinHeight="90" MaxHeight="150" MaxWidth="150" Margin="5" Source="/usuario2.png"/>
+        <!--Fila 3-->
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Content="Nombre de usuario:" FontFamily="Verdana"/>
+        <TextBox x:Name="txtusuario" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="20" TabIndex="0"/>
+        <!--Fila 4-->
+        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Content="Nueva contraseña:" FontFamily="Verdana"/>
+        <TextBox x:Name="txtcontraseña" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="199" Height="20" TabIndex="1"/>
+        <!--Fila 5-->
+        <Label Grid.Column="0" Grid.Row="4" Content="Confirmar contraseña:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Verdana"/>
+        <TextBox x:Name="txtconfirmar" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="200" Height="20" TabIndex="2"/>
+        <!--Fila 6-->
+        <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Actualizar" Margin="60,10" MaxWidth="340" MaxHeight="100" Background="#FFFF7500" Foreground="White" Click="Button_Click" TabIndex="3"/>
+        <!--Fila 7-->
+        <Label x:Name="lblid" Content="" HorizontalAlignment="Left" Margin="43,10.6,0,0" VerticalAlignment="Top" Grid.Row="2" Height="23" Width="10"/>
     </Grid>
 </Window>
