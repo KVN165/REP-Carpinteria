@@ -228,6 +228,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Imagenes\" />
     <Folder Include="servicio\" />
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +259,8 @@
     <Resource Include="clave.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="usuario.png" />
+    <Content Include="usuario.png" />
+    <Resource Include="usuario2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

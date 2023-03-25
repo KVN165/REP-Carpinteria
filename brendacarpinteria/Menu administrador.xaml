@@ -6,24 +6,59 @@
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Administrador" Height="562.8" Width="976.4" FontFamily="Cascadia Mono" Icon="/martillo.png" Loaded="Window_Loaded">
+        Title="Administrador" Height="380" Width="550" MinHeight="380" MinWidth="550" FontFamily="Cascadia Mono" Icon="/martillo.png" Loaded="Window_Loaded">
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0" Grid.ColumnSpan="3"/>
-        <Button x:Name="btnagregar" Content="Productos" HorizontalAlignment="Left" Margin="142,149,0,0" VerticalAlignment="Top" Click="btnagregar_Click" Height="64" Width="119" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
-        <Button x:Name="btninsumos" Content="Insumos" HorizontalAlignment="Left" Margin="442,149,0,0" VerticalAlignment="Top" Width="119" Height="64" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
-        <Button x:Name="btnusuario" Content="Usuarios" HorizontalAlignment="Left" Margin="142,235,0,0" VerticalAlignment="Top" Height="64" Width="117" Click="btnusuario_Click" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
-        <Button x:Name="btnproveedores" Content="proveedores" HorizontalAlignment="Left" Margin="442,235,0,0" VerticalAlignment="Top" Height="64" Width="117" RenderTransformOrigin="1.499,-1.237" Click="btnproveedores_Click" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
-        <Button x:Name="btnClientes" Content="Clientes" HorizontalAlignment="Left" Margin="144,324,0,0" VerticalAlignment="Top" Height="64" Width="117" Click="btnClientes_Click" Background="#FFFF7500" Foreground="White" Grid.Column="2"/>
-        <Label Content="Administrador" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="269,3,0,0" RenderTransformOrigin="-0.373,0.68" Grid.Column="2"/>
-        <Label x:Name="lblusuario" Content="Usuario :" HorizontalAlignment="Left" Margin="47,72,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="16" Grid.Column="2"/>
-        <Label x:Name="lbus" Content="" HorizontalAlignment="Left" Margin="125,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.545,-0.231" FontFamily="Verdana" FontSize="16" Grid.Column="2"/>
-        <Label x:Name="lblHora" HorizontalAlignment="Left" VerticalAlignment="Top" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18" Margin="442,47,0,0" Grid.Column="2"/>
-        <Label x:Name="lblFecha" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="- - -" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16" RenderTransformOrigin="2.777,-2.486" Margin="372,0,0,318" Grid.Column="2"/>
-        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click" Grid.Column="2" Margin="677,-4,0,397"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Titulo Columna 1 y 2 Fila 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500" BorderBrush="Black" BorderThickness="2"/>
+
+        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="60" Width="60" Click="btncambiar_Click" BorderThickness="0">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.326"/>
+                    <TranslateTransform X="0.001" Y="0"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="usuario2.png"/>
+            </Button.Background>
+        </Button>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Administrador" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="60" Width="60" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
         </Button>
-        <Button x:Name="btnfactura" Content="Factura" HorizontalAlignment="Left" Margin="442,320,0,0" VerticalAlignment="Top" Height="64" Width="117" RenderTransformOrigin="1.499,-1.237"  Background="#FFFF7500" Foreground="White" Grid.Column="2" Click="btnfactura_Click"/>
+        <!--Columna 1 Fila 2 -->
+        <Label x:Name="lblusuario" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Usuario:" FontFamily="Verdana" FontSize="16"/>
+        <!--Colmna 2 Fila 2-->
+        <Label x:Name="lblFecha" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="-FECHA-" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16"/>
+        <!--Columna 1 Fila 3-->
+        <Label x:Name="lbus" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="- - -" FontFamily="Verdana" FontSize="16"/>
+        <!--Columna 2 Fila 3-->
+        <Label x:Name="lblHora" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18"/>
+        <!--Columna 1 2 Fila 4-->
+        <Button x:Name="btnagregar" Grid.Column="0" Grid.Row="3" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Padding="10" Content="Productos" Click="btnagregar_Click" Background="#FFFF7500" Foreground="White" TabIndex="0"/>
+        <Button x:Name="btninsumos" Grid.Column="1" Grid.Row="3" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Insumos" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White" TabIndex="1"/>
+        <!--Colimna 1 2 Fila 5-->
+        <Button x:Name="btnusuario" Grid.Column="0" Grid.Row="4" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Content="Usuarios" Click="btnusuario_Click" Background="#FFFF7500" Foreground="White" TabIndex="2"/>
+        <Button x:Name="btnproveedores" Grid.Column="1" Grid.Row="4" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Proveedores" Click="btnproveedores_Click" Background="#FFFF7500" Foreground="White" TabIndex="3"/>
+        <!--Columna 1 2 Fila 6-->
+        <Button x:Name="btnClientes" Grid.Column="0" Grid.Row="5" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Content="Clientes" Click="btnClientes_Click" Background="#FFFF7500" Foreground="White" TabIndex="4"/>
+        <Button x:Name="btnfactura" Grid.Column="1" Grid.Row="5" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Factura" Background="#FFFF7500" Foreground="White" Click="btnfactura_Click" TabIndex="5"/>
     </Grid>
 </Window>

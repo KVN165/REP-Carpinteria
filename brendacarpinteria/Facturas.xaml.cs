@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 // Agregados
 using DataGridView = System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Threading;
 //
 
 namespace Proyecto_Carpinteria
@@ -27,6 +28,18 @@ namespace Proyecto_Carpinteria
         public Facturas()
         {
             InitializeComponent();
+
+            //Reloj
+            DispatcherTimer oDispacherTimer = new DispatcherTimer();
+
+            oDispacherTimer.Interval = new TimeSpan(800);
+            oDispacherTimer.Tick += (a, b) =>
+            {
+                txtfecha.Text = DateTime.Now.ToString();
+            };
+            oDispacherTimer.Start();
+
+
         }
         // variables
         int cantidad_producto;
@@ -39,6 +52,9 @@ namespace Proyecto_Carpinteria
         //Clases
         ClsFactura clfactura = new ClsFactura();
         Clases.ClsDetalle detalleinfo = new Clases.ClsDetalle();
+
+
+        
 
         public void dgvCarrito_CellClick(object sender, DataGridView.DataGridViewCellEventArgs e)
         {

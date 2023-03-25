@@ -104,5 +104,12 @@ namespace brendacarpinteria
             lbus.Content = a.No;
             lblFecha.Content = Convert.ToString(DateTime.Now.ToLongDateString());
         }
+
+        private void btncambiar_Click(object sender, RoutedEventArgs e)
+        {
+            actualizar_usuario a = new actualizar_usuario();
+            a.Show();
+            this.Close();
+        }
     }
 }
