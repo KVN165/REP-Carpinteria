@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="60"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -21,9 +21,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Titulo Columna 1 y 2 Fila 1-->
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500" BorderBrush="Black" BorderThickness="2"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500"/>
 
-        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="60" Width="60" Click="btncambiar_Click" BorderThickness="0">
+        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="50" Width="50" Click="btncambiar_Click" BorderThickness="0" IsTabStop="False">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -38,7 +38,7 @@
         </Button>
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Administrador" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
-        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="60" Width="60" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
+        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="50" Width="50" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>

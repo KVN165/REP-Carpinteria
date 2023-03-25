@@ -5,23 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
-        Title="Bodeguero" Height="450" Width="800" FontFamily="Cascadia Mono" Icon="/martillo.png">
-    <Grid Loaded="Grid_Loaded">
-        <Button x:Name="btnagregar" Content="Productos" HorizontalAlignment="Left" Margin="199,160,0,0" VerticalAlignment="Top" Click="btnagregar_Click" Height="64" Width="119" Background="#FFFF7500" Foreground="White"/>
-        <Button x:Name="btninsumos" Content="Insumos" HorizontalAlignment="Left" Margin="501,156,0,0" VerticalAlignment="Top" Width="119" Height="64" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White"/>
-        <Button x:Name="btnproveedores" Content="proveedores" HorizontalAlignment="Left" Margin="199,274,0,0" VerticalAlignment="Top" Height="64" Width="117" RenderTransformOrigin="1.499,-1.237" Click="btnproveedores_Click" Background="#FFFF7500" Foreground="White"/>
-        <Rectangle Height="48" Stroke="Black" VerticalAlignment="Top" Fill="#FFFF7500" Margin="0,-3,0,0"/>
-        <Label Content="Bodeguero" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0" RenderTransformOrigin="-0.373,0.68"/>
-        <Label x:Name="lblusuario" Content="Usuario :" HorizontalAlignment="Left" Margin="143,87,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="16"/>
-        <Label x:Name="lbus" Content="" HorizontalAlignment="Left" Margin="221,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.545,-0.231" FontFamily="Verdana" FontSize="16"/>
-        <Label x:Name="lblHora" HorizontalAlignment="Left" VerticalAlignment="Top" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18" Margin="538,62,0,0"/>
-        <Label x:Name="lblFecha" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="- - -" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16" RenderTransformOrigin="2.777,-2.486" Margin="468,0,0,303"/>
-        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click" Margin="715,0,0,392"  >
+        WindowStartupLocation="CenterScreen"
+        Title="Bodeguero" Height="300" Width="550" FontFamily="Cascadia Mono" Icon="/martillo.png" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Titulo Columna 1 2 y fila 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bodeguero" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="50" Width="50" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
         </Button>
-        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" Margin="14,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="73" Click="btncambiar_Click">
+        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="50" Width="50" Click="btncambiar_Click" BorderThickness="0" IsTabStop="False">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -31,8 +37,19 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Button.Background>
-                <ImageBrush ImageSource="/usuario.png"/>
+                <ImageBrush ImageSource="usuario2.png"/>
             </Button.Background>
         </Button>
+        <!--Fila 2-->
+        <Label x:Name="lblHora" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18"/>
+        <Label x:Name="lblusuario" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Usuario:" FontFamily="Verdana" FontSize="16"/>
+        <!---->
+        <Label x:Name="lblFecha" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="-FECHA-" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16"/>
+        <Label x:Name="lbus" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="- - -" FontFamily="Verdana" FontSize="16"/>
+        <!---->
+        <Button x:Name="btninsumos" Grid.Column="1" Grid.Row="3" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Insumos" Click="btninsumos_Click" Background="#FFFF7500" Foreground="White" TabIndex="1"/>
+        <Button x:Name="btnproveedores" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="45 15 45 15" MaxHeight="150" MaxWidth="500" Content="Proveedores" Click="btnproveedores_Click" Background="#FFFF7500" Foreground="White" TabIndex="2"/>
+        <Button x:Name="btnagregar" Grid.Column="0" Grid.Row="3" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Padding="10" Content="Productos" Click="btnagregar_Click" Background="#FFFF7500" Foreground="White" TabIndex="0"/>
+        <!---->
     </Grid>
 </Window>

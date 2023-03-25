@@ -35,22 +35,13 @@ namespace brendacarpinteria
             oDispacherTimer.Start();
         }
 
-        private void WindowsFormsHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-           
-        }
-
         private void btnClientes_Click(object sender, RoutedEventArgs e)
         {
             clientes c = new clientes();
             c.Show();
             this.Close();
         }
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            
 
-        }
         private void btnregresar2_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
@@ -72,12 +63,11 @@ namespace brendacarpinteria
             a.Show();
             this.Close();
         }
-
-        private void Grid_Loaded_1(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ClsUsuario a = new ClsUsuario();
             lblus.Content = a.No;
-            lblFechaa.Content = Convert.ToString(DateTime.Now.ToLongDateString());
+            lblFecha.Content = Convert.ToString(DateTime.Now.ToLongDateString());
         }
     }
 }

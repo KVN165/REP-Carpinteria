@@ -6,9 +6,24 @@
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
-        Title="cajero" Height="450" Width="800" FontFamily="Cascadia Mono" Icon="/martillo.png">
-    <Grid Loaded="Grid_Loaded_1">
-        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" Margin="14,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="73" Click="btncambiar_Click" >
+        WindowStartupLocation="CenterScreen"
+        Title="cajero" Height="300" Width="550" FontFamily="Cascadia Mono" Icon="/martillo.png" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Titulo Fila 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF7500"/>
+        <Button x:Name="btncambiar" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Height="50" Width="50" Click="btncambiar_Click" BorderThickness="0" IsTabStop="False">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,22 +33,24 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Button.Background>
-                <ImageBrush ImageSource="/usuario.png"/>
+                <ImageBrush ImageSource="usuario2.png"/>
             </Button.Background>
         </Button>
-        <Rectangle HorizontalAlignment="Left" Height="55" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
-        <Button x:Name="btnClientes" Content="Clientes" HorizontalAlignment="Left" Margin="162,0,0,0" VerticalAlignment="Center" Height="64" Width="117" Click="btnClientes_Click" Background="#FFFF7500" Foreground="White"/>
-        <Label Content="cajero" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0" RenderTransformOrigin="-0.373,0.68"/>
-        <Label x:Name="lblusuario" Content="Usuario :" HorizontalAlignment="Left" Margin="162,77,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="16"/>
-        <Label x:Name="lbusa" Content="" HorizontalAlignment="Left" Margin="240,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.545,-0.231" FontFamily="Verdana" FontSize="16"/>
-        <Label x:Name="lblHora" HorizontalAlignment="Left" VerticalAlignment="Top" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18" Margin="557,52,0,0"/>
-        <Label x:Name="lblFechaa" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="- - -" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16" RenderTransformOrigin="2.777,-2.486" Margin="487,0,0,313"/>
-        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Width="57" RenderTransformOrigin="-2.066,3.598" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click" Margin="698,0,0,380" Height="42" VerticalAlignment="Bottom"  >
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Cajero" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
+        <Button x:Name="btnregresar2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="50" Width="50" BorderBrush="#FFFF7500" Foreground="White" Click="btnregresar2_Click" IsTabStop="False">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
         </Button>
-        <Button x:Name="btnFactura" Content="Facturas" HorizontalAlignment="Left" Margin="509,181,0,0" VerticalAlignment="Top" Height="64" Width="117"  Background="#FFFF7500" Foreground="White" Click="btnFactura_Click"/>
-        <Label x:Name="lblus" Content="" HorizontalAlignment="Left" Margin="250,78,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="15" RenderTransformOrigin="0.247,0.952"/>
+        <!--Fila 2-->
+        <Label x:Name="lblFecha" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="-FECHA-" ContentStringFormat="dddd de MMMM del yyyy" FontFamily="Verdana" FontSize="16"/>
+        <Label x:Name="lblusuario" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Usuario:" FontFamily="Verdana" FontSize="16"/>
+        <!--Fila 2-->
+        <Label x:Name="lblus" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="- - -" FontFamily="Verdana" FontSize="16"/>
+        <Label x:Name="lblHora" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18"/>
+        <!--Fila 3-->
+        <Button x:Name="btnClientes" Grid.Column="0" Grid.Row="3" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Content="Clientes" Click="btnClientes_Click" Background="#FFFF7500" Foreground="White" TabIndex="4"/>
+        <Button x:Name="btnFactura" Grid.Column="1" Grid.Row="3" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Factura" Background="#FFFF7500" Foreground="White" TabIndex="5"/>
+        <!---->
     </Grid>
 </Window>
