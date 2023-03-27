@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using DataGridView = System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Windows.Threading;
+using System.Text.RegularExpressions;
 //
 
 namespace Proyecto_Carpinteria
@@ -28,7 +29,6 @@ namespace Proyecto_Carpinteria
         public Facturas()
         {
             InitializeComponent();
-
             //Reloj
             DispatcherTimer oDispacherTimer = new DispatcherTimer();
             oDispacherTimer.Interval = new TimeSpan(800);
@@ -49,16 +49,14 @@ namespace Proyecto_Carpinteria
         //Clases
         ClsFactura clfactura = new ClsFactura();
         Clases.ClsDetalle detalleinfo = new Clases.ClsDetalle();
+        Proyecto_Carpinteria.Clases.ClsDetalle clsdetalle = new Proyecto_Carpinteria.Clases.ClsDetalle();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cargarlistaclientes();
             cargarlistaproductos();
-
             brendacarpinteria.ClsUsuario usuariosinfo = new brendacarpinteria.ClsUsuario();
             txtnombreempleado.Text = Proyecto_Carpinteria.ClsFactura.Usuario;
-            txtidusuario.Text = Proyecto_Carpinteria.ClsFactura.Id_obtenido_factura;
-
             dgvCarrito.Columns.Add("id_producto", "Id del producto");
             dgvCarrito.Columns.Add("nombre_producto", "Nombre del producto");
             dgvCarrito.Columns.Add("cantidad_comprada", "Cantidad");
@@ -83,7 +81,11 @@ namespace Proyecto_Carpinteria
                 controlslistclientes.Items.Clear();
                 while (dr.Read())
                 {
-                    controlslistclientes.Items.Add(dr[1].ToString());
+                    string nombre, apellido, nombrecompleto;
+                    nombre = dr[1].ToString();
+                    apellido = dr[2].ToString();
+                    nombrecompleto = nombre + " " + apellido;
+                    controlslistclientes.Items.Add(nombrecompleto);
                 }
             }
             catch (Exception ex)
@@ -135,11 +137,11 @@ namespace Proyecto_Carpinteria
             btnagregarcompra.IsEnabled = false;
         }
 
-        public void enviar_datos()
+        public void Enviardatos_factura()
         {
             clfactura.Id_cliente = Convert.ToInt32(txtidcliente.Text);
-            clfactura.Id_usuario = Convert.ToInt32(txtidusuario.Text);
-            clfactura.Fecha_hora = DateTime.Today;
+            clfactura.Id_usuario = Convert.ToInt32(ClsFactura.Id_obtenido_factura);
+            clfactura.Fecha_hora = DateTime.Now;
             clfactura.Subtotal = Convert.ToDecimal(txtsubtotalfactura.Text);
             clfactura.Iva = Convert.ToDecimal(txtiva.Text);
             clfactura.Total = Convert.ToDecimal(txttotal.Text);
@@ -147,7 +149,7 @@ namespace Proyecto_Carpinteria
 
         private void Btnrealizarfactura_Click(object sender, RoutedEventArgs e)
         {
-            if (txtidcliente.Text == "0" || txtidusuario.Text == "0")
+            if (txtidcliente.Text == "")
             {
                 MessageBox.Show("Debe seleccionar a un cliente...");
             }
@@ -156,10 +158,12 @@ namespace Proyecto_Carpinteria
                 SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
                 try
                 {
-                    conexion.Open();
-                    enviar_datos();
-                    clfactura.ingresar_datos();
-                    txtidfactura.Text = ClsFactura.Id_obtenido_factura.ToString();
+                    //Crear Factura
+                    Enviardatos_factura();
+                    clfactura.crear_factura();
+                    //Crear Detalles
+                    crear_detalles();
+                    //Limpiar campos
                     MessageBox.Show("Factura agregada con éxito!!!");
                     btnrealizarfactura.IsEnabled = false;
                     txtidproducto.Clear();
@@ -172,15 +176,43 @@ namespace Proyecto_Carpinteria
                     txttotal.Clear();
                     txtiva.Clear();
                     dgvCarrito.Rows.Clear();
-                    txtfecha.Text = Convert.ToString(DateTime.Now);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error en facturas");
                     MessageBox.Show(ex.Message);
                 }
+                finally
+                {
+                    conexion.Close();
+                } 
+            }
+        }
+
+        public void crear_detalles()
+        {
+            SqlConnection conexion = new SqlConnection("Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True");
+            try
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO detalles(id_factura, id_producto, cantidad, precio_total) VALUES(@id_factura, @id_producto, @cantidad, @precio_total);", conexion);
+                foreach (System.Windows.Forms.DataGridViewRow row in dgvCarrito.Rows)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id_factura", Convert.ToInt32(ClsFactura.Id_obtenido_factura));
+                    cmd.Parameters.AddWithValue("@id_producto", Convert.ToInt32(row.Cells["id_producto"].Value));
+                    cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells["cantidad_comprada"].Value));
+                    cmd.Parameters.AddWithValue("@precio_total", Convert.ToDecimal(row.Cells["subtotal_producto"].Value));
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear detalles:" + ex);
+            }
+            finally
+            {
                 conexion.Close();
-                agregar_tabla_detalles();
             }
         }
 
@@ -226,7 +258,6 @@ namespace Proyecto_Carpinteria
                 txtnombreproducto.Text = dgvCarrito.CurrentRow.Cells[1].Value.ToString();
                 txtcantidadproducto.Text = dgvCarrito.CurrentRow.Cells[2].Value.ToString();
                 txtPrecioCantidad.Text = dgvCarrito.CurrentRow.Cells[3].Value.ToString();
-
                 SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
                 try
                 {
@@ -250,7 +281,6 @@ namespace Proyecto_Carpinteria
                 finally
                 {
                     conexion.Close();
-
                 }
             }
         }
@@ -264,14 +294,12 @@ namespace Proyecto_Carpinteria
                 SqlCommand cm = new SqlCommand("SELECT id_usuario FROM usuarios WHERE nombre='" + txtnombreempleado.Text + "'", conexion);
                 SqlDataReader dr = cm.ExecuteReader();
                 dr.Read();
-                txtidusuario.Text = dr["id_usuario"].ToString();
                 string nombre1, apellido1, nombre_largo;
                 nombre1 = dr["nombre"].ToString();
                 apellido1 = dr["apellido"].ToString();
                 nombre_largo = nombre1 + apellido1;
                 conexion.Close();
                 txtnombreempleado.Text = nombre_largo;
-
             }
             catch (Exception ex)
             {
@@ -283,17 +311,11 @@ namespace Proyecto_Carpinteria
             }
         }
 
-        // ??
-
         List<string> listaproductos = new List<string>();
-
-
-        public void ordenar_lista()
-        {
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            controlslistproductos.SelectedValue = false;
             SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
             try
             {
@@ -318,13 +340,8 @@ namespace Proyecto_Carpinteria
             }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
-
             if (txtcantidadproducto.Text == "")
             {
                 MessageBox.Show("Debe de agregar una cantidad al producto");
@@ -340,7 +357,6 @@ namespace Proyecto_Carpinteria
                 txtsubtotalfactura.Text = Convert.ToString(total_productos);
                 txtiva.Text = Convert.ToString(iva);
                 txttotal.Text = Convert.ToString(total_factura);
-
                 MessageBox.Show("Producto agregado al carrito");
                 txtidproducto.Clear();
                 txtnombreproducto.Clear();
@@ -354,71 +370,82 @@ namespace Proyecto_Carpinteria
 
         private void Controlslistproductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
+            if(controlslistproductos.SelectedValue == null)
             {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM productos WHERE nombre_producto='" + controlslistproductos.SelectedValue.ToString() + "' ;", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-                while (dr.Read())
+                //nada
+            }
+            else
+            {
+                SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
+                try
                 {
-                    txtidproducto.Text = dr["id_producto"].ToString();
-                    txtnombreproducto.Text = dr["nombre_producto"].ToString();
-                    txtdescripproducto.Text = dr["descripcion"].ToString();
-                    txtprecioproducto.Text = dr["precio_venta"].ToString();
-                    txtcantidaddisponible.Text = dr["cantidad"].ToString();
+                    conexion.Open();
+                    SqlCommand cm = new SqlCommand("SELECT * FROM productos WHERE nombre_producto='" + controlslistproductos.SelectedValue.ToString() + "' ;", conexion);
+                    SqlDataReader dr = cm.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        txtidproducto.Text = dr["id_producto"].ToString();
+                        txtnombreproducto.Text = dr["nombre_producto"].ToString();
+                        txtdescripproducto.Text = dr["descripcion"].ToString();
+                        txtprecioproducto.Text = dr["precio_venta"].ToString();
+                        txtcantidaddisponible.Text = dr["cantidad"].ToString();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+                txtcantidadproducto.IsEnabled = true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-
         }
 
         private void Controlslistclientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
+            if(controlslistclientes.SelectedValue == null)
             {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM clientes WHERE nombre='" + controlslistclientes.SelectedValue.ToString() + "' ;", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-                while (dr.Read())
+                //nada
+            }
+            else
+            {
+                SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
+                try
                 {
-                    txtidcliente.Text = dr["id_cliente"].ToString();
-                    txtnombrecliente.Text = dr["nombre"].ToString();
-                    txtapellidocliente.Text = dr["apellido"].ToString();
-                    txtdireccion.Text = dr["direccion"].ToString();
-                    txttelefonocliente.Text = dr["telefono"].ToString();
-
-                    //controlslistproductos.Items.Add(dr[1].ToString());
+                    conexion.Open();
+                    string nombrecompleto = controlslistclientes.SelectedValue.ToString();
+                    string[] dividir_nombre = nombrecompleto.Split(' ');
+                    SqlCommand cm = new SqlCommand("SELECT * FROM clientes WHERE nombre='" + dividir_nombre[0] + "' ;", conexion);
+                    SqlDataReader dr = cm.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        txtidcliente.Text = dr["id_cliente"].ToString();
+                        txtnombrecliente.Text = dr["nombre"].ToString();
+                        txtapellidocliente.Text = dr["apellido"].ToString();
+                        txtdireccion.Text = dr["direccion"].ToString();
+                        txttelefonocliente.Text = dr["telefono"].ToString();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conexion.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-            finally
-            {
-                conexion.Close();
-
-            }
-
         }
 
         private void Txtcantidadproducto_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            if(System.Text.RegularExpressions.Regex.IsMatch(txtcantidadproducto.Text, "^[0-9]"))
+            txtcantidadproducto.Text = txtcantidadproducto.Text.Replace(".", "");
+            bool numeros = Regex.IsMatch(txtcantidadproducto.Text, "^[0-9]+$");
+            if(numeros)
             {
 
             }
@@ -426,7 +453,6 @@ namespace Proyecto_Carpinteria
             {
                 txtcantidadproducto.Text = "";
             }
-
 
 
             if(String.IsNullOrEmpty(txtcantidadproducto.Text))
@@ -458,12 +484,7 @@ namespace Proyecto_Carpinteria
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            // boton editar datagrid carrito 4 5
-
             posicion = dgvCarrito.CurrentRow.Index;
-
-            MessageBox.Show("Posicon " + posicion);
-
             dgvCarrito[2, posicion].Value = txtcantidadproducto.Text;
             dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
         }
@@ -510,7 +531,6 @@ namespace Proyecto_Carpinteria
             txtfecha.Text = Convert.ToString(DateTime.Now);
         }
 
-
         private void WindowsFormsHost_GotMouseCapture(object sender, MouseEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
@@ -518,19 +538,12 @@ namespace Proyecto_Carpinteria
             txtnombreproducto.Text = dgvCarrito[1, posicion].Value.ToString();
             txtcantidadproducto.Text = dgvCarrito[2, posicion].Value.ToString();
             txtPrecioCantidad.Text = dgvCarrito[3, posicion].Value.ToString();
-
-            //btnagregarcompra.IsEnabled = false;
-
-            MessageBox.Show("Linea numero " + posicion);
-            
-
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             dgvCarrito.Rows.RemoveAt(posicion);
             MessageBox.Show("Producto eliminado del carrito");
-
             if(dgvCarrito.Rows.Count == 0)
             {
                 btnrealizarfactura.IsEnabled = false;
@@ -540,14 +553,9 @@ namespace Proyecto_Carpinteria
         private void Btncerrarsesion_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult resultado = MessageBox.Show("Estas seguro de querer regresar al menú?", "Regresar al menú", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-
             switch (resultado)
             {
                 case MessageBoxResult.Yes:
-                    //Inicio_sesion inicioform = new Inicio_sesion();
-                    //inicioform.Show();
-                    
-
                     brendacarpinteria. ClsUsuario us = new brendacarpinteria. ClsUsuario();
                     if (us.Tipousuario == "Administrador")
                     {
@@ -570,11 +578,8 @@ namespace Proyecto_Carpinteria
                     break;
                 case MessageBoxResult.No:
                     break;
-
             }
-
         }
-
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
@@ -599,6 +604,11 @@ namespace Proyecto_Carpinteria
         {
             brendacarpinteria.productos productosform = new brendacarpinteria.productos();
             productosform.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            controlslistproductos.SelectedValue = false;
         }
     }
 }

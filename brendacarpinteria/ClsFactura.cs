@@ -32,7 +32,7 @@ namespace Proyecto_Carpinteria
 
         private static string usuario;
 
-        private string conexioncadena = "Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+        
 
         SqlDataAdapter da;
         //SqlCommand cmd;
@@ -48,33 +48,29 @@ namespace Proyecto_Carpinteria
         public static string Usuario { get => usuario; set => usuario = value; }
         public static string Id_obtenido_factura { get => id_obtenido_factura; set => id_obtenido_factura = value; }
 
-        public void ingresar_datos()
+        private string conexioncadena = "Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+
+        public void crear_factura()
         {
             SqlConnection conexion = new SqlConnection(conexioncadena);
             try
             {
                 conexion.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[factura]([id_cliente],[id_usuario],[fecha_hora],[subtotal],[iva],[total]) VALUES(@id_cliente, @id_usuario, @fecha_hora, @subtotal, @iva, @total) SELECT SCOPE_IDENTITY(); ", conexion);
+                SqlCommand cmd = new SqlCommand("INSERT INTO factura(id_cliente, id_usuario, fecha_hora, subtotal, iva, total) VALUES(@id_cliente, @id_usuario, @fecha_hora, @subtotal, @iva, @total) SELECT SCOPE_IDENTITY();", conexion);
                 cmd.Parameters.AddWithValue("@id_cliente", Id_cliente);
                 cmd.Parameters.AddWithValue("@id_usuario", Id_usuario);
                 cmd.Parameters.AddWithValue("@fecha_hora", Fecha_hora);
                 cmd.Parameters.AddWithValue("@subtotal", Subtotal);
                 cmd.Parameters.AddWithValue("@iva", Iva);
                 cmd.Parameters.AddWithValue("@total", Total);
-                cmd.ExecuteNonQuery();
-
-
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 string id_factura_lectura = reader[0].ToString();
-
                 id_obtenido_factura = id_factura_lectura;
-                conexion.Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("Error interno facturas:");
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al crear factura: " + ex);
             }
             finally
             {

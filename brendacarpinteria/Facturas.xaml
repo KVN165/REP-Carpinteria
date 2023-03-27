@@ -24,9 +24,9 @@
         <Label Content="Precio producto" HorizontalAlignment="Left" Margin="494,137,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnrealizarfactura" Height="30" Content="Realizar factura" HorizontalAlignment="Left" Margin="112,541,0,0" VerticalAlignment="Top" Width="90" Click="Btnrealizarfactura_Click" IsEnabled="False"/>
         <Button x:Name="btnlimpiar" Height="30" Content="Limpiar campos" HorizontalAlignment="Left" Margin="288,541,0,0" VerticalAlignment="Top" Width="90" Click="Btnlimpiar_Click"/>
-        <TextBox x:Name="txtiva" HorizontalAlignment="Left" Height="23" Margin="305,481,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtiva" HorizontalAlignment="Left" Height="23" Margin="305,481,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Iva" HorizontalAlignment="Left" Margin="254,480,0,0" VerticalAlignment="Top" Height="28"/>
-        <TextBox x:Name="txttotal" HorizontalAlignment="Left" Height="23" Margin="306,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txttotal" HorizontalAlignment="Left" Height="23" Margin="306,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Total De Factura" HorizontalAlignment="Left" Margin="203,510,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtidcliente" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="127,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Id Cliente" HorizontalAlignment="Left" Margin="60,183,0,0" VerticalAlignment="Top"/>
@@ -34,9 +34,7 @@
             <Forms:DataGridView x:Name="dgvCarrito" CellMouseClick="dgvCarrito_CellMouseClick"/>
 
         </WindowsFormsHost>
-        <TextBox x:Name="txtidusuario" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="195,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Verdana"/>
-        <Label Content="Id Usuario" HorizontalAlignment="Left" Margin="105,86,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtfecha" HorizontalAlignment="Left" Height="23" Margin="78,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtfecha" HorizontalAlignment="Left" Height="23" Margin="78,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="fecha" HorizontalAlignment="Left" Margin="25,488,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecioCantidad" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="599,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
         <Label Content="Precio por Cantidad" HorizontalAlignment="Left" Margin="474,296,0,0" VerticalAlignment="Top"/>
@@ -67,14 +65,14 @@
         </Button>
         <Button x:Name="btnEditarCarrito" Content="Editar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="7,399,0,0" VerticalAlignment="Top" Width="129" Click="Button_Click_3" IsEnabled="False"/>
         <Button x:Name="btnEliminarCarrito" Content="Eliminar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="145,399,0,0" VerticalAlignment="Top" Width="152" Click="Button_Click_4" IsEnabled="False"/>
-        <TextBox x:Name="txtidfactura" HorizontalAlignment="Left" Height="23" Margin="78,461,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtidfactura" HorizontalAlignment="Left" Height="23" Margin="78,461,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Información del Empleado" HorizontalAlignment="Left" Margin="122,55,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Información del Cliente" HorizontalAlignment="Left" Margin="122,152,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Información del Producto" HorizontalAlignment="Left" Margin="590,50,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Lista Productos" HorizontalAlignment="Left" Margin="773,65,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" Background="LightYellow" />
         <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Margin="632,355,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="BtnNuevo_Click"/>
         <Label Content="Id Factura" HorizontalAlignment="Left" Margin="8,461,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtsubtotalfactura" HorizontalAlignment="Left" Height="23" Margin="305,453,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtsubtotalfactura" HorizontalAlignment="Left" Height="23" Margin="305,453,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Subtotal Factura" HorizontalAlignment="Left" Margin="204,452,0,0" VerticalAlignment="Top" Height="28"/>
         <Button Content="Agregar nuevo producto" HorizontalAlignment="Left" Margin="773,330,0,0" VerticalAlignment="Top" Width="144" Height="35" Click="Button_Click"/>
 
