@@ -28,20 +28,18 @@ namespace Proyecto_Carpinteria.Clases
 
         private string conexioncadena = "Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True";
 
-        SqlDataAdapter da;
-        SqlCommand cmd;
-        DataTable dt;
-
         //int id_factura, int id_producto, decimal cantidad_comprada, decimal precio_total
-
         public void Insertar_datos(int id_factura, int id_producto, decimal cantidad_comprada, decimal precio_total)
         {
+            
             SqlConnection conexion = new SqlConnection(conexioncadena);
             conexion.Open();
-
             try
             {
+                //SqlCommand cmd;
+                /*
                 cmd.CommandText = "InsertarDetalles";
+                
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idfactura", id_factura);
@@ -50,6 +48,7 @@ namespace Proyecto_Carpinteria.Clases
                 cmd.Parameters.AddWithValue("precio_total", precio_total);
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
+                */
                 MessageBox.Show("Datos insertados");
 
             }

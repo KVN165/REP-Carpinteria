@@ -12,9 +12,9 @@ namespace brendacarpinteria
     internal class Clsclientes
     {
         private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
-        SqlDataAdapter da;
-        SqlCommand cmd;
-        DataTable dt;
+        //SqlDataAdapter da;
+        //SqlCommand cmd;
+        //DataTable dt;
 
         private string cons;
         private string bus;
@@ -41,9 +41,9 @@ namespace brendacarpinteria
                 clie.Fill(dtclie);
                 dgv.DataSource = dtclie;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pueden cargar los datos");
+                MessageBox.Show("No se pueden cargar los datos:" +ex);
             }
         }
 

@@ -31,15 +31,12 @@ namespace Proyecto_Carpinteria
 
             //Reloj
             DispatcherTimer oDispacherTimer = new DispatcherTimer();
-
             oDispacherTimer.Interval = new TimeSpan(800);
             oDispacherTimer.Tick += (a, b) =>
             {
                 txtfecha.Text = DateTime.Now.ToString();
             };
             oDispacherTimer.Start();
-
-
         }
         // variables
         int cantidad_producto;
@@ -53,8 +50,77 @@ namespace Proyecto_Carpinteria
         ClsFactura clfactura = new ClsFactura();
         Clases.ClsDetalle detalleinfo = new Clases.ClsDetalle();
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cargarlistaclientes();
+            cargarlistaproductos();
 
-        
+            brendacarpinteria.ClsUsuario usuariosinfo = new brendacarpinteria.ClsUsuario();
+            txtnombreempleado.Text = Proyecto_Carpinteria.ClsFactura.Usuario;
+            txtidusuario.Text = Proyecto_Carpinteria.ClsFactura.Id_obtenido_factura;
+
+            dgvCarrito.Columns.Add("id_producto", "Id del producto");
+            dgvCarrito.Columns.Add("nombre_producto", "Nombre del producto");
+            dgvCarrito.Columns.Add("cantidad_comprada", "Cantidad");
+            dgvCarrito.Columns.Add("subtotal_producto", "Precio total");
+            dgvCarrito.Columns["id_producto"].Visible = false;
+            dgvCarrito.AllowUserToAddRows = false;
+            dgvCarrito.AllowUserToDeleteRows = false;
+            dgvCarrito.ReadOnly = true;
+            dgvCarrito.Rows.Clear();
+            dgvCarrito.AutoResizeColumns();
+            dgvCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        public void cargarlistaclientes()
+        {
+            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
+            try
+            {
+                conexion.Open();
+                SqlCommand cm = new SqlCommand("SELECT * FROM clientes order by nombre", conexion);
+                SqlDataReader dr = cm.ExecuteReader();
+                controlslistclientes.Items.Clear();
+                while (dr.Read())
+                {
+                    controlslistclientes.Items.Add(dr[1].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void cargarlistaproductos()
+        {
+            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
+            try
+            {
+                conexion.Open();
+                SqlCommand cm = new SqlCommand("SELECT * FROM productos order by nombre_producto", conexion);
+                SqlDataReader dr = cm.ExecuteReader();
+                controlslistproductos.Items.Clear();
+                while (dr.Read())
+                {
+                    controlslistproductos.Items.Add(dr[1].ToString());
+                    listaproductos.Sort();
+                }
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
         public void dgvCarrito_CellClick(object sender, DataGridView.DataGridViewCellEventArgs e)
         {
@@ -189,81 +255,6 @@ namespace Proyecto_Carpinteria
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // cargar lista de datos clientes
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
-            {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM clientes order by nombre", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-                controlslistclientes.Items.Clear();
-                while (dr.Read())
-                {
-                    controlslistclientes.Items.Add(dr[1].ToString());
-                } 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-            // cargar lista de datos productos
-            cargar_lista_productos();
-
-            System.Windows.Forms.Integration.WindowsFormsHost
-                host = new System.Windows.Forms.Integration.WindowsFormsHost();
-            DataGrid dgv = new DataGrid();
-
-            txtfecha.Text = Convert.ToString(DateTime.Now);
-            brendacarpinteria.ClsUsuario usuariosinfo = new brendacarpinteria.ClsUsuario();
-            txtnombreempleado.Text = Proyecto_Carpinteria.ClsFactura.Usuario;
-            txtidusuario.Text = Proyecto_Carpinteria.ClsFactura.Id_obtenido_factura;
-
-
-            dgvCarrito.Columns.Add("id_producto", "Id del producto");
-            dgvCarrito.Columns.Add("nombre_producto", "Nombre del producto");
-            dgvCarrito.Columns.Add("cantidad_comprada", "Cantidad");
-            dgvCarrito.Columns.Add("subtotal_producto", "Precio total");
-            dgvCarrito.Columns["id_producto"].Visible = false;
-            dgvCarrito.AllowUserToAddRows = false;
-            dgvCarrito.AllowUserToDeleteRows = false;
-            dgvCarrito.ReadOnly = true;
-            dgvCarrito.Rows.Clear();
-            dgvCarrito.AutoResizeColumns();
-            dgvCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-        }
-
-        public void cargar_lista_productos()
-        {
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
-            {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM productos order by nombre_producto", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-                controlslistproductos.Items.Clear();
-                while (dr.Read())
-                {
-                    controlslistproductos.Items.Add(dr[1].ToString());
-                    listaproductos.Sort();
-                }
-                conexion.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-        }
-
         public void cargar_id_usuario()
         {
             SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
@@ -290,13 +281,6 @@ namespace Proyecto_Carpinteria
             {
                 conexion.Close();
             }
-        }
-
-        private void WindowsFormsHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-            
-
-        //facturainfo.cargarDatapro(dgvfactura); 
         }
 
         // ??
@@ -493,16 +477,6 @@ namespace Proyecto_Carpinteria
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Txtnombreempleado_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
         private void Txtcantidadproducto_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -556,29 +530,6 @@ namespace Proyecto_Carpinteria
             dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
         }
 
-        private void WindowsFormsHost_GotFocus(object sender, RoutedEventArgs e)
-        {
-            /*
-            posicion = dgvCarrito.CurrentRow.Index;
-            txtidproducto.Text = dgvCarrito[0, posicion].Value.ToString();
-            txtnombreproducto.Text = dgvCarrito[1, posicion].Value.ToString();
-            txtcantidadproducto.Text = dgvCarrito[2, posicion].Value.ToString();
-            txtsubtotal.Text = dgvCarrito[3, posicion].Value.ToString();
-
-            //txtidproducto.Template = dgvCarrito.SelectedRows.Cells[0].Value.ToString();
-
-            //btnagregarcompra.IsEnabled = false;
-
-            MessageBox.Show("Linea numero " + posicion);
-            */
-
-        }
-
-        private void WindowsFormsHost_LostFocus(object sender, RoutedEventArgs e)
-        {
-            btnagregarcompra.IsEnabled = true;
-        }
-
         private void Btncalcularsubtotal_Click(object sender, RoutedEventArgs e)
         {
             if (txtcantidadproducto.Text == "")
@@ -595,10 +546,6 @@ namespace Proyecto_Carpinteria
             {
                 //txtcantidadproducto.Text = "0";
             }
-
-
-
-
             if (cantidad_producto == 0)
             {
                 txtPrecioCantidad.Text = "0";

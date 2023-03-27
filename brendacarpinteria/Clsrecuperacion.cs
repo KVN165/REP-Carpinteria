@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace brendacarpinteria
 {
@@ -14,9 +15,9 @@ namespace brendacarpinteria
     {
         private SmtpClient smtpClient;
         private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
-        SqlDataAdapter da;
+        //SqlDataAdapter da;
         SqlCommand cmd;
-        DataTable dt;
+        //DataTable dt;
         protected string remitentecorreo { get; set; }
         protected string pass { get; set; }
          
@@ -48,7 +49,11 @@ namespace brendacarpinteria
                 mailmessage.Priority = MailPriority.Normal;
                 smtpClient.Send(mailmessage);
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:"+ex);
+                
+            }
             finally
             {
                 mailmessage.Dispose();

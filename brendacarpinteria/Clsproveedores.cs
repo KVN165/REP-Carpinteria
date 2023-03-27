@@ -48,7 +48,7 @@ namespace brendacarpinteria
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pueden cargar los datos");
+                MessageBox.Show("No se pueden cargar los datos:"+ex);
             }
 
             finally

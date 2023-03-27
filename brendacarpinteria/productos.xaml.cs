@@ -26,10 +26,10 @@ namespace brendacarpinteria
     public partial class productos : Window
 
     {
-        private string cadenaconexion = "Data Source =MENDEZ\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
+        private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
 
         Clsproducto1 pro = new Clsproducto1();
-        int i;
+        //int i;
         public productos()
         {
             InitializeComponent();

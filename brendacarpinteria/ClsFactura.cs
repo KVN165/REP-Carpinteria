@@ -35,7 +35,7 @@ namespace Proyecto_Carpinteria
         private string conexioncadena = "Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True";
 
         SqlDataAdapter da;
-        SqlCommand cmd;
+        //SqlCommand cmd;
         DataTable dt;
 
         public int Id_factura { get => id_factura; set => id_factura = value; }
