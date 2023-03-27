@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:brendacarpinteria"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Insumos"  Height="500" Width="900" Icon="/martillo.png">
     <Grid Margin="0,0,0,-6">
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>

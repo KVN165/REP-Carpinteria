@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brendacarpinteria"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="recuperacion" Height="450" Width="800" Icon="/martillo.png">
     <Grid>
         <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Proyecto_Carpinteria"
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Facturas" Height="618.007" Width="987.2" Loaded="Window_Loaded">
     <Grid>
 
@@ -54,7 +55,7 @@
         <TextBox x:Name="txtdescripproducto" IsEnabled="False" HorizontalAlignment="Left" Height="98" Margin="599,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
         <Label Content="Cant disponible" HorizontalAlignment="Left" Margin="496,165,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtcantidaddisponible" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="599,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Button x:Name="btntest" Content="Refrescar Lista" HorizontalAlignment="Left" Margin="322,355,0,0" VerticalAlignment="Top" Width="87" Height="30" Click="Btntest_Click"/>
+        <Button x:Name="btnrefrescarclientes" Content="Refrescar Lista" HorizontalAlignment="Left" Margin="322,355,0,0" VerticalAlignment="Top" Width="87" Height="30" Click="Btnrefrescarclientes_Click"/>
         <Label Content="Lista Clientes" HorizontalAlignment="Left" Margin="305,164,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" Background="LightYellow" />
         <Button Content="Agregar nuevo cliente" HorizontalAlignment="Left" Margin="25,355,0,0" VerticalAlignment="Top" Width="135" Height="30" RenderTransformOrigin="0.501,1.823" Click="Button_Click_6"/>
         <Rectangle Fill="#FFFF7500" HorizontalAlignment="Left" Height="50                    " Stroke="Black" VerticalAlignment="Top" Width="980" Margin="-2,2,0,0"/>
@@ -75,6 +76,7 @@
         <Label Content="Id Factura" HorizontalAlignment="Left" Margin="8,461,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtsubtotalfactura" HorizontalAlignment="Left" Height="23" Margin="305,453,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Subtotal Factura" HorizontalAlignment="Left" Margin="204,452,0,0" VerticalAlignment="Top" Height="28"/>
+        <Button Content="Agregar nuevo producto" HorizontalAlignment="Left" Margin="773,330,0,0" VerticalAlignment="Top" Width="144" Height="35" Click="Button_Click"/>
 
 
     </Grid>

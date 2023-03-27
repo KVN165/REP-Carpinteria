@@ -381,68 +381,6 @@ namespace Proyecto_Carpinteria
 
         }
 
-        private void Btntest_Click(object sender, RoutedEventArgs e)
-        {
-            controlslistclientes.SelectedItem = "";
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
-            {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM clientes order by nombre", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-                controlslistclientes.Items.Clear();
-                while (dr.Read())
-                {
-                    controlslistclientes.Items.Add(dr[1].ToString());
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-            finally
-            {
-                conexion.Close();
-
-            }
-
-
-
-            /*
-
-
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            try
-            {
-                conexion.Open();
-                SqlCommand cm = new SqlCommand("SELECT * FROM clientes order by nombre", conexion);
-                SqlDataReader dr = cm.ExecuteReader();
-
-
-                controlslistclientes.Items.Clear();
-                while (dr.Read())
-                {
-                    //listaproductos.Add(dr[1].ToString());
-                    controlslistclientes.Items.Add(dr[1].ToString());
-                    //controlslistproductos.Items.Add(listaproductos);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Refrescar");
-                MessageBox.Show(ex.Message);
-
-            }
-            finally
-            {
-                conexion.Close();
-
-            }
-            */
-        }
-
         private void Controlslistclientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
@@ -650,6 +588,17 @@ namespace Proyecto_Carpinteria
             btnagregarcompra.IsEnabled = true;
             btnEditarCarrito.IsEnabled = false;
             btnEliminarCarrito.IsEnabled = false;
+        }
+
+        private void Btnrefrescarclientes_Click(object sender, RoutedEventArgs e)
+        {
+            cargarlistaclientes();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            brendacarpinteria.productos productosform = new brendacarpinteria.productos();
+            productosform.Show();
         }
     }
 }

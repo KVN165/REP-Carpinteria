@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:brendacarpinteria"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="productos" Height="500" Width="900" Icon="/martillo.png">
     <Window.Resources>
         <local:Carpinteria_BDDataSet x:Key="carpinteria_BDDataSet"/>
