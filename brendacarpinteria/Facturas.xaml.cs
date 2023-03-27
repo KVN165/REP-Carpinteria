@@ -127,7 +127,6 @@ namespace Proyecto_Carpinteria
         public void dgvCarrito_CellClick(object sender, DataGridView.DataGridViewCellEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
-            MessageBox.Show("Row numero" + posicion);
             txtidproducto.Text = dgvCarrito.CurrentRow.Cells[0].Value.ToString();
             txtnombreproducto.Text = dgvCarrito.CurrentRow.Cells[1].Value.ToString();
             txtcantidadproducto.Text = dgvCarrito.CurrentRow.Cells[2].Value.ToString();
@@ -348,7 +347,11 @@ namespace Proyecto_Carpinteria
             }else if (txtprecioproducto.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un producto...");
-            }else{
+            }else if (Convert.ToInt32(txtcantidadproducto.Text) >  Convert.ToInt32(txtcantidaddisponible.Text))
+            {
+                MessageBox.Show("No hay suficiente cantidad en el inventario del producto solicitado, agregue una menor cantidad");
+            }
+            else {
                 btnrealizarfactura.IsEnabled = true;
                 dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
                 total_productos = cantidad_subtotal + total_productos;
@@ -357,7 +360,9 @@ namespace Proyecto_Carpinteria
                 txtsubtotalfactura.Text = Convert.ToString(total_productos);
                 txtiva.Text = Convert.ToString(iva);
                 txttotal.Text = Convert.ToString(total_factura);
+                dgvCarrito.ClearSelection();
                 MessageBox.Show("Producto agregado al carrito");
+                txtPrecioCantidad.Clear();
                 txtidproducto.Clear();
                 txtnombreproducto.Clear();
                 txtprecioproducto.Clear();
@@ -390,6 +395,8 @@ namespace Proyecto_Carpinteria
                         txtprecioproducto.Text = dr["precio_venta"].ToString();
                         txtcantidaddisponible.Text = dr["cantidad"].ToString();
                     }
+                    txtPrecioCantidad.Text = "0";
+                    txtcantidadproducto.Text = "0";
                     conexion.Close();
                 }
                 catch (Exception ex)
@@ -443,6 +450,13 @@ namespace Proyecto_Carpinteria
 
         private void Txtcantidadproducto_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (txtPrecioCantidad.Text == "" && txtcantidadproducto.Text != "0")
+            {
+                MessageBox.Show("Seleccione un producto primero");
+                txtcantidadproducto.Text = "0";
+            }
+
+
             txtcantidadproducto.Text = txtcantidadproducto.Text.Replace(".", "");
             bool numeros = Regex.IsMatch(txtcantidadproducto.Text, "^[0-9]+$");
             if(numeros)
@@ -518,6 +532,7 @@ namespace Proyecto_Carpinteria
 
         private void Btnlimpiar_Click(object sender, RoutedEventArgs e)
         {
+            controlslistproductos.SelectedValue = false;
             txtidproducto.Clear();
             txtnombreproducto.Clear();
             txtprecioproducto.Clear();
@@ -525,15 +540,16 @@ namespace Proyecto_Carpinteria
             txtdescripproducto.Clear();
             txtcantidadproducto.Clear();
             txtPrecioCantidad.Clear();
-            txtiva.Clear();
-            txttotal.Clear();
-            txtsubtotalfactura.Clear();
+            //txtiva.Clear();
+            //txttotal.Clear();
+            //txtsubtotalfactura.Clear();
             txtfecha.Text = Convert.ToString(DateTime.Now);
         }
 
         private void WindowsFormsHost_GotMouseCapture(object sender, MouseEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
+            
             txtidproducto.Text = dgvCarrito[0, posicion].Value.ToString();
             txtnombreproducto.Text = dgvCarrito[1, posicion].Value.ToString();
             txtcantidadproducto.Text = dgvCarrito[2, posicion].Value.ToString();
@@ -609,6 +625,21 @@ namespace Proyecto_Carpinteria
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             controlslistproductos.SelectedValue = false;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            brendacarpinteria.Ver_facturas verfacturasform = new brendacarpinteria.Ver_facturas();
+            verfacturasform.Show();
+        }
+
+        private void Txtcantidadproducto_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[0-9]+$"))
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }
