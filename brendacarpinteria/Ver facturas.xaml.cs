@@ -131,5 +131,33 @@ namespace brendacarpinteria
         {
             Cargar_facturas();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtbuscador.Text != "")
+            {
+                dgvFactura.CurrentCell = null;
+                foreach(DataGridViewRow r in dgvFactura.Rows)
+                {
+                    r.Visible = false;
+                }
+                foreach(DataGridViewRow r in dgvFactura.Rows)
+                {
+                    foreach(DataGridViewCell c in r.Cells)
+                    {
+                        if ((c.Value.ToString().ToUpper()).IndexOf(txtbuscador.Text.ToUpper()) == 0)
+                        {
+                            r.Visible = true;
+                            break;
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                Cargar_facturas();
+            }
+        }
     }
 }

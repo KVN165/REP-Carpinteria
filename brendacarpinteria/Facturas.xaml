@@ -65,13 +65,11 @@
         </Button>
         <Button x:Name="btnEditarCarrito" Content="Editar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="542,391,0,0" VerticalAlignment="Top" Width="129" Click="Button_Click_3" IsEnabled="False"/>
         <Button x:Name="btnEliminarCarrito" Content="Eliminar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="680,391,0,0" VerticalAlignment="Top" Width="152" Click="Button_Click_4" IsEnabled="False"/>
-        <TextBox x:Name="txtidfactura" HorizontalAlignment="Left" Height="23" Margin="614,453,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Información del Empleado" HorizontalAlignment="Left" Margin="122,55,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Información del Cliente" HorizontalAlignment="Left" Margin="122,122,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Información del Producto" HorizontalAlignment="Left" Margin="590,50,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
         <Label Content="Lista Productos" HorizontalAlignment="Left" Margin="773,65,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" Background="LightYellow" />
         <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Margin="632,355,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="BtnNuevo_Click"/>
-        <Label Content="Id Factura" HorizontalAlignment="Left" Margin="543,453,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtsubtotalfactura" HorizontalAlignment="Left" Height="23" Margin="840,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Subtotal Factura" HorizontalAlignment="Left" Margin="739,444,0,0" VerticalAlignment="Top" Height="28"/>
         <Button Content="Agregar nuevo producto" HorizontalAlignment="Left" Margin="773,330,0,0" VerticalAlignment="Top" Width="144" Height="35" Click="Button_Click"/>
