@@ -46,6 +46,11 @@ namespace Proyecto_Carpinteria
         decimal iva;
         decimal total_factura;
         static int posicion;
+        static bool ya_esta = false;
+
+        static int id_producto;
+        static int cantidad_comprada;
+
         //Clases
         ClsFactura clfactura = new ClsFactura();
         Clases.ClsDetalle detalleinfo = new Clases.ClsDetalle();
@@ -127,7 +132,6 @@ namespace Proyecto_Carpinteria
         public void dgvCarrito_CellClick(object sender, DataGridView.DataGridViewCellEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
-            MessageBox.Show("Row numero" + posicion);
             txtidproducto.Text = dgvCarrito.CurrentRow.Cells[0].Value.ToString();
             txtnombreproducto.Text = dgvCarrito.CurrentRow.Cells[1].Value.ToString();
             txtcantidadproducto.Text = dgvCarrito.CurrentRow.Cells[2].Value.ToString();
@@ -151,7 +155,7 @@ namespace Proyecto_Carpinteria
         {
             if (txtidcliente.Text == "")
             {
-                MessageBox.Show("Debe seleccionar a un cliente...");
+                MessageBox.Show("Debe de seleccionar a un cliente", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -163,8 +167,9 @@ namespace Proyecto_Carpinteria
                     clfactura.crear_factura();
                     //Crear Detalles
                     crear_detalles();
+                    //Actulizar inventario va dentro de crear_detlles()
                     //Limpiar campos
-                    MessageBox.Show("Factura agregada con éxito!!!");
+                    MessageBox.Show("La factura a sido creada!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
                     btnrealizarfactura.IsEnabled = false;
                     txtidproducto.Clear();
                     txtnombreproducto.Clear();
@@ -176,11 +181,16 @@ namespace Proyecto_Carpinteria
                     txttotal.Clear();
                     txtiva.Clear();
                     dgvCarrito.Rows.Clear();
+
+                    txtidcliente.Clear();
+                    txtnombrecliente.Clear();
+                    txtapellidocliente.Clear();
+                    txttelefonocliente.Clear();
+                    txtdireccion.Clear();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error en facturas");
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error en facturas: "+ex.Message);
                 }
                 finally
                 {
@@ -202,6 +212,12 @@ namespace Proyecto_Carpinteria
                     cmd.Parameters.AddWithValue("@id_factura", Convert.ToInt32(ClsFactura.Id_obtenido_factura));
                     cmd.Parameters.AddWithValue("@id_producto", Convert.ToInt32(row.Cells["id_producto"].Value));
                     cmd.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells["cantidad_comprada"].Value));
+
+
+                    id_producto = Convert.ToInt32(row.Cells["id_producto"].Value);
+                    cantidad_comprada = Convert.ToInt32(row.Cells["cantidad_comprada"].Value);
+                    actualizar_inventario();
+
                     cmd.Parameters.AddWithValue("@precio_total", Convert.ToDecimal(row.Cells["subtotal_producto"].Value));
                     cmd.ExecuteNonQuery();
                 }
@@ -216,29 +232,22 @@ namespace Proyecto_Carpinteria
             }
         }
 
-        public void agregar_tabla_detalles()
+        public void actualizar_inventario()
         {
-            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
-            SqlCommand insertar_detalles = new SqlCommand("INSERT into detalles(id_factura, id_producto, cantidad, precio_total) values(@id_factura, @id_producto, @cantidad, @precio_total)", conexion);
+            SqlConnection conexion = new SqlConnection("Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True");
             try
             {
                 conexion.Open();
-                foreach (System.Windows.Forms.DataGridViewRow row in dgvCarrito.Rows)
-                {
-                    insertar_detalles.Parameters.Clear();
-                    insertar_detalles.Parameters.AddWithValue("@id_factura", Convert.ToInt32(txtidfactura.Text));   
-                    insertar_detalles.Parameters.AddWithValue("@id_producto", Convert.ToInt32(row.Cells["id_producto"].Value));
-                    insertar_detalles.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells["cantidad_comprada"].Value));
-                    insertar_detalles.Parameters.AddWithValue("@precio_total", Convert.ToDecimal(row.Cells["subtotal_producto"].Value));
-                    insertar_detalles.ExecuteNonQuery();
-                    conexion.Close();
-                }
-                conexion.Close();
+                SqlCommand cmd = new SqlCommand("UPDATE productos SET cantidad= cantidad - '"+cantidad_comprada+"'WHERE id_producto='"+id_producto+"';", conexion);
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en detalles");
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al actualizar stock:" + ex);
+            }
+            finally
+            {
+                conexion.Close();
             }
         }
 
@@ -342,29 +351,65 @@ namespace Proyecto_Carpinteria
 
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
-            if (txtcantidadproducto.Text == "")
+            if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text == "0")
             {
-                MessageBox.Show("Debe de agregar una cantidad al producto");
-            }else if (txtprecioproducto.Text == "")
+                MessageBox.Show("Debe de agregar una cantidad para comprar", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (txtprecioproducto.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un producto...");
-            }else{
-                btnrealizarfactura.IsEnabled = true;
-                dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
-                total_productos = cantidad_subtotal + total_productos;
-                iva = total_productos * Convert.ToDecimal(0.15);
-                total_factura = total_productos + iva;
-                txtsubtotalfactura.Text = Convert.ToString(total_productos);
-                txtiva.Text = Convert.ToString(iva);
-                txttotal.Text = Convert.ToString(total_factura);
-                MessageBox.Show("Producto agregado al carrito");
-                txtidproducto.Clear();
-                txtnombreproducto.Clear();
-                txtprecioproducto.Clear();
-                txtcantidaddisponible.Clear();
-                txtdescripproducto.Clear();
-                txtcantidadproducto.Clear();
-                txtPrecioCantidad.Clear();
+                MessageBox.Show("Debe de seleccionar un producto", "Fantan datos", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (Convert.ToInt32(txtcantidadproducto.Text) >  Convert.ToInt32(txtcantidaddisponible.Text))
+            {
+                MessageBox.Show("No hay suficiente cantidad en el inventario del producto solicidado", "Sin stock en inventario", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (txtidproducto.Text == "")
+            {
+                
+                
+
+                    
+
+            }
+            else {
+                ya_esta = false;
+                foreach (System.Windows.Forms.DataGridViewRow row in dgvCarrito.Rows)
+                {
+                    int valor_id = Convert.ToInt32(row.Cells["id_producto"].Value);
+                    if (valor_id == Convert.ToInt32(txtidproducto.Text))
+                    {
+                        
+                        ya_esta = true;
+                        break;
+                    }
+                }
+
+                if (ya_esta == true)
+                {
+                    MessageBox.Show("El producto ya está en el carrito! \n Edítelo si quiere agregar mas cantidad comprada", "Producto ya en carrito", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    btnrealizarfactura.IsEnabled = true;
+                    dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
+                    total_productos = cantidad_subtotal + total_productos;
+                    iva = total_productos * Convert.ToDecimal(0.15);
+                    total_factura = total_productos + iva;
+                    txtsubtotalfactura.Text = Convert.ToString(total_productos);
+                    txtiva.Text = Convert.ToString(iva);
+                    txttotal.Text = Convert.ToString(total_factura);
+                    dgvCarrito.ClearSelection();
+                    MessageBox.Show("Producto agregado al carrito!!", "Producto Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtPrecioCantidad.Clear();
+                    txtcantidadproducto.Clear();
+                    txtidproducto.Clear();
+                    txtnombreproducto.Clear();
+                    txtprecioproducto.Clear();
+                    txtcantidaddisponible.Clear();
+                    txtdescripproducto.Clear();
+                    txtcantidadproducto.Clear();
+                    txtPrecioCantidad.Clear();
+                }
             }
         }
 
@@ -390,6 +435,8 @@ namespace Proyecto_Carpinteria
                         txtprecioproducto.Text = dr["precio_venta"].ToString();
                         txtcantidaddisponible.Text = dr["cantidad"].ToString();
                     }
+                    txtPrecioCantidad.Text = "0";
+                    txtcantidadproducto.Text = "0";
                     conexion.Close();
                 }
                 catch (Exception ex)
@@ -443,43 +490,38 @@ namespace Proyecto_Carpinteria
 
         private void Txtcantidadproducto_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtcantidadproducto.Text = txtcantidadproducto.Text.Replace(".", "");
-            bool numeros = Regex.IsMatch(txtcantidadproducto.Text, "^[0-9]+$");
-            if(numeros)
+            if(txtcantidadproducto.Text == "" || txtprecioproducto.Text == "")
             {
-
+                //nada
             }
             else
             {
-                txtcantidadproducto.Text = "";
-            }
-
-
-            if(String.IsNullOrEmpty(txtcantidadproducto.Text))
-            {
-                txtPrecioCantidad.Clear();
-            }
-            else
-            {
-                if (txtprecioproducto.Text == "")
+                if(txtcantidadproducto.Text.Length > 0)
                 {
-
+                    if (int.TryParse(txtcantidadproducto.Text, out int num))
+                    {
+                        if(num.ToString().Length > 5)
+                        {
+                            MessageBox.Show("La cantidad a comprar no debe exeder los 5 dígitos!!", "Cantidad solicitada", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtcantidadproducto.Text = "";
+                            txtPrecioCantidad.Text = "";
+                        }
+                        else
+                        {
+                            precio_producto = Convert.ToDecimal(txtprecioproducto.Text);
+                            cantidad_producto = Convert.ToInt32(txtcantidadproducto.Text);
+                            cantidad_subtotal = cantidad_producto * precio_producto;
+                            txtPrecioCantidad.Text = Convert.ToString(cantidad_subtotal);
+                        }
+                    }
+                    
                 }
                 else
                 {
-                    precio_producto = Convert.ToDecimal(txtprecioproducto.Text);
-                    cantidad_producto = Convert.ToInt32(txtcantidadproducto.Text);
+                    //MessageBox.Show("El numero es muy grande!!!");
                 }
+                
             }
-            if (cantidad_producto == 0)
-            {
-                txtPrecioCantidad.Text = "0";
-            }
-            else
-            {
-                cantidad_subtotal = cantidad_producto * precio_producto;
-                txtPrecioCantidad.Text = Convert.ToString(cantidad_subtotal);
-            }    
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -487,8 +529,9 @@ namespace Proyecto_Carpinteria
             posicion = dgvCarrito.CurrentRow.Index;
             dgvCarrito[2, posicion].Value = txtcantidadproducto.Text;
             dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
+            MessageBox.Show("Producto editado del carrito!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
+            dgvCarrito.ClearSelection();
         }
-
         private void Btncalcularsubtotal_Click(object sender, RoutedEventArgs e)
         {
             if (txtcantidadproducto.Text == "")
@@ -497,8 +540,7 @@ namespace Proyecto_Carpinteria
             }
             else
             {
-                precio_producto = Convert.ToDecimal(txtprecioproducto.Text);
-                cantidad_producto = Convert.ToInt16(txtcantidadproducto.Text);
+                
             }
 
             if (txtcantidadproducto.Text == "")
@@ -511,13 +553,13 @@ namespace Proyecto_Carpinteria
             }
             else
             {
-                cantidad_subtotal = cantidad_producto * precio_producto;
-                txtPrecioCantidad.Text = Convert.ToString(cantidad_subtotal);
+                
             }
         }
 
         private void Btnlimpiar_Click(object sender, RoutedEventArgs e)
         {
+            controlslistproductos.SelectedValue = false;
             txtidproducto.Clear();
             txtnombreproducto.Clear();
             txtprecioproducto.Clear();
@@ -525,15 +567,16 @@ namespace Proyecto_Carpinteria
             txtdescripproducto.Clear();
             txtcantidadproducto.Clear();
             txtPrecioCantidad.Clear();
-            txtiva.Clear();
-            txttotal.Clear();
-            txtsubtotalfactura.Clear();
+            //txtiva.Clear();
+            //txttotal.Clear();
+            //txtsubtotalfactura.Clear();
             txtfecha.Text = Convert.ToString(DateTime.Now);
         }
 
         private void WindowsFormsHost_GotMouseCapture(object sender, MouseEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
+            
             txtidproducto.Text = dgvCarrito[0, posicion].Value.ToString();
             txtnombreproducto.Text = dgvCarrito[1, posicion].Value.ToString();
             txtcantidadproducto.Text = dgvCarrito[2, posicion].Value.ToString();
@@ -543,8 +586,8 @@ namespace Proyecto_Carpinteria
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             dgvCarrito.Rows.RemoveAt(posicion);
-            MessageBox.Show("Producto eliminado del carrito");
-            if(dgvCarrito.Rows.Count == 0)
+            MessageBox.Show("Producto ELIMINADO del carrito!!", "Carrito eliminado", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (dgvCarrito.Rows.Count == 0)
             {
                 btnrealizarfactura.IsEnabled = false;
             }
@@ -609,6 +652,22 @@ namespace Proyecto_Carpinteria
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             controlslistproductos.SelectedValue = false;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            brendacarpinteria.Ver_facturas verfacturasform = new brendacarpinteria.Ver_facturas();
+            verfacturasform.Show();
+        }
+
+        private void Txtcantidadproducto_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[0-9]+$"))
+            {
+                e.Handled = true;
+            }
+
+
         }
     }
 }
