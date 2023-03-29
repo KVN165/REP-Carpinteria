@@ -36,17 +36,17 @@ namespace brendacarpinteria
 
         public void envdatosp()
         {
-           us.Usuarios = txtusuario.Text;
-           us.Contra = passbox.Password;
+                us.Usuarios = txtusuario.Text;
+                us.Contra = passbox.Password;
         }
-
 
         private void btnacceder_Click(object sender, RoutedEventArgs e)
         {
+            
             envdatosp();
             us.login();
-
-          
+            if(us.Validadausuario == us.Usuarios && us.Validacontra == us.Contra)
+            {
                 if (us.Tipousuario == "Administrador")
                 {
                     if (us.Tipo == "Activo")
@@ -64,30 +64,38 @@ namespace brendacarpinteria
                 }
                 else if (us.Tipousuario == "Cajero")
                 {
-                    if (us.Tipo == "Activo") { 
-                    cajero ca = new cajero();
-                    ca.Show();
-                    this.Close();
+                    if (us.Tipo == "Activo")
+                    {
+                        cajero ca = new cajero();
+                        ca.Show();
+                        this.Close();
                     }
                     else
                     {
-                     MessageBox.Show("Usuario bloqueado, comunicarse con el administrador", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     }
+                        MessageBox.Show("Usuario bloqueado, comunicarse con el administrador", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-            }
+                }
                 else if (us.Tipousuario == "Bodeguero")
                 {
-                     if (us.Tipo == "Activo") { 
-                    Bodeguero bo = new Bodeguero();
-                    bo.Show();
-                    this.Close();
-                     }
-                        else
-                        {
-                          MessageBox.Show("Usuario bloqueado, comunicarse con el administrador", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                         }
-                 }
+                    if (us.Tipo == "Activo")
+                    {
+                        Bodeguero bo = new Bodeguero();
+                        bo.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario bloqueado, comunicarse con el administrador", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
 
+
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrecta", "Error de inicio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -102,5 +110,15 @@ namespace brendacarpinteria
             r.Show();
             this.Close();
         }
+
+        private void txtusuario_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[A-Za-z0-9]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+      
     }
 }

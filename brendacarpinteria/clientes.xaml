@@ -9,20 +9,20 @@
         Title="clientes" Height="500" Width="900" Icon="/martillo.png">
     <Grid Margin="0,0,0,-6" >
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
-        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="46,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" Height="25"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="46,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" Height="25" PreviewTextInput="txtnombre_PreviewTextInput"/>
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="46,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
         <Label Content="Apellido" HorizontalAlignment="Left" Margin="46,160,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="46,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="25" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="46,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="25" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtapellido_PreviewTextInput" />
         <Label Content="Direccion" HorizontalAlignment="Left" Margin="46,0,0,0" VerticalAlignment="Center" FontFamily="Verdana"/>
-        <TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="46,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="46,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtdireccion_PreviewTextInput"/>
         <Label Content="Clientes" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0"/>
         <WindowsFormsHost HorizontalAlignment="Left" Height="330" Margin="344,99,0,0" VerticalAlignment="Top" Width="502"  ChildChanged="WindowsFormsHost_ChildChanged"  >
             <wf:DataGridView x:Name="dgvclientes" CellMouseClick="dgvclientes_CellMouseClick"  ReadOnly="True" ></wf:DataGridView>
 
         </WindowsFormsHost>
         <Label x:Name="txttel" Content="Telefono" HorizontalAlignment="Left" Margin="42,303,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txttel1" HorizontalAlignment="Left" Margin="46,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
-        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26" Click="btnbuscar_Click"   >
+        <TextBox x:Name="txttel1" HorizontalAlignment="Left" Margin="46,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" MaxLength="8" KeyDown="txttel1_KeyDown" PreviewTextInput="txttel1_PreviewTextInput"  />
+        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26"     >
             <Button.Background>
                 <ImageBrush ImageSource="/lupa (1).png" Stretch="Uniform"/>
             </Button.Background>

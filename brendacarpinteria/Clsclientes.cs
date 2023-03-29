@@ -18,6 +18,7 @@ namespace brendacarpinteria
 
         private string cons;
         private string bus;
+        private static bool validarc;
         public string Nombre { get; set; }
 
         public string Apellido { get; set; }
@@ -29,6 +30,23 @@ namespace brendacarpinteria
         public string Tl { get; set; }
         public string Cons { get => cons; set => cons = value; }
         public string Bus { get => bus; set => bus = value; }
+
+
+        public bool validarinsert(string nombre , string apellido )
+        {
+
+            SqlConnection conexion = new SqlConnection(cadenaconexion);
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand("select * from clientes where nombre = '"+nombre+ "'", conexion);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                validarc = true;
+            }
+            dr.Close();
+            return validarc;
+        }
+
 
         public void cargardatos(DataGridView dgv)
         {

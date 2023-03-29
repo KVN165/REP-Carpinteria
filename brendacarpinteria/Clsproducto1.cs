@@ -25,7 +25,7 @@ namespace brendacarpinteria
         private decimal cantidad;
         private string cons;
         private int id;
-        
+        private static bool validarp;
         public string Name { get => name; set => name = value; }
         public string Desc { get => desc; set => desc = value; }
         public decimal Precio { get => precio; set => precio = value; }
@@ -38,21 +38,43 @@ namespace brendacarpinteria
         SqlDataAdapter da;
         SqlCommand cmd;
         DataTable dt;
-        public void Insertar()
+
+        public bool validarinsert( string nombre)
         {
 
             SqlConnection conexion = new SqlConnection(cadenaconexion);
             conexion.Open();
+                cmd = new SqlCommand("select * from productos where nombre_producto  = '" + nombre + "'", conexion);     
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    validarp = true;
+                }
+            else
+            {
+                validarp = false;
+            }
+                dr.Close();
+            return validarp;
+        }
+            
+        
+        public void Insertar()
+        {
+            
+            SqlConnection conexion = new SqlConnection(cadenaconexion);
+            conexion.Open();
             try
             {
-                cmd = new SqlCommand("insert into [dbo].[productos] values(@name,@desc,@precio,@cantidad)", conexion);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@desc", Desc);
-                cmd.Parameters.AddWithValue("@precio", Precio);
-                cmd.Parameters.AddWithValue("@cantidad", cantidad);
-                cmd.ExecuteNonQuery();
-                conexion.Close();
-                MessageBox.Show("Registro guardado correctamente");
+                    cmd = new SqlCommand("insert into [dbo].[productos] values(@name,@desc,@precio,@cantidad)", conexion);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@desc", Desc);
+                    cmd.Parameters.AddWithValue("@precio", Precio);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                    MessageBox.Show("Registro guardado correctamente");
+  
             }
             catch (Exception ex)
             {
@@ -107,10 +129,7 @@ namespace brendacarpinteria
             }
            
         }
-        public void eliminar()
-        {
 
-        }
         public void Actualizar(DataGridView dgv)
         {
             SqlConnection conexion = new SqlConnection(cadenaconexion);

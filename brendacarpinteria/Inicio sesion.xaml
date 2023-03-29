@@ -43,7 +43,7 @@
         <Label Grid.Column="0" Grid.Row="2" Content="Usuario:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Cascadia Mono" FontSize="15"/>
 
         <!-- Columna 2 Fila 3-->
-        <TextBox x:Name="txtusuario" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Text="" Width="225" Height="20" TabIndex="0"/>
+        <TextBox x:Name="txtusuario" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Text="" Width="225" Height="20" TabIndex="0" PreviewTextInput="txtusuario_PreviewTextInput"/>
 
         <!-- Columna 1 Fila 4-->
         <Label Grid.Column="0" Grid.Row="3" Content="Contraseña:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Cascadia Mono" FontSize="15"/>

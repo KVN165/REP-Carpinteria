@@ -10,22 +10,22 @@
         Title="Insumos"  Height="500" Width="900" Icon="/martillo.png">
     <Grid Margin="0,0,0,-6">
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
-        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="42,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="42,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtnombre_PreviewTextInput"/>
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="42,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
         <Label Content="descripcion" HorizontalAlignment="Left" Margin="42,198,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtprecio1" HorizontalAlignment="Left" Margin="42,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="44" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtprecio1" HorizontalAlignment="Left" Margin="42,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="44" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtprecio1_PreviewTextInput"/>
         <Label Content="Precio" HorizontalAlignment="Left" Margin="42,284,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtprecio" HorizontalAlignment="Left" Margin="42,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtprecio" HorizontalAlignment="Left" Margin="42,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" KeyDown="txtprecio_KeyDown"/>
         <Label Content="Insumos" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0"/>
         <WindowsFormsHost HorizontalAlignment="Left" Height="330" Margin="314,95,0,0" VerticalAlignment="Top" Width="540" ChildChanged="WindowsFormsHost_ChildChanged" >
             <wf:DataGridView x:Name="dgvinsumos" CellMouseClick="dgvinsumos_CellMouseClick" ReadOnly="True" ></wf:DataGridView>
 
         </WindowsFormsHost>
-        <WindowsFormsHost HorizontalAlignment="Left" Height="28" Margin="42,170,0,0" VerticalAlignment="Top" Width="211" ChildChanged="WindowsFormsHost_ChildChanged" RenderTransformOrigin="0.5,0.5" Loaded="WindowsFormsHost_Loaded" >
+        <WindowsFormsHost HorizontalAlignment="Left" Height="28" Margin="42,170,0,0" VerticalAlignment="Top" Width="211" ChildChanged="WindowsFormsHost_ChildChanged" RenderTransformOrigin="0.5,0.5" Loaded="WindowsFormsHost_Loaded" KeyDown="WindowsFormsHost_KeyDown"  >
             <wf:ComboBox x:Name="cmbemp"  ></wf:ComboBox>
         </WindowsFormsHost>
         <Label Content="Cantidad" HorizontalAlignment="Left" Margin="38,352,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcantidad1" HorizontalAlignment="Left" Margin="42,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtcantidad1" HorizontalAlignment="Left" Margin="42,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" KeyDown="txtcantidad1_KeyDown"/>
         <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26" Click="btnbuscar_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/lupa (1).png" Stretch="Uniform"/>
@@ -39,7 +39,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <TextBox x:Name="txtbuscar1" HorizontalAlignment="Left" Margin="404,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="24"/>
+        <TextBox x:Name="txtbuscar1" HorizontalAlignment="Left" Margin="404,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="24" PreviewTextInput="txtbuscar1_PreviewTextInput"/>
         <Label x:Name="bu_Copy" Content="Buscar:" HorizontalAlignment="Left" Margin="344,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.311,0.685" FontFamily="Verdana"/>
         <ComboBox x:Name="cobbus" HorizontalAlignment="Left" Margin="630,53,0,0" VerticalAlignment="Top" Width="120" Height="24" Background="#FFFF5200">
             <ComboBoxItem Content="Nombre"/>

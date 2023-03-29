@@ -20,7 +20,7 @@ namespace brendacarpinteria
         private string es;
         private string cons;
         private string bus;
-
+        private  bool validarp;
         private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
         SqlDataAdapter da;
         SqlCommand cmd;
@@ -34,6 +34,25 @@ namespace brendacarpinteria
         public string Es { get => es; set => es = value; }
         public string Cons { get => cons; set => cons = value; }
         public string Bus { get => bus; set => bus = value; }
+
+        public bool validarinsert(string nombre)
+        {
+
+            SqlConnection conexion = new SqlConnection(cadenaconexion);
+            conexion.Open();
+            cmd = new SqlCommand("select * from proveedores where [nombre_empresa]  = '" + nombre + "'", conexion);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                validarp = true;
+            }
+            else
+            {
+                validarp = false;
+            }
+            dr.Close();
+            return validarp;
+        }
 
         public void cargarDatapro(DataGridView dgv)
         {

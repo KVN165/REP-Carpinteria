@@ -56,26 +56,33 @@ namespace brendacarpinteria
 
         public void Insertar()
         {
+            if(string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Desc))
+            {
+                MessageBox.Show("por favor llenar todos los campos");
+            }
+            else
+            {
+                SqlConnection conexion = new SqlConnection(cadenaconexion);
+                conexion.Open();
+                try
+                {
 
-            SqlConnection conexion = new SqlConnection(cadenaconexion);
-            conexion.Open();
-            try
-            {
-                
-                cmd = new SqlCommand("insert into insumos values(@empe,@name,@desc,@precio,@cantidad)", conexion);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@empe", Emp);
-                cmd.Parameters.AddWithValue("@desc", Desc);
-                cmd.Parameters.AddWithValue("@precio", Precio);
-                cmd.Parameters.AddWithValue("@cantidad", cantidad);
-                cmd.ExecuteNonQuery();
-                conexion.Close();
-                MessageBox.Show("Registro guardado correctamente");
+                    cmd = new SqlCommand("insert into insumos values(@empe,@name,@desc,@precio,@cantidad)", conexion);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@empe", Emp);
+                    cmd.Parameters.AddWithValue("@desc", Desc);
+                    cmd.Parameters.AddWithValue("@precio", Precio);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                    MessageBox.Show("Registro guardado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
         }
 
         public DataTable cargarcom()

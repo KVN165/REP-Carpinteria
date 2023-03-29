@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MessageBox = System.Windows.Forms.MessageBox;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace brendacarpinteria
 {
@@ -40,24 +42,23 @@ namespace brendacarpinteria
 
         public void envdatos()
         {
-            pro.Name = txtnombre.Text;
-            pro.Desc = txtprecio1.Text;
-            pro.Precio = Convert.ToDecimal(txtprecio.Text);
-            pro.Cantidad = Convert.ToInt64(txtcantidad1.Text);
-           
-            
+                pro.Name = txtnombre.Text;
+                pro.Desc = txtprecio1.Text;
+                pro.Precio = Convert.ToDecimal(txtprecio.Text);
+                pro.Cantidad = Convert.ToInt64(txtcantidad1.Text);
         }
-   
-    
+
+
         private void btnagregar_Click(object sender, RoutedEventArgs e)
         {
-            try
+
+            if (txtnombre.Text == String.Empty || txtprecio.Text == String.Empty || txtprecio1.Text == String.Empty || txtcantidad1.Text == String.Empty)
             {
-                if (txtnombre.Text == String.Empty || txtprecio.Text == String.Empty)
-                {
-                    MessageBox.Show("Por favor llene todos los campos");
-                }
-                else
+                MessageBox.Show("Por favor llene todos los campos");
+            }
+            else
+            {
+                if(pro.validarinsert(txtnombre.Text) == false)
                 {
                     envdatos();
                     pro.Insertar();
@@ -67,17 +68,12 @@ namespace brendacarpinteria
                     txtprecio.Clear();
                     txtprecio1.Clear();
                     txtcantidad1.Clear();
-
-
-                    
+                }
+                else
+                {
+                    MessageBox.Show("este producto ya existe ","Datos existentes");
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error ejecutando proceso");
-
-            }
-           
         }
 
         private void WindowsFormsHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
@@ -178,6 +174,52 @@ namespace brendacarpinteria
                 Bodeguero bo = new Bodeguero();
                 bo.Show();
                 this.Close();
+            }
+        }
+
+
+
+
+      
+        // VALIDACIONES
+        private void txtcantidad1_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        
+    
+        private void txtprecio_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtnombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtprecio1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtbuscar1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z0-9]"))
+            {
+                e.Handled = true;
             }
         }
     }

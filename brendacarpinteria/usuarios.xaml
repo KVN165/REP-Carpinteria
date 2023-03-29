@@ -10,20 +10,20 @@
         Title="usuarios" Height="523" Width="900" Icon="/martillo.png">
     <Grid Margin="0,0,0,-6">
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
-        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="37,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" Height="25"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="37,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" Height="25" PreviewTextInput="txtnombre_PreviewTextInput"/>
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="37,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
         <Label Content="Apellido" HorizontalAlignment="Left" Margin="37,141,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="37,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="25" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="37,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="25" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtapellido_PreviewTextInput"/>
         <Label Content="Nombre Usuario" HorizontalAlignment="Left" Margin="38,263,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="38,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" Margin="38,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtusuario_PreviewTextInput"/>
         <Label Content="usuarios" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontFamily="Verdana" FontSize="20" Margin="0,3,0,0"/>
         <WindowsFormsHost HorizontalAlignment="Left" Height="330" Margin="315,124,0,0" VerticalAlignment="Top" Width="540" Loaded="WindowsFormsHost_Loaded" >
             <wf:DataGridView x:Name="dgvusuarios" CellMouseClick="dgvusuarios_CellMouseClick" ReadOnly="True" ></wf:DataGridView>
 
         </WindowsFormsHost>
         <Label x:Name="contrase" Content="contraseña" HorizontalAlignment="Left" Margin="34,321,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcontra" HorizontalAlignment="Left" Margin="38,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
-        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26" Click="btnbuscar_Click" >
+        <TextBox x:Name="txtcontra" HorizontalAlignment="Left" Margin="38,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" MaxLength="10" FontWeight="Bold"  />
+        <Button x:Name="btnbuscar" Content="" HorizontalAlignment="Left" Margin="756,52,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.023,0.884" Width="32" Height="26"  Click="btnbuscar_Click" >
             <Button.Background>
                 <ImageBrush ImageSource="/lupa (1).png" Stretch="Uniform"/>
             </Button.Background>
@@ -58,7 +58,7 @@
         </Button>
         <TextBox x:Name="txtid" HorizontalAlignment="Left" Margin="67,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"  IsEnabled="False" FontFamily="Verdana" FontWeight="Bold"/>
         <Label Content="ID" HorizontalAlignment="Left" Margin="38,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,-0.73" FontFamily="Verdana"/>
-        <Button x:Name="btnagregar" Content="Agregar" HorizontalAlignment="Left" Margin="42,454,0,0" VerticalAlignment="Top" Height="35" Width="81"  Background="#FFFF7500" Click="btnagregar_Click"/>
+        <Button x:Name="btnagregar1" Content="Agregar" HorizontalAlignment="Left" Margin="42,454,0,0" VerticalAlignment="Top" Height="35" Width="81"  Background="#FFFF7500" Click="btnagregar1_Click" />
         <Label Content="Tipo Usuario y estado" HorizontalAlignment="Left" Margin="37,202,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.551,1.238"/>
         <Button x:Name="btnactualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="157,454,0,0" VerticalAlignment="Top" Height="37" Width="80" RenderTransformOrigin="-0.637,1.325"  Background="#FFFF7500" Click="btnactualizar_Click" IsEnabled="False"/>
         <Button x:Name="btnregresar" Content="" HorizontalAlignment="Left" Margin="832,3,0,0" VerticalAlignment="Top" Width="44" Height="34" RenderTransformOrigin="0.763,0.552" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar_Click" >
@@ -76,7 +76,7 @@
             <ComboBoxItem Content="Desactivo"/>
         </ComboBox>
         <Label x:Name="CO" Content="Correo" HorizontalAlignment="Left" Margin="38,382,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcorreo" HorizontalAlignment="Left" Margin="42,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold"/>
+        <TextBox x:Name="txtcorreo" HorizontalAlignment="Left" Margin="42,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="23" FontFamily="Verdana" FontWeight="Bold" />
     </Grid>
 
 

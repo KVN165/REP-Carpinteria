@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,13 +34,36 @@ namespace brendacarpinteria
 
         private void btnagregar_Click(object sender, RoutedEventArgs e)
         {
-            c.Nombre = txtnombre.Text;
-            c.DireccionC = txtdireccion.Text;
-            c.Tl = txttel1.Text;
-            c.Apellido = txtapellido.Text;
-            c.Insertar();
-            c.cargardatos(dgvclientes);
-        }
+            if (txtnombre.Text == String.Empty || txtapellido.Text == String.Empty || txtdireccion .Text == String.Empty ||txttel1.Text == String.Empty)
+            {
+                MessageBox.Show("Por favor llene todos los campos");
+            }
+            else
+            {
+                if(c.validarinsert(txtnombre.Text, txtapellido.Text) == false)
+                {
+                    if(Validartel(txttel1.Text) == false)
+                    {
+                        MessageBox.Show("numero de telefono no valida");
+                    }
+                    else
+                    {
+                        c.Nombre = txtnombre.Text;
+                        c.DireccionC = txtdireccion.Text;
+                        c.Tl = txttel1.Text;
+                        c.Apellido = txtapellido.Text;
+                        c.Insertar();
+                        c.cargardatos(dgvclientes);
+                    }
+                
+                }
+                else
+                {
+                    MessageBox.Show("datos ya existen ", "Datos existentes");
+                }
+            }
+            }
+          
 
         private void btnactualizar_Click(object sender, RoutedEventArgs e)
         {
@@ -114,5 +139,75 @@ namespace brendacarpinteria
                 this.Close();
             }
         }
+
+        //validaciones
+        private void txtnombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static bool Validartel(string tel)
+        {
+            string telfromato;
+
+            telfromato = "[3289][0-9]*";
+            if (Regex.IsMatch(tel, telfromato))
+            {
+                if (Regex.Replace(tel, telfromato, string.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void txtdireccion_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z0-9]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+    
+
+        private void txtapellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txttel1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+        
+            else
+                e.Handled = true;
+        }
+
+        private void txttel1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex re = new Regex(@"(8|9|2|3)[ -]*([0-9][ -]*){8}");
+            if (re.IsMatch(e.Text))
+            {
+                e.Handled = true;
+            }
+          
+        }
+
+
     }
 }

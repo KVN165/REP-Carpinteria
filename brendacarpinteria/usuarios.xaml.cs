@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,15 +54,7 @@ namespace brendacarpinteria
             txtcorreo.Clear();
             txtid.Clear();
         }
-        private void btnagregar_Click(object sender, RoutedEventArgs e)
-        {
     
-                    endatos();
-                    us.Insertar();
-                    us.cargarDatausu(dgvusuarios);
-                    limpiar();
-                    btnactualizar.IsEnabled = true; 
-        }
         
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
@@ -97,23 +90,23 @@ namespace brendacarpinteria
             us.Actualizar(dgvusuarios);
             limpiar();
             us.cargarDatausu(dgvusuarios);
-            btnagregar.IsEnabled = true;
+            btnagregar1.IsEnabled = true;
             btnactualizar.IsEnabled = false;
         }
 
         private void dgvusuarios_CellMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             seleccion();
-            btnagregar.IsEnabled = false;
+            btnagregar1.IsEnabled = false;
             btnactualizar.IsEnabled = true;
         }
 
         private void btnrefrescar_Click(object sender, RoutedEventArgs e)
         {
             us.cargarDatausu(dgvusuarios);
-            btnagregar.IsEnabled = true;
+            btnagregar1.IsEnabled = true;
             btnactualizar.IsEnabled = false;
-           
+            limpiar();
         }
 
         private void btnregresar_Click(object sender, RoutedEventArgs e)
@@ -136,6 +129,131 @@ namespace brendacarpinteria
                     Bodeguero bo = new Bodeguero();
                     bo.Show();
                     this.Close();
+            }
+        }
+
+        //validaciones
+
+
+        public static bool ValidarEmai1(string comprobarEmai1)
+        {
+            string emailFormato;
+            emailFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+({-.]\\w+)*";
+            if (Regex.IsMatch(comprobarEmai1, emailFormato))
+            {
+                if (Regex.Replace(comprobarEmai1, emailFormato, string.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool AlgoritmoContraseñaSegura(string password)
+        {
+            bool mayuscula, minuscula, numero, carespecial;
+            mayuscula = false; minuscula = false; numero = false; carespecial = false;
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (Char.IsUpper(password, i))
+                {
+                    mayuscula = true;
+                }
+                else if (Char.IsLower(password, i))
+                {
+                    minuscula = true;
+                }
+                else if (Char.IsDigit(password, i))
+                {
+                    numero = true;
+                }
+                else
+                {
+                    carespecial = true;
+                }
+            }
+            if (mayuscula && minuscula && numero && carespecial && password.Length >= 8)
+            {
+                return true;
+            }
+            return false;
+        }
+      
+        
+        private void txtnombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtapellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+
+        private void txtusuario_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[A-Za-z0-9]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        
+
+        private void btnagregar1_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtnombre.Text == String.Empty || txtcorreo.Text == String.Empty || txtapellido.Text == String.Empty || txtcontra.Text == String.Empty)
+            {
+                MessageBox.Show("Por favor llene todos los campos");
+            }
+            else
+            {
+                if (us.validarinsert(txtusuario.Text) == true)
+                {
+
+                    MessageBox.Show("el usuario ya existe");
+                }
+                else
+                {
+                    if (AlgoritmoContraseñaSegura(txtcontra.Text) == false)
+                    {
+                        MessageBox.Show("contraseña no valida");
+                    }
+                    else
+                    {
+                        if (ValidarEmai1(txtcorreo.Text) == false)
+                        {
+                            MessageBox.Show("direccion de correo no valida");
+                        }
+                        else
+                        {
+                            endatos();
+                            us.Insertar();
+                            us.cargarDatausu(dgvusuarios);
+                            limpiar();
+                            btnactualizar.IsEnabled = true;
+
+                        }
+                    }
+
+                }
+                
+
             }
         }
     }

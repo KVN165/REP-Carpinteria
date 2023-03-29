@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,14 +34,49 @@ namespace brendacarpinteria
         
         private void btnagregar_Click(object sender, RoutedEventArgs e)
         {
-            p.Name = txtnombre.Text;
-            p.Direccion = txtdireccion.Text;
-            p.Correo = txtcorreo.Text;
-            p.Tel = txttel1.Text;
-            p.Es = Convert.ToString(cmbestado.Text);
-            p.Insertar();
-            p.cargarDatapro(dgvproveedores);
-            limpiar();
+            if (txtnombre.Text == String.Empty || txtcorreo.Text == String.Empty || txtdireccion.Text == String.Empty || txttel1.Text == String.Empty)
+            {
+                MessageBox.Show("Por favor llene todos los campos");
+            }
+            else
+            {
+                if (p.validarinsert(txtnombre.Text) == false)
+                {
+                    if (Validartel(txttel1.Text) == false)
+                    {
+                        MessageBox.Show("numero de telefono no valida");
+                    }
+                    else
+                    {
+                        if (ValidarEmai1(txtcorreo.Text) == false)
+                        {
+                            MessageBox.Show("direccion de correo no valida");
+                        }
+                        else
+                        {
+                            p.Name = txtnombre.Text;
+                            p.Direccion = txtdireccion.Text;
+                            p.Tel = txttel1.Text;
+                            p.Correo = txtcorreo.Text;
+                            p.Es = Convert.ToString(cmbestado.Text);
+                            p.Insertar();
+                            p.cargarDatapro(dgvproveedores);
+                            limpiar();
+
+
+                        }
+
+                    }
+                   
+            }
+                else
+                {
+                    MessageBox.Show("datos ya existen ", "Datos existentes");
+                }
+
+            }
+         
+
         }
 
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
@@ -125,6 +161,77 @@ namespace brendacarpinteria
                 bo.Show();
                 this.Close();
             }
+        }
+
+
+        //validaciones
+
+        public static bool ValidarEmai1(string comprobarEmai1)
+        {
+            string emailFormato;
+            emailFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+({-.]\\w+)*";
+            if(Regex.IsMatch(comprobarEmai1, emailFormato))
+            {
+                if(Regex.Replace(comprobarEmai1,emailFormato,string.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool Validartel(string tel)
+        {
+            string telfromato;
+            
+            telfromato = "[3289][0-9]*";
+            if (Regex.IsMatch(tel, telfromato))
+            {
+                if (Regex.Replace(tel, telfromato, string.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private void txtnombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtdireccion_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txttel1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

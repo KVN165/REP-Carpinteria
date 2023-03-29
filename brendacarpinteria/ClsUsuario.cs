@@ -31,6 +31,9 @@ namespace brendacarpinteria
         private static string no;
         private string correo;
         private static int idusuario;
+        private string validacontra;
+        private string validadausuario;
+        private bool validarp;
         public string Usuarios { get => usuarios; set => usuarios = value; }
         public string Contra { get => contra; set => contra = value; }
         public  string Tipousuario { get => tipousuario; set => tipousuario = value; }
@@ -49,11 +52,32 @@ namespace brendacarpinteria
         public string Cusuario { get => cusuario; set => cusuario = value; }
         public string Ccon { get => ccon; set => ccon = value; }
         public  int Idusuario { get => idusuario; set => idusuario = value; }
+        public string Validacontra { get => validacontra; set => validacontra = value; }
+        public string Validadausuario { get => validadausuario; set => validadausuario = value; }
 
         private string cadenaconexion = "Data Source =localhost\\SQLEXPRESS; Initial Catalog = Carpinteria_BD; Integrated Security=True";
         SqlDataAdapter da;
         SqlCommand cmd;
         DataTable dt;
+
+        public bool validarinsert(string usuariovad)
+        {
+
+            SqlConnection conexion = new SqlConnection(cadenaconexion);
+            conexion.Open();
+            cmd = new SqlCommand("select * from usuarios where usuario ='"+usuariovad+"'", conexion);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                validarp = true;
+            }
+            else
+            {
+                validarp = false;
+            }
+            dr.Close();
+            return validarp;
+        }
         public void Insertar()
         {
 
@@ -170,23 +194,33 @@ namespace brendacarpinteria
 
         public void login()
         {
-            SqlConnection conexion = new SqlConnection(cadenaconexion);
-            conexion.Open();
-            
-            SqlCommand cmd = new SqlCommand("select  usuario,contraseña,tipo_usuario,[Estadousuario],concat(nombre,' ',apellido),[id_usuario] from [dbo].[usuarios] where usuario='" + usuarios + "'and contraseña = '" + contra + "'", conexion);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (string.IsNullOrEmpty(usuarios) || string.IsNullOrEmpty(contra))
             {
-                tipousuario = reader.GetString(2);
-                Tipo=reader.GetString(3);
-                No = reader.GetString(4);
-                idusuario = reader.GetInt32(5);
-                obtener_idusuario();
+                MessageBox.Show("Por favor llene todos los campo", " Datos vacío  ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña incorrecta", "Error de inicio", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                SqlConnection conexion = new SqlConnection(cadenaconexion);
+                conexion.Open();
+
+                SqlCommand cmd = new SqlCommand("select  usuario,contraseña,tipo_usuario,[Estadousuario],concat(nombre,' ',apellido),[id_usuario] from [dbo].[usuarios] where usuario='" + usuarios + "'and contraseña = '" + contra + "'", conexion);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    validadausuario = reader.GetString(0);
+                    validacontra = reader.GetString(1);
+                    tipousuario = reader.GetString(2);
+                    Tipo = reader.GetString(3);
+                    No = reader.GetString(4);
+                    idusuario = reader.GetInt32(5);
+                    obtener_idusuario();
+                }
+                else
+                {
+                   
+
+                }
             }
         }
 
