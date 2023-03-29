@@ -6,12 +6,29 @@
         xmlns:local="clr-namespace:brendacarpinteria"
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" x:Class="brendacarpinteria.Ver_facturas"
         mc:Ignorable="d"
-        Title="Ver_facturas" Height="695.6" Width="736.8" Loaded="Window_Loaded">
+    WindowStartupLocation="CenterScreen"
+        Title="Ver acturas" Height="695.6" Width="736.8" Loaded="Window_Loaded" Icon="martillo.png">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="126*"/>
+            <RowDefinition Height="294*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="114*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="252*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="91*"/>
+            <ColumnDefinition Width="301*"/>
+        </Grid.ColumnDefinitions>
         <Button Content="Buscar" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Salir" HorizontalAlignment="Left" Margin="639,16,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Salir" HorizontalAlignment="Left" Margin="209.4,16,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="3"/>
         <TextBox x:Name="txtbuscador" HorizontalAlignment="Left" Height="23" Margin="100,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <ComboBox x:Name="cobbus" HorizontalAlignment="Left" Margin="245,31,0,0" VerticalAlignment="Top" Width="150" Height="24" Background="#FFFF5200" >
+        <ComboBox x:Name="cobbus" HorizontalAlignment="Left" Margin="245,31,0,0" VerticalAlignment="Top" Width="150" Height="24" Background="#FFFF5200" Grid.ColumnSpan="3" >
             <ComboBoxItem Content="Id de Factura" IsSelected="True"/>
             <ComboBoxItem Content="Nombre del Empleado"/>
             <ComboBoxItem Content="Nombre del Cliente"/>
@@ -19,18 +36,18 @@
             <ComboBoxItem Content="Id de Producto"/>
         </ComboBox>
 
-        <WindowsFormsHost HorizontalAlignment="Left" Height="205" Margin="10,128,0,0" VerticalAlignment="Top" Width="704" GotMouseCapture="WindowsFormsHost_GotMouseCapture">
+        <WindowsFormsHost HorizontalAlignment="Left" Height="205" Margin="10,1.6,0,0" VerticalAlignment="Top" Width="704" GotMouseCapture="WindowsFormsHost_GotMouseCapture" Grid.ColumnSpan="4" Grid.Row="1">
             <Forms:DataGridView x:Name="dgvFactura" CellMouseClick="dgvFactura_CellMouseClick"/>
 
         </WindowsFormsHost>
-        <WindowsFormsHost HorizontalAlignment="Left" Height="205" Margin="10,368,0,0" VerticalAlignment="Top" Width="704">
+        <WindowsFormsHost HorizontalAlignment="Left" Height="205" Margin="10,241.6,0,0" VerticalAlignment="Top" Width="704" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="7">
             <Forms:DataGridView x:Name="dgvDetalles" />
 
         </WindowsFormsHost>
-        <Label Content="Detalle de la factura" HorizontalAlignment="Left" Margin="296,338,0,0" VerticalAlignment="Top"/>
+        <Label Content="Detalle de la factura" HorizontalAlignment="Left" Margin="44,211.6,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
         <Label Content="ID de factura selecionada:" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtidfactura" HorizontalAlignment="Left" Height="23" Margin="208,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Txtidfactura_TextChanged" IsEnabled="False"/>
-        <Button Content="Refrescar facturas" HorizontalAlignment="Left" Margin="630,92,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <TextBox x:Name="txtidfactura" HorizontalAlignment="Left" Height="23" Margin="208,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Txtidfactura_TextChanged" IsEnabled="False" Grid.ColumnSpan="2"/>
+        <Button Content="Refrescar facturas" HorizontalAlignment="Left" Margin="200.4,92,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Grid.Column="3"/>
 
     </Grid>
 </Window>

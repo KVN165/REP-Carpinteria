@@ -155,7 +155,7 @@ namespace Proyecto_Carpinteria
         {
             if (txtidcliente.Text == "")
             {
-                MessageBox.Show("Debe seleccionar a un cliente...");
+                MessageBox.Show("Debe de seleccionar a un cliente", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -169,7 +169,7 @@ namespace Proyecto_Carpinteria
                     crear_detalles();
                     //Actulizar inventario va dentro de crear_detlles()
                     //Limpiar campos
-                    MessageBox.Show("Factura agregada con éxito!!!");
+                    MessageBox.Show("La factura a sido creada!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
                     btnrealizarfactura.IsEnabled = false;
                     txtidproducto.Clear();
                     txtnombreproducto.Clear();
@@ -181,11 +181,16 @@ namespace Proyecto_Carpinteria
                     txttotal.Clear();
                     txtiva.Clear();
                     dgvCarrito.Rows.Clear();
+
+                    txtidcliente.Clear();
+                    txtnombrecliente.Clear();
+                    txtapellidocliente.Clear();
+                    txttelefonocliente.Clear();
+                    txtdireccion.Clear();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error en facturas");
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error en facturas: "+ex.Message);
                 }
                 finally
                 {
@@ -235,7 +240,6 @@ namespace Proyecto_Carpinteria
                 conexion.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE productos SET cantidad= cantidad - '"+cantidad_comprada+"'WHERE id_producto='"+id_producto+"';", conexion);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Stock Actualizado!!!");
             }
             catch (Exception ex)
             {
@@ -349,14 +353,17 @@ namespace Proyecto_Carpinteria
         {
             if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text == "0")
             {
-                MessageBox.Show("Debe de agregar una cantidad al producto");
-            }else if (txtprecioproducto.Text == "")
+                MessageBox.Show("Debe de agregar una cantidad para comprar", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (txtprecioproducto.Text == "")
             {
-                MessageBox.Show("Debe seleccionar un producto...");
-            }else if (Convert.ToInt32(txtcantidadproducto.Text) >  Convert.ToInt32(txtcantidaddisponible.Text))
+                MessageBox.Show("Debe de seleccionar un producto", "Fantan datos", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (Convert.ToInt32(txtcantidadproducto.Text) >  Convert.ToInt32(txtcantidaddisponible.Text))
             {
-                MessageBox.Show("No hay suficiente cantidad en el inventario del producto solicitado, agregue una menor cantidad");
-            }else if (txtidproducto.Text == "")
+                MessageBox.Show("No hay suficiente cantidad en el inventario del producto solicidado", "Sin stock en inventario", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (txtidproducto.Text == "")
             {
                 
                 
@@ -379,7 +386,7 @@ namespace Proyecto_Carpinteria
 
                 if (ya_esta == true)
                 {
-                    MessageBox.Show("El producto ya está en el carrito!!! Si quiere editarlo, haga click en el");
+                    MessageBox.Show("El producto ya está en el carrito! \n Edítelo si quiere agregar mas cantidad comprada", "Producto ya en carrito", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -392,7 +399,7 @@ namespace Proyecto_Carpinteria
                     txtiva.Text = Convert.ToString(iva);
                     txttotal.Text = Convert.ToString(total_factura);
                     dgvCarrito.ClearSelection();
-                    MessageBox.Show("Producto agregado al carrito");
+                    MessageBox.Show("Producto agregado al carrito!!", "Producto Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtPrecioCantidad.Clear();
                     txtcantidadproducto.Clear();
                     txtidproducto.Clear();
@@ -493,10 +500,11 @@ namespace Proyecto_Carpinteria
                 {
                     if (int.TryParse(txtcantidadproducto.Text, out int num))
                     {
-                        if(num.ToString().Length > 4)
+                        if(num.ToString().Length > 5)
                         {
-                            MessageBox.Show("La cantidad a comprar no debe exeder los 4 digitos");
+                            MessageBox.Show("La cantidad a comprar no debe exeder los 5 dígitos!!", "Cantidad solicitada", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtcantidadproducto.Text = "";
+                            txtPrecioCantidad.Text = "";
                         }
                         else
                         {
@@ -510,7 +518,7 @@ namespace Proyecto_Carpinteria
                 }
                 else
                 {
-                    MessageBox.Show("El numero es muy grande!!!");
+                    //MessageBox.Show("El numero es muy grande!!!");
                 }
                 
             }
@@ -521,8 +529,9 @@ namespace Proyecto_Carpinteria
             posicion = dgvCarrito.CurrentRow.Index;
             dgvCarrito[2, posicion].Value = txtcantidadproducto.Text;
             dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
+            MessageBox.Show("Producto editado del carrito!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
+            dgvCarrito.ClearSelection();
         }
-
         private void Btncalcularsubtotal_Click(object sender, RoutedEventArgs e)
         {
             if (txtcantidadproducto.Text == "")
@@ -577,8 +586,8 @@ namespace Proyecto_Carpinteria
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             dgvCarrito.Rows.RemoveAt(posicion);
-            MessageBox.Show("Producto eliminado del carrito");
-            if(dgvCarrito.Rows.Count == 0)
+            MessageBox.Show("Producto ELIMINADO del carrito!!", "Carrito eliminado", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (dgvCarrito.Rows.Count == 0)
             {
                 btnrealizarfactura.IsEnabled = false;
             }

@@ -7,7 +7,7 @@
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Facturas" Height="618.007" Width="983.275" Loaded="Window_Loaded">
+        Title="Facturas" Height="618.007" Width="983.275" Loaded="Window_Loaded" Icon="martillo.png">
     <Grid>
 
 
@@ -30,7 +30,7 @@
         <Label Content="Total De Factura" HorizontalAlignment="Left" Margin="738,502,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtidcliente" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="127,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Id Cliente" HorizontalAlignment="Left" Margin="60,153,0,0" VerticalAlignment="Top"/>
-        <WindowsFormsHost HorizontalAlignment="Left" Height="181" Margin="10,398,0,0" VerticalAlignment="Top" Width="517" GotMouseCapture="WindowsFormsHost_GotMouseCapture" >
+        <WindowsFormsHost HorizontalAlignment="Left" Height="181" Margin="10,398,0,0" VerticalAlignment="Top" Width="428" GotMouseCapture="WindowsFormsHost_GotMouseCapture" >
             <Forms:DataGridView x:Name="dgvCarrito" CellMouseClick="dgvCarrito_CellMouseClick"/>
 
         </WindowsFormsHost>
