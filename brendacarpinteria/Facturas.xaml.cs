@@ -324,6 +324,7 @@ namespace Proyecto_Carpinteria
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Lista Actualizada");
             controlslistproductos.SelectedValue = false;
             SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
             try
@@ -394,6 +395,7 @@ namespace Proyecto_Carpinteria
                     dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
                     total_productos = cantidad_subtotal + total_productos;
                     iva = total_productos * Convert.ToDecimal(0.15);
+                    iva = Math.Round(iva, 2);
                     total_factura = total_productos + iva;
                     txtsubtotalfactura.Text = Convert.ToString(total_productos);
                     txtiva.Text = Convert.ToString(iva);
@@ -559,18 +561,24 @@ namespace Proyecto_Carpinteria
 
         private void Btnlimpiar_Click(object sender, RoutedEventArgs e)
         {
-            controlslistproductos.SelectedValue = false;
-            txtidproducto.Clear();
-            txtnombreproducto.Clear();
-            txtprecioproducto.Clear();
-            txtcantidaddisponible.Clear();
-            txtdescripproducto.Clear();
-            txtcantidadproducto.Clear();
-            txtPrecioCantidad.Clear();
-            //txtiva.Clear();
-            //txttotal.Clear();
-            //txtsubtotalfactura.Clear();
-            txtfecha.Text = Convert.ToString(DateTime.Now);
+            MessageBoxResult resultado = MessageBox.Show("Estas seguro de querer lipiar los datos?", "Limpiar Datos", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            switch (resultado)
+            {
+                case MessageBoxResult.Yes:
+                    controlslistproductos.SelectedValue = false;
+                    txtidproducto.Clear();
+                    txtnombreproducto.Clear();
+                    txtprecioproducto.Clear();
+                    txtcantidaddisponible.Clear();
+                    txtdescripproducto.Clear();
+                    txtcantidadproducto.Clear();
+                    txtPrecioCantidad.Clear();
+                    txtfecha.Text = Convert.ToString(DateTime.Now);
+                    break;
+                case MessageBoxResult.No:
+                    break;
+
+            }
         }
 
         private void WindowsFormsHost_GotMouseCapture(object sender, MouseEventArgs e)
@@ -641,6 +649,7 @@ namespace Proyecto_Carpinteria
         private void Btnrefrescarclientes_Click(object sender, RoutedEventArgs e)
         {
             cargarlistaclientes();
+            MessageBox.Show("Lista Actualizada");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
