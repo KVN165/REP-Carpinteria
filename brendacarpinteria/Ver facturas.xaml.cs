@@ -159,5 +159,10 @@ namespace brendacarpinteria
                 Cargar_facturas();
             }
         }
+
+        private void btnregresar2_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
