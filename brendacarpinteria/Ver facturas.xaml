@@ -7,7 +7,7 @@
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" x:Class="brendacarpinteria.Ver_facturas"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
-        Title="Ver acturas" Height="600" Width="650" MinHeight="600" MinWidth="650" Loaded="Window_Loaded" Icon="martillo.png">
+        Title="Ver acturas" Height="600" Width="750" MinHeight="600" MinWidth="650" Loaded="Window_Loaded" Icon="martillo.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -48,6 +48,7 @@
         <TextBox x:Name="txtidfactura" Margin="10" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextChanged="Txtidfactura_TextChanged" IsEnabled="False" Grid.Row="2" Grid.Column="1" Height="20"/>
         <Button Content="Refrescar facturas" HorizontalAlignment="Right" Margin="10" Height="30" VerticalAlignment="Top" Width="100" Click="Button_Click_1" Grid.Column="3" Grid.Row="1"/>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"  Content="Palabra a buscar:"/>
+        <Button Content="Imprimir Factura" HorizontalAlignment="Right" Margin="0,10,10,0" Height="30" VerticalAlignment="Top" Width="100" Grid.Column="3" Grid.Row="2"/>
 
     </Grid>
 </Window>

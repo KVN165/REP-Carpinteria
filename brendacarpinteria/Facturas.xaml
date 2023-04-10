@@ -7,72 +7,151 @@
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Facturas" Height="633.882" Width="975.386" Loaded="Window_Loaded" Icon="martillo.png">
+        Title="Facturas" Height="759.415" Width="1090" Loaded="Window_Loaded" Icon="martillo.png">
     <Grid>
-
-        <TextBox x:Name="txtapellidocliente" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txttelefonocliente" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtnombreempleado" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="164,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" FontFamily="Verdana"/>
-        <TextBox x:Name="txtprecioproducto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="597,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="txtnombrecliente" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtnombreproducto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="597,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Nombre del cliente" HorizontalAlignment="Left" Margin="7,173,0,0" VerticalAlignment="Top"/>
-        <Label Content="Apellido del cliente" HorizontalAlignment="Left" Margin="7,201,0,0" VerticalAlignment="Top"/>
-        <Label Content="Factura realizada por" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <Label Content="Nombre producto" HorizontalAlignment="Left" Margin="481,101,0,0" VerticalAlignment="Top"/>
-        <Label Content="Precio producto" HorizontalAlignment="Left" Margin="492,129,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnrealizarfactura" Height="30" Content="Realizar factura" HorizontalAlignment="Left" Margin="557,525,0,0" VerticalAlignment="Top" Width="128" Click="Btnrealizarfactura_Click" IsEnabled="False"/>
-        <Button x:Name="btnlimpiar" Height="30" Content="Limpiar campos" HorizontalAlignment="Left" Margin="821,525,0,0" VerticalAlignment="Top" Width="90" Click="Btnlimpiar_Click"/>
-        <TextBox x:Name="txtiva" HorizontalAlignment="Left" Height="23" Margin="823,446,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Content="Iva" HorizontalAlignment="Left" Margin="772,445,0,0" VerticalAlignment="Top" Height="28"/>
-        <TextBox x:Name="txttotal" HorizontalAlignment="Left" Height="23" Margin="824,477,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Content="Total De Factura" HorizontalAlignment="Left" Margin="721,475,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtidcliente" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="125,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Id Cliente" HorizontalAlignment="Left" Margin="58,145,0,0" VerticalAlignment="Top"/>
-        <WindowsFormsHost HorizontalAlignment="Left" Height="181" Margin="8,390,0,0" VerticalAlignment="Top" Width="428" GotMouseCapture="WindowsFormsHost_GotMouseCapture" >
-            <Forms:DataGridView x:Name="dgvCarrito" CellMouseClick="dgvCarrito_CellMouseClick"/>
-
-        </WindowsFormsHost>
-        <TextBox x:Name="txtfecha" HorizontalAlignment="Left" Height="23" Margin="588,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Content="fecha" HorizontalAlignment="Left" Margin="534,437,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPrecioCantidad" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="597,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Precio por Cantidad" HorizontalAlignment="Left" Margin="472,288,0,0" VerticalAlignment="Top"/>
-        <Label Content="Direccion" HorizontalAlignment="Left" Margin="60,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.358,0.203"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="64,229,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtdireccion" IsEnabled="False" HorizontalAlignment="Left" Height="52" Margin="125,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="txtidproducto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="597,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Id producto" HorizontalAlignment="Left" Margin="515,73,0,0" VerticalAlignment="Top"/>
-        <Button Content="Refrescar Lista" Height="25" HorizontalAlignment="Left" Margin="771,280,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click_1"/>
-        <ListBox x:Name="controlslistproductos" HorizontalAlignment="Left" Height="185" Margin="721,90,0,0" VerticalAlignment="Top" Width="189" SelectionChanged="Controlslistproductos_SelectionChanged"/>
-        <ListBox x:Name="controlslistclientes" HorizontalAlignment="Left" Height="153" Width="183" VerticalAlignment="Top" Margin="253,159,0,0" SelectionChanged="Controlslistclientes_SelectionChanged" Background="White" />
-        <Label Content="Cantidad a comprar" HorizontalAlignment="Left" Margin="475,319,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtcantidadproducto" HorizontalAlignment="Left" Height="23" Margin="597,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="Txtcantidadproducto_TextChanged" PreviewTextInput="Txtcantidadproducto_PreviewTextInput"/>
-        <Button x:Name="btnagregarcompra" Content="Agregar al Carrito" HorizontalAlignment="Left" Margin="481,347,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="Btnagregarcompra_Click"/>
-        <Label Content="Descripción" HorizontalAlignment="Left" Margin="514,188,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtdescripproducto" IsEnabled="False" HorizontalAlignment="Left" Height="98" Margin="597,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Cant disponible" HorizontalAlignment="Left" Margin="494,157,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtcantidaddisponible" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="597,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <Button x:Name="btnrefrescarclientes" Content="Refrescar Lista" HorizontalAlignment="Left" Margin="320,317,0,0" VerticalAlignment="Top" Width="87" Height="30" Click="Btnrefrescarclientes_Click"/>
-        <Label Content="Lista Clientes" HorizontalAlignment="Left" Margin="303,126,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" Background="LightYellow" />
-        <Button Content="Agregar nuevo cliente" HorizontalAlignment="Left" Margin="113,316,0,0" VerticalAlignment="Top" Width="135" Height="30" RenderTransformOrigin="0.501,1.823" Click="Button_Click_6"/>
-        <Rectangle Fill="#FFFF7500" HorizontalAlignment="Left" Height="50                    " Stroke="Black" VerticalAlignment="Top" Width="980" Margin="-4,-6,0,0"/>
-        <Label Content="Facturación" HorizontalAlignment="Center" Margin="387,0,444.8,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="20" Foreground="White" Width="137"/>
-        <Button x:Name="btncerrarsesion" Content="" HorizontalAlignment="Left" Margin="908,-1,0,0" VerticalAlignment="Top" Width="50" Height="40" Click="Btncerrarsesion_Click" RenderTransformOrigin="0.587,0.986">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="120" MaxWidth="180"/>
+            <ColumnDefinition Width="*" MinWidth="140" MaxWidth="200"/>
+            <ColumnDefinition Width="*" MinWidth="170" MaxWidth="270"/>
+            <ColumnDefinition Width="*" MinWidth="140" MaxWidth="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*" MinWidth="230"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" MinHeight="50"/>
+        </Grid.RowDefinitions>
+        <!--TITULO X columnas 1 fila-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Background="#FF7500"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Facturación" Foreground="White" FontSize="30" FontFamily="Cascadia Mono" Margin="5"/>
+        <Button x:Name="btncerrarsesion" Grid.Column="5" Grid.Row="0" Content="" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" Width="50" Height="50" Click="Btncerrarsesion_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnEditarCarrito" Content="Editar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="540,383,0,0" VerticalAlignment="Top" Width="129" Click="Button_Click_3" IsEnabled="False"/>
-        <Button x:Name="btnEliminarCarrito" Content="Eliminar Producto Carrito" Height="30" HorizontalAlignment="Left" Margin="678,383,0,0" VerticalAlignment="Top" Width="152" Click="Button_Click_4" IsEnabled="False"/>
-        <Label Content="Información del Empleado" HorizontalAlignment="Left" Margin="120,47,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
-        <Label Content="Información del Cliente" HorizontalAlignment="Left" Margin="120,114,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
-        <Label Content="Información del Producto" HorizontalAlignment="Left" Margin="588,42,0,0" VerticalAlignment="Top" FontFamily="Verdana" BorderBrush="Black" BorderThickness="1" Background="LightYellow"/>
-        <Label Content="Lista Productos" HorizontalAlignment="Left" Margin="771,57,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" Background="LightYellow" />
-        <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Margin="630,347,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="BtnNuevo_Click"/>
-        <TextBox x:Name="txtsubtotalfactura" HorizontalAlignment="Left" Height="23" Margin="588,478,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Content="Subtotal Factura" HorizontalAlignment="Left" Margin="487,476,0,0" VerticalAlignment="Top" Height="28"/>
-        <Button Content="Agregar nuevo producto" HorizontalAlignment="Left" Margin="771,322,0,0" VerticalAlignment="Top" Width="144" Height="35" Click="Button_Click"/>
-        <Button Content="Ver Facturas" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_5"/>
+        <!--Fila 2-->
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Content="Información del Empleado" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" BorderBrush="#FF727379" BorderThickness="0.5" FontSize="14" Background="#FFFC8638"/>
+        <Label Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" Content="Información del Producto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" BorderBrush="#FF727379" BorderThickness="0.5" FontSize="14" Background="#FFFC8638"/>
+        <!--Fila 3-->
+        <Label Grid.Column="0" Grid.Row="2" Content="Nombre del Empleado:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" FontSize="12" Margin="0,0,5,0"/>
+        <TextBox x:Name="txtnombreempleado" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" IsReadOnly="True" TextWrapping="Wrap" FontFamily="Verdana" VerticalAlignment="Center" Margin="5,0,25,0"/>
+
+        <Label Grid.Column="3" Grid.Row="2" Content="ID del Producto:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtidproducto" Grid.Column="4" Grid.Row="2" IsReadOnly="True" TextWrapping="Wrap" FontFamily="Verdana" Height="18" VerticalAlignment="Center" Margin="5,0"/>
+        <Label Grid.Column="5" Grid.Row="2" Content="Lista de Productos" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" Background="#FFA500"/>
+        <!--Fila 4-->
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Content="Información del Cliente" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" BorderBrush="#FF727379" BorderThickness="0.5" FontSize="14" Background="#FFFC8638"/>
+        <Label Grid.Column="3" Grid.Row="3" Content="Nombre del Producto:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtnombreproducto" Grid.Column="4" Grid.Row="3" IsReadOnly="True" TextWrapping="Wrap" FontFamily="Verdana" Margin="5,0" VerticalAlignment="Center"/>
+        <!--Fila 5-->
+        <Label Grid.Column="2" Grid.Row="4" Content="Lista de Clientes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" Background="#FFA500"/>
+
+
+        <Label Grid.Column="0" Grid.Row="4" Content="ID del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" FontSize="12" Margin="0,0,5,0"/>
+        <TextBox x:Name="txtidcliente" Grid.Column="1" Grid.Row="4" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" FontFamily="Verdana" Margin="5,0"/>
+        <Label Grid.Column="3" Grid.Row="4" Content="Precio por Unidad:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtprecioproducto" Grid.Column="4" Grid.Row="4" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Verdana" Margin="5,0"/>
+        <!--Fila 6-->
+        <Label Grid.Column="0" Grid.Row="5" Content="Nombre del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0,0,5,0"/>
+        <TextBox x:Name="txtnombrecliente" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" FontFamily="Verdana" IsReadOnly="True" Margin="5,0" TextWrapping="Wrap" />
+        <Label Grid.Column="3" Grid.Row="5" Content="Cantidad disponible:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtcantidaddisponible" Grid.Column="4" Grid.Row="5" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Margin="5,0" FontFamily="Verdana"/>
+
+        <ListBox x:Name="controlslistclientes" Margin="5" SelectionChanged="Controlslistclientes_SelectionChanged" Background="White" Grid.Column="2" Grid.Row="5" Grid.RowSpan="4" FontFamily="Verdana"/>
+        <!--Fila 7-->
+        <Label Grid.Column="0" Grid.Row="6" Content="Apellido del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0,0,5,0"/>
+        <TextBox x:Name="txtapellidocliente" Grid.Column="1" Grid.Row="6" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0" FontFamily="Verdana"/>
+        <Label Grid.Column="3" Grid.Row="6" Content="Descripción:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtdescripproducto" Grid.Column="4" Grid.Row="6" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Margin="5,0" FontFamily="Verdana"/>
+        <!--Fila 8-->
+        <Label Grid.Column="0" Grid.Row="7" Content="Teléfono del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0,0,5,0"/>
+        <TextBox x:Name="txttelefonocliente" IsReadOnly="True" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" FontFamily="Verdana"/>
+        <Label Grid.Column="3" Grid.Row="7" Content="Precio por Cantidad:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtPrecioCantidad" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" FontFamily="Verdana" IsReadOnly="True" TextWrapping="Wrap" Margin="5,0"/>
+        <!--Fila 9-->
+        <Label Grid.Column="0" Grid.Row="8" Content="Dirección del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0,0,5,0"/>
+        <TextBox x:Name="txtdireccion" IsReadOnly="True" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8" FontFamily="Verdana"/>
+
+        <Label Grid.Column="3" Grid.Row="8" Content="Cantidad a Comprar:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
+        <TextBox x:Name="txtcantidadproducto" Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" FontFamily="Verdana" TextWrapping="Wrap" TextChanged="Txtcantidadproducto_TextChanged" PreviewTextInput="Txtcantidadproducto_PreviewTextInput" Margin="5,0"/>
+        <!--Fila 10-->
+        <Button x:Name="btnNuevo" Content="Nuevo" Margin="35,15" Click="BtnNuevo_Click" Grid.Column="4" Grid.Row="9" FontFamily="Verdana"/>
+        <!--Fila 11-->
+        <Button x:Name="btnagregarcompra" Content="Agregar al Carrito" Margin="35,15" Click="Btnagregarcompra_Click" Grid.Column="3" Grid.Row="10"/>
+        <!--Fila 12-->
+        <Label Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="11" Content="Información de Factura" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" BorderBrush="#FF727379" BorderThickness="0.5" FontSize="14" Background="#FFFC8638"/>
+        <!--Fila 13-->
+        <Label Grid.Row="12" Grid.Column="0" Content="Fecha y Hora:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+        <TextBox x:Name="txtfecha" Grid.Column="1" Grid.Row="12" TextWrapping="Wrap" IsReadOnly="True" FontSize="13" FontFamily="Verdana" Margin="5,0" VerticalAlignment="Center"/>
+
+        <Label Grid.Column="2" Grid.Row="12" Content="Total De Factura" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+        <TextBox x:Name="txttotal" Grid.Column="3" Grid.Row="12" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center" Margin="5,0"/>
+
+        <Button Grid.Row="12" Grid.Column="5" Content="Ver Facturas" Click="Button_Click_5" Height="25" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,2"/>
+        <!--Fila 14-->
+        <Label Grid.Row="13" Grid.Column="0" Content="Subtotal:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+        <TextBox x:Name="txtsubtotalfactura" Grid.Column="1" Grid.Row="13" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True"/>
+
+        <Label Grid.Column="2" Grid.Row="13" Content="Cantidad pagada:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+        <TextBox x:Name="txtcantidadpagada" Grid.Column="3" Grid.Row="13" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0" TextChanged="Txtcantidadpagada_TextChanged"/>
+
+        <WindowsFormsHost Grid.Row="13" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="5" GotMouseCapture="WindowsFormsHost_GotMouseCapture">
+            <Forms:DataGridView x:Name="dgvCarrito" CellMouseClick="dgvCarrito_CellMouseClick"/>
+        </WindowsFormsHost>
+
+        <!--Fila 15-->
+
+        <Label Grid.Column="0" Grid.Row="14" Content="Iva:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+
+        <TextBox x:Name="txtiva" Grid.Column="1" Grid.Row="14" Margin="5,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center" FontFamily="Verdana" FontSize="13"/>
+
+
+        <Label Grid.Column="2" Grid.Row="14" Content="Cambio:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
+        <TextBox x:Name="txtcambio" Grid.Column="3" Grid.Row="14" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,5,5"/>
+        <!--Fila 16-->
+        <Button x:Name="btnrealizarfactura" Grid.Row="15" Grid.Column="1" Content="Realizar factura" Click="Btnrealizarfactura_Click" IsEnabled="False" Margin="35,15,34.8,0" MaxHeight="50" FontSize="13" FontFamily="Verdana" Height="40" VerticalAlignment="Top"/>
+
+        <Button x:Name="btnlimpiar" Grid.Column="3" Grid.Row="15" Content="Limpiar campos" Margin="34.6,15,35.2,0" Click="Btnlimpiar_Click" FontSize="13" FontFamily="Verdana" MaxHeight="50" Height="40" VerticalAlignment="Top"/>
+        <!---->
+        
+
+
+
+
+        <Button Content="Refrescar Lista" Margin="40,5" Click="Button_Click_1" Grid.Column="5" Grid.Row="7" MaxWidth="150" FontFamily="Verdana"/>
+        <ListBox x:Name="controlslistproductos" Margin="5" SelectionChanged="Controlslistproductos_SelectionChanged" Grid.Column="5" Grid.Row="3" Grid.RowSpan="4" FontFamily="Verdana"/>
+
+
+
+
+
+        <Button x:Name="btnrefrescarclientes" Content="Refrescar Lista" Margin="30,15" Click="Btnrefrescarclientes_Click" Grid.Column="2" Grid.Row="9" FontFamily="Verdana"/>
+        <Button Content="Agregar nuevo cliente" Margin="10,15" RenderTransformOrigin="0.501,1.823" Click="Button_Click_6" Grid.Row="9" Grid.Column="1" FontFamily="Verdana"/>
+
+        <Button x:Name="btnEditarCarrito" Content="Editar Producto Carrito" Margin="10,15,10,18" Click="Button_Click_3" IsEnabled="False" Grid.Column="4" Grid.Row="10"/>
+        <Button x:Name="btnEliminarCarrito" Content="Eliminar Producto Carrito" Margin="36.8,15,0,15" Click="Button_Click_4" IsEnabled="False" Grid.Column="5" Grid.Row="10" HorizontalAlignment="Left"/>
+
+
+
+
+        <Button Content="Agregar nuevo producto" Margin="10,5" Click="Button_Click" Grid.Column="5" Grid.Row="8" FontFamily="Verdana" MaxWidth="200"/>
+
+
+
 
 
     </Grid>

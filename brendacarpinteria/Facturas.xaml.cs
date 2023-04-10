@@ -38,6 +38,10 @@ namespace Proyecto_Carpinteria
             };
             oDispacherTimer.Start();
         }
+
+
+        const string DECIMAL_FORMAT = "N2";
+
         // variables
         int cantidad_producto;
         decimal precio_producto;
@@ -350,6 +354,21 @@ namespace Proyecto_Carpinteria
             }
         }
 
+        private void SubTotalFactura()
+        {
+            float costoTotal = 0;
+            int contar = 0;
+
+            contar = dgvCarrito.RowCount;
+
+            for (int i = 0; i < contar; i++)
+            {
+                costoTotal += float.Parse(dgvCarrito.Rows[i].Cells[3].Value.ToString());
+            }
+
+            txtsubtotalfactura.Text = costoTotal.ToString();
+        }
+
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
             if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text == "0")
@@ -397,10 +416,13 @@ namespace Proyecto_Carpinteria
                     iva = total_productos * Convert.ToDecimal(0.15);
                     iva = Math.Round(iva, 2);
                     total_factura = total_productos + iva;
-                    txtsubtotalfactura.Text = Convert.ToString(total_productos);
+                    //txtsubtotalfactura.Text = Convert.ToString(total_productos);
                     txtiva.Text = Convert.ToString(iva);
                     txttotal.Text = Convert.ToString(total_factura);
                     dgvCarrito.ClearSelection();
+
+                    
+
                     MessageBox.Show("Producto agregado al carrito!!", "Producto Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtPrecioCantidad.Clear();
                     txtcantidadproducto.Clear();
@@ -411,6 +433,8 @@ namespace Proyecto_Carpinteria
                     txtdescripproducto.Clear();
                     txtcantidadproducto.Clear();
                     txtPrecioCantidad.Clear();
+
+                    SubTotalFactura();
                 }
             }
         }
@@ -533,6 +557,7 @@ namespace Proyecto_Carpinteria
             dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
             MessageBox.Show("Producto editado del carrito!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
             dgvCarrito.ClearSelection();
+            SubTotalFactura();
         }
         private void Btncalcularsubtotal_Click(object sender, RoutedEventArgs e)
         {
@@ -599,6 +624,7 @@ namespace Proyecto_Carpinteria
             {
                 btnrealizarfactura.IsEnabled = false;
             }
+            SubTotalFactura();
         }
 
         private void Btncerrarsesion_Click(object sender, RoutedEventArgs e)
@@ -677,6 +703,18 @@ namespace Proyecto_Carpinteria
             }
 
 
+        }
+
+        private void Txtcantidadpagada_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                txtcambio.Text = (float.Parse(txtcantidadpagada.Text) - float.Parse(txttotal.Text)).ToString();
+            }
+            catch
+            {
+                txtcambio.Text = "0";
+            }
         }
     }
 }
