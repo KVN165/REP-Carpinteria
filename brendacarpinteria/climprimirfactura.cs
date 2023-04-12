@@ -126,6 +126,7 @@ namespace brendacarpinteria
 
             }
 
+
             // se le pasan los Aticulos  con sus detalles
             public void AgregaArticulo(string Articulo, double precio, int cant, double subtotal)
             {
@@ -135,10 +136,11 @@ namespace brendacarpinteria
                     bool bandera = false;
                     int nroEspacios = 0;
 
+
                     if (Articulo.Length > 40)                                 // **********
                     {
-                        cort = max - 16;
-                        parte1 = Articulo.Remove(16, cort);          // corta a 16 la descripcion del articulo
+                        cort = max - 10;
+                        parte1 = Articulo.Remove(10, cort);          // corta a 16 la descripcion del articulo
                         nroEspacios = (3 - cant.ToString().Length);
                         espacios = "";
                         for (int i = 0; i < nroEspacios; i++)
@@ -183,7 +185,6 @@ namespace brendacarpinteria
                             CaracterActual += 16;
                         }
                         line.AppendLine(Articulo.Substring(CaracterActual, Articulo.Length - CaracterActual));
-
 
                     }
                     else
