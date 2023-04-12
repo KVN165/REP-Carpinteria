@@ -370,7 +370,7 @@ namespace Proyecto_Carpinteria
 
             for (int i = 0; i < contar; i++)
             {
-                costoTotal += float.Parse(dgvCarrito.Rows[i].Cells[3].Value.ToString());
+                costoTotal += float.Parse(dgvCarrito.Rows[i].Cells[4].Value.ToString());
             }
 
             txtsubtotalfactura.Text = costoTotal.ToString();
@@ -740,22 +740,16 @@ namespace Proyecto_Carpinteria
         {
                 brendacarpinteria.climprimirfactura.CreaTicket Ticket1 = new brendacarpinteria.climprimirfactura.CreaTicket();
 
+                Ticket1.TextoCentro("**********************************");
                 Ticket1.TextoCentro("Carpinteria Brenda" ); //imprime una linea de descripcion
                 Ticket1.TextoCentro("**********************************");
 
-                //Ticket1.TextoIzquierda("Dirc: xxxx" );
-                //Ticket1.TextoIzquierda("Tel:xxxx " );
-                //Ticket1.TextoIzquierda("Rnc: xxxx" );
-                //Ticket1.TextoIzquierda("");
-
-                MessageBox.Show("Bien 1");
                 Ticket1.TextoCentro("Factura de Venta"); //imprime una linea de descripcion
-                Ticket1.TextoIzquierda("No Fac: " + ClsFactura.Id_obtenido_factura.ToString());
+                Ticket1.TextoIzquierda("No Factura: " + ClsFactura.Id_obtenido_factura.ToString());
                 Ticket1.TextoIzquierda("Fecha: " + DateTime.Now.ToShortDateString() + "        Hora:" + DateTime.Now.ToString("hh:mm tt"));
                 Ticket1.TextoIzquierda("Le Atendió: " + txtnombreempleado.Text);
                 Ticket1.TextoIzquierda("");
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
-                MessageBox.Show("Bien 2");
 
                 brendacarpinteria.climprimirfactura.CreaTicket.EncabezadoVenta();
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
@@ -764,25 +758,21 @@ namespace Proyecto_Carpinteria
                                             // Articulo                     //Precio                                    cantidad                            Subtotal
                     Ticket1.AgregaArticulo(r.Cells[1].Value.ToString(), double.Parse(r.Cells[2].Value.ToString()), int.Parse(r.Cells[3].Value.ToString()), double.Parse(r.Cells[4].Value.ToString())); //imprime una linea de descripcion
                 }
-                MessageBox.Show("Bien 3");
 
 
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
-                Ticket1.AgregaTotales("Sub-Total", double.Parse("000")); // imprime linea con Subtotal
-                Ticket1.TextoIzquierda(" ");
+                Ticket1.AgregaTotales("Sub-Total", double.Parse(clfactura.Subtotal.ToString())); // imprime linea con Subtotal
+                Ticket1.AgregaTotales("15%. ISV", double.Parse(clfactura.Iva.ToString()));
                 Ticket1.AgregaTotales("Total", double.Parse(txttotal.Text)); // imprime linea con total
-                Ticket1.TextoIzquierda(" ");
-                Ticket1.AgregaTotales("Efectivo Entregado:", double.Parse(txtcantidadpagada.Text));
-                Ticket1.AgregaTotales("Efectivo Devuelto:", double.Parse(txtcambio.Text));
-                MessageBox.Show("Bien 4");
+                Ticket1.AgregaTotales("Entrega:", double.Parse(txtcantidadpagada.Text));
+                Ticket1.AgregaTotales("Cambio:", double.Parse(txtcambio.Text));
 
 
                 // Ticket1.LineasTotales(); // imprime linea 
 
                 Ticket1.TextoIzquierda(" ");
                 Ticket1.TextoCentro("**********************************");
-                Ticket1.TextoCentro("*     Gracias por preferirnos    *");
-               
+                Ticket1.TextoCentro("*     Gracias por preferirnos    *");    
                 Ticket1.TextoCentro("**********************************");
                 Ticket1.TextoIzquierda(" ");
                 string impresora = "Microsoft XPS Document Writer";

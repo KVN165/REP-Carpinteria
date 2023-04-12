@@ -137,8 +137,8 @@ namespace brendacarpinteria
 
                     if (Articulo.Length > 40)                                 // **********
                     {
-                        //cort = max - 16;
-                        //parte1 = Articulo.Remove(16, cort);          // corta a 16 la descripcion del articulo
+                        cort = max - 16;
+                        parte1 = Articulo.Remove(16, cort);          // corta a 16 la descripcion del articulo
                         nroEspacios = (3 - cant.ToString().Length);
                         espacios = "";
                         for (int i = 0; i < nroEspacios; i++)
