@@ -78,6 +78,8 @@ namespace Proyecto_Carpinteria
             dgvCarrito.Rows.Clear();
             dgvCarrito.AutoResizeColumns();
             dgvCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+
+            dgvCarrito.Sort(dgvCarrito.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         public void cargarlistaclientes()
@@ -406,7 +408,7 @@ namespace Proyecto_Carpinteria
                     if (valor_id == Convert.ToInt32(txtidproducto.Text))
                     {
                         
-                        ya_esta = false;
+                        ya_esta = true;
                         break;
                     }
                 }
@@ -428,7 +430,7 @@ namespace Proyecto_Carpinteria
                     txttotal.Text = Convert.ToString(total_factura);
                     dgvCarrito.ClearSelection();
 
-                    
+                    dgvCarrito.Sort(dgvCarrito.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
 
                     MessageBox.Show("Producto agregado al carrito!!", "Producto Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtPrecioCantidad.Clear();
@@ -442,6 +444,7 @@ namespace Proyecto_Carpinteria
                     txtPrecioCantidad.Clear();
 
                     SubTotalFactura();
+                    
                 }
             }
         }
