@@ -96,6 +96,7 @@
     <Compile Include="Actualizar usuario.xaml.cs">
       <DependentUpon>Actualizar usuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="climprimirfactura.cs" />
     <Compile Include="Menu administrador.xaml.cs">
       <DependentUpon>Menu administrador.xaml</DependentUpon>
     </Compile>

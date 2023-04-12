@@ -68,8 +68,9 @@ namespace Proyecto_Carpinteria
             txtnombreempleado.Text = Proyecto_Carpinteria.ClsFactura.Usuario;
             dgvCarrito.Columns.Add("id_producto", "Id del producto");
             dgvCarrito.Columns.Add("nombre_producto", "Nombre del producto");
+            dgvCarrito.Columns.Add("precio_producto", "Precio");
             dgvCarrito.Columns.Add("cantidad_comprada", "Cantidad");
-            dgvCarrito.Columns.Add("subtotal_producto", "Precio total");
+            dgvCarrito.Columns.Add("subtotal_producto", "Subtotal");
             dgvCarrito.Columns["id_producto"].Visible = false;
             dgvCarrito.AllowUserToAddRows = false;
             dgvCarrito.AllowUserToDeleteRows = false;
@@ -174,6 +175,12 @@ namespace Proyecto_Carpinteria
                     //Actulizar inventario va dentro de crear_detlles()
                     //Limpiar campos
                     MessageBox.Show("La factura a sido creada!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    MessageBox.Show("Mostrando factura");
+                    mostrar_factura();
+                    MessageBox.Show("Factura mostrada");
+
+
                     btnrealizarfactura.IsEnabled = false;
                     txtidproducto.Clear();
                     txtnombreproducto.Clear();
@@ -269,8 +276,8 @@ namespace Proyecto_Carpinteria
                 btnagregarcompra.IsEnabled = false;
                 txtidproducto.Text = dgvCarrito.CurrentRow.Cells[0].Value.ToString();
                 txtnombreproducto.Text = dgvCarrito.CurrentRow.Cells[1].Value.ToString();
-                txtcantidadproducto.Text = dgvCarrito.CurrentRow.Cells[2].Value.ToString();
-                txtPrecioCantidad.Text = dgvCarrito.CurrentRow.Cells[3].Value.ToString();
+                txtcantidadproducto.Text = dgvCarrito.CurrentRow.Cells[3].Value.ToString();
+                txtPrecioCantidad.Text = dgvCarrito.CurrentRow.Cells[4].Value.ToString();
                 SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
                 try
                 {
@@ -399,7 +406,7 @@ namespace Proyecto_Carpinteria
                     if (valor_id == Convert.ToInt32(txtidproducto.Text))
                     {
                         
-                        ya_esta = true;
+                        ya_esta = false;
                         break;
                     }
                 }
@@ -411,7 +418,7 @@ namespace Proyecto_Carpinteria
                 else
                 {
                     btnrealizarfactura.IsEnabled = true;
-                    dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
+                    dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtprecioproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
                     total_productos = cantidad_subtotal + total_productos;
                     iva = total_productos * Convert.ToDecimal(0.15);
                     iva = Math.Round(iva, 2);
@@ -553,8 +560,8 @@ namespace Proyecto_Carpinteria
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             posicion = dgvCarrito.CurrentRow.Index;
-            dgvCarrito[2, posicion].Value = txtcantidadproducto.Text;
-            dgvCarrito[3, posicion].Value = txtPrecioCantidad.Text;
+            dgvCarrito[3, posicion].Value = txtcantidadproducto.Text;
+            dgvCarrito[4, posicion].Value = txtPrecioCantidad.Text;
             MessageBox.Show("Producto editado del carrito!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
             dgvCarrito.ClearSelection();
             SubTotalFactura();
@@ -709,12 +716,92 @@ namespace Proyecto_Carpinteria
         {
             try
             {
-                txtcambio.Text = (float.Parse(txtcantidadpagada.Text) - float.Parse(txttotal.Text)).ToString();
+                txtcambio.Text = (float.Parse(txttotal.Text) - float.Parse(txtcantidadpagada.Text)).ToString();
             }
             catch
             {
                 txtcambio.Text = "0";
             }
         }
+
+        private void Txttotal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                txtcambio.Text = (float.Parse(txttotal.Text) - float.Parse(txtcantidadpagada.Text)).ToString();
+            }
+            catch
+            {
+                txtcambio.Text = "0";
+            }
+        }
+
+        private void mostrar_factura()
+        {
+                brendacarpinteria.climprimirfactura.CreaTicket Ticket1 = new brendacarpinteria.climprimirfactura.CreaTicket();
+
+                Ticket1.TextoCentro("Carpinteria Brenda" ); //imprime una linea de descripcion
+                Ticket1.TextoCentro("**********************************");
+
+                //Ticket1.TextoIzquierda("Dirc: xxxx" );
+                //Ticket1.TextoIzquierda("Tel:xxxx " );
+                //Ticket1.TextoIzquierda("Rnc: xxxx" );
+                //Ticket1.TextoIzquierda("");
+
+                MessageBox.Show("Bien 1");
+                Ticket1.TextoCentro("Factura de Venta"); //imprime una linea de descripcion
+                Ticket1.TextoIzquierda("No Fac: " + ClsFactura.Id_obtenido_factura.ToString());
+                Ticket1.TextoIzquierda("Fecha: " + DateTime.Now.ToShortDateString() + "        Hora:" + DateTime.Now.ToString("hh:mm tt"));
+                Ticket1.TextoIzquierda("Le Atendió: " + txtnombreempleado.Text);
+                Ticket1.TextoIzquierda("");
+                brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
+                MessageBox.Show("Bien 2");
+
+                brendacarpinteria.climprimirfactura.CreaTicket.EncabezadoVenta();
+                brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
+                foreach (System.Windows.Forms.DataGridViewRow r in dgvCarrito.Rows)
+                {
+                                            // Articulo                     //Precio                                    cantidad                            Subtotal
+                    Ticket1.AgregaArticulo(r.Cells[1].Value.ToString(), double.Parse(r.Cells[2].Value.ToString()), int.Parse(r.Cells[3].Value.ToString()), double.Parse(r.Cells[4].Value.ToString())); //imprime una linea de descripcion
+                }
+                MessageBox.Show("Bien 3");
+
+
+                brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
+                Ticket1.AgregaTotales("Sub-Total", double.Parse("000")); // imprime linea con Subtotal
+                Ticket1.TextoIzquierda(" ");
+                Ticket1.AgregaTotales("Total", double.Parse(txttotal.Text)); // imprime linea con total
+                Ticket1.TextoIzquierda(" ");
+                Ticket1.AgregaTotales("Efectivo Entregado:", double.Parse(txtcantidadpagada.Text));
+                Ticket1.AgregaTotales("Efectivo Devuelto:", double.Parse(txtcambio.Text));
+                MessageBox.Show("Bien 4");
+
+
+                // Ticket1.LineasTotales(); // imprime linea 
+
+                Ticket1.TextoIzquierda(" ");
+                Ticket1.TextoCentro("**********************************");
+                Ticket1.TextoCentro("*     Gracias por preferirnos    *");
+               
+                Ticket1.TextoCentro("**********************************");
+                Ticket1.TextoIzquierda(" ");
+                string impresora = "Microsoft XPS Document Writer";
+                Ticket1.ImprimirTiket(impresora);
+
+
+
+                /*
+                Fila = 0;
+                while (dataGridView1.RowCount > 0)//limpia el dgv
+                { dataGridView1.Rows.Remove(dataGridView1.CurrentRow); }
+                //LBLIDnuevaFACTURA.Text = ClaseFunciones.ClsFunciones.IDNUEVAFACTURA().ToString();
+
+                txtIdProducto.Text = lblNombre.Text =  txtCantidad.Text =textBox3.Text= "";
+                lblCostoApagar.Text = lbldevolucion.Text = lblPrecio.Text = "0";
+                txtIdProducto.Focus();
+                MessageBox.Show("Gracias por preferirnos");
+                */
+        }
+
     }
 }
