@@ -163,6 +163,9 @@ namespace Proyecto_Carpinteria
             if (txtidcliente.Text == "")
             {
                 MessageBox.Show("Debe de seleccionar a un cliente", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }else if (txtcantidadpagada.Text == "")
+            {
+                MessageBox.Show("Debe de ingresar una cantidad a paga", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -203,12 +206,12 @@ namespace Proyecto_Carpinteria
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error en facturas: "+ex.Message);
+                    MessageBox.Show("Error en facturas: " + ex.Message);
                 }
                 finally
                 {
                     conexion.Close();
-                } 
+                }
             }
         }
 
