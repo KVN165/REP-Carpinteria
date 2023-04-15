@@ -14,7 +14,7 @@
     </Window.Resources>
     <Grid x:Name="txtcantidad"  DataContext="{StaticResource productosViewSource}">
         <Rectangle HorizontalAlignment="Center" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500"/>
-        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="46,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtnombre_PreviewTextInput" />
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="46,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold"  />
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="46,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.31" FontFamily="Verdana"/>
         <Label Content="descripcion" HorizontalAlignment="Left" Margin="46,168,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <TextBox x:Name="txtprecio1" HorizontalAlignment="Left" Margin="46,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="44" FontFamily="Verdana" FontWeight="Bold"  PreviewTextInput="txtprecio1_PreviewTextInput" />
