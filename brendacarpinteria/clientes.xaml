@@ -58,7 +58,7 @@
         <Label Content="ID" HorizontalAlignment="Left" Margin="42,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,-0.73" FontFamily="Verdana"/>
         <Button x:Name="btnagregar" Content="Agregar" HorizontalAlignment="Left" Margin="42,428,0,0" VerticalAlignment="Top" Height="35" Width="81"  Background="#FFFF7500" Click="btnagregar_Click" />
         <Button x:Name="btnactualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="157,428,0,0" VerticalAlignment="Top" Height="37" Width="80" RenderTransformOrigin="-0.637,1.325"  Background="#FFFF7500"  IsEnabled="False" Click="btnactualizar_Click" />
-        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Margin="832,0,0,453" VerticalAlignment="Bottom" Width="44" Height="34" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click"  >
+        <Button x:Name="btnregresar2" Content="" HorizontalAlignment="Left" Margin="831,-3,0,445.4" VerticalAlignment="Bottom" Width="44" Height="34" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFFF6900" Foreground="White" Click="btnregresar2_Click"  >
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
