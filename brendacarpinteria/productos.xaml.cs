@@ -42,8 +42,8 @@ namespace brendacarpinteria
 
         public void envdatos()
         {
-            pro.Name = txtnombre.Text;
-            pro.Desc = txtprecio1.Text;
+            pro.Name = txtnombre.Text.Trim(); ;
+            pro.Desc = txtprecio1.Text.Trim(); ;
             pro.Precio = Convert.ToDecimal(txtprecio.Text);
             pro.Cantidad = Convert.ToInt64(txtcantidad1.Text);
         }
@@ -64,20 +64,28 @@ namespace brendacarpinteria
                 }
                 else
                 {
-                    if (txtnombre.Text.Contains(" ") || txtprecio.Text.Contains(" ") || txtprecio1.Text.Contains(" ") || txtcantidad1.Text.Contains(" "))
+                    if (txtnombre.Text==null || txtprecio1.Text==null || txtprecio.Text.Contains(" ") || txtcantidad1.Text.Contains(" "))
                     {
                         MessageBox.Show("espacios en blanco");
                     }
                     else
                     {
-                        envdatos();
-                        pro.Insertar();
-                        pro.cargarDatapro(dgvproductos);
-                        txtbuscar1.Clear();
-                        txtnombre.Clear();
-                        txtprecio.Clear();
-                        txtprecio1.Clear();
-                        txtcantidad1.Clear();
+                        if (txtprecio.Text == "0" || txtcantidad1.Text == "0")
+                        {
+                            MessageBox.Show("el precio y cantidad no puede ser 0");
+                        }
+                        else
+                        {
+                            envdatos();
+                            pro.Insertar();
+                            pro.cargarDatapro(dgvproductos);
+                            txtbuscar1.Clear();
+                            txtnombre.Clear();
+                            txtprecio.Clear();
+                            txtprecio1.Clear();
+                            txtcantidad1.Clear();
+                        }
+                       
                     }
 
 

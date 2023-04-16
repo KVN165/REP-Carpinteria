@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace brendacarpinteria
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace brendacarpinteria
 
         public void envdatos()
         {
-            ins.Name = txtnombre.Text;
-            ins.Desc = txtprecio1.Text;
+            ins.Name = txtnombre.Text.Trim();
+            ins.Desc = txtprecio1.Text.Trim();
             ins.Precio = Convert.ToDecimal(txtprecio.Text);
             ins.Cantidad = Convert.ToDecimal(txtcantidad1.Text);
             ins.Emp = Convert.ToInt32(cmbemp.SelectedValue);
@@ -83,22 +84,30 @@ namespace brendacarpinteria
                 }
                 else
                 {
-                    if (txtnombre.Text.Contains(" ") || txtprecio.Text.Contains(" ") || txtprecio1.Text.Contains(" ") || txtcantidad1.Text.Contains(" "))
+                    if (txtnombre.Text== null || txtprecio1.Text== null || txtprecio.Text.Contains(" ") || txtcantidad1.Text.Contains(" "))
                     {
                         MessageBox.Show("espacios en blanco");
+                        
                     }
                     else
                     {
-
-                        envdatos();
-                        ins.Insertar();
-                        ins.cargarDatain(dgvinsumos);
-                        txtbuscar1.Clear();
-                        txtnombre.Clear();
-                        txtprecio.Clear();
-                        txtprecio1.Clear();
-                        txtcantidad1.Clear();
-                        txtid.Clear();
+                        if(txtprecio.Text == "0" || txtcantidad1.Text== "0")
+                        {
+                            MessageBox.Show("el precio y cantidad no puede ser 0");
+                        }
+                        else
+                        {
+                            envdatos();
+                            ins.Insertar();
+                            ins.cargarDatain(dgvinsumos);
+                            txtbuscar1.Clear();
+                            txtnombre.Clear();
+                            txtprecio.Clear();
+                            txtprecio1.Clear();
+                            txtcantidad1.Clear();
+                            txtid.Clear();
+                        }
+                      
                     }
 
 
