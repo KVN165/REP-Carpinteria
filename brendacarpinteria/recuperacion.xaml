@@ -8,15 +8,19 @@
         WindowStartupLocation="CenterScreen"
         Title="recuperacion" Height="450" Width="800" Icon="/martillo.png">
     <Grid>
-        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500"/>
-        <Label Content="Recuperacion contraseña" HorizontalAlignment="Left" Margin="185,18,0,0" VerticalAlignment="Top" Width="488" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
-        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="35" Margin="266,242,0,0"/>
-        <Image HorizontalAlignment="Center" Height="100" Margin="0,94,0,0" VerticalAlignment="Top" Width="100" Source="/clave.png"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="539*"/>
+            <ColumnDefinition Width="255*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Center" Height="81" Stroke="Black" VerticalAlignment="Top" Width="800" Fill="#FFFF7500" Grid.ColumnSpan="2" Margin="-3,0,-3.4,0"/>
+        <Label Content="Recuperacion contraseña" HorizontalAlignment="Left" Margin="185,18,0,0" VerticalAlignment="Top" Width="488" Foreground="White" FontSize="30" FontFamily="Cascadia Mono" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtusuario" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="35" Margin="266,242,0,0" Grid.ColumnSpan="2"/>
+        <Image HorizontalAlignment="Center" Height="100" Margin="347,94,91.8,0" VerticalAlignment="Top" Width="100" Source="/clave.png"/>
         <Image HorizontalAlignment="Left" Height="45" Margin="216,237,0,0" VerticalAlignment="Top" Width="100" Source="/usuario.png"/>
-        <Label Content="Ingrese su usario" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="15"/>
-        <Button Content="Enviar" HorizontalAlignment="Left" Margin="318,302,0,0" VerticalAlignment="Top" Height="28" Width="153" Click="Button_Click"/>
+        <Label Content="Ingrese su usario" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="15" Margin="326,196,71.8,196"/>
+        <Button Content="Enviar" HorizontalAlignment="Left" Margin="318,302,0,0" VerticalAlignment="Top" Height="28" Width="153" Click="Button_Click" Background="#FFFF7500"/>
         <Label x:Name="lblcon" Content="" HorizontalAlignment="Left" Margin="33,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.136,0.698"/>
-        <Button x:Name="btnregresar" Content="" RenderTransformOrigin="0.763,0.552" BorderBrush="#FFFF6900" Foreground="White"  HorizontalAlignment="Left" Width="79" Margin="695,17,0,371" Click="btnregresar_Click">
+        <Button x:Name="btnregresar" Content="" RenderTransformOrigin="0.763,0.552" BorderBrush="#FFFF6900" Foreground="White"  HorizontalAlignment="Left" Width="79" Margin="156.2,17,0,371" Click="btnregresar_Click" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/flecha-hacia-atras.png"/>
             </Button.Background>
