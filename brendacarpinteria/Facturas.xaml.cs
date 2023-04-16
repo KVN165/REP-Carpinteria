@@ -166,6 +166,10 @@ namespace Proyecto_Carpinteria
             }else if (txtcantidadpagada.Text == "")
             {
                 MessageBox.Show("Debe de ingresar una cantidad a paga", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }else if (Convert.ToInt32(txtcambio.Text) < 0)
+            {
+                MessageBox.Show("Se necesita pagar mas para realizar la factura!!!");
+
             }
             else
             {
@@ -383,7 +387,7 @@ namespace Proyecto_Carpinteria
 
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
-            if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text == "0")
+            if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text.TrimStart('0') == "")
             {
                 MessageBox.Show("Debe de agregar una cantidad para comprar", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -422,8 +426,15 @@ namespace Proyecto_Carpinteria
                 }
                 else
                 {
+
+                    //verificar que no hay 0 al comienzo
+                    string numerotxtbox = txtcantidadproducto.Text;
+                    string numerosincero = numerotxtbox.TrimStart('0');
+
+
+
                     btnrealizarfactura.IsEnabled = true;
-                    dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtprecioproducto.Text, txtcantidadproducto.Text, txtPrecioCantidad.Text);
+                    dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtprecioproducto.Text, numerosincero, txtPrecioCantidad.Text);
                     total_productos = cantidad_subtotal + total_productos;
                     iva = total_productos * Convert.ToDecimal(0.15);
                     iva = Math.Round(iva, 2);
@@ -722,7 +733,7 @@ namespace Proyecto_Carpinteria
         {
             try
             {
-                txtcambio.Text = (float.Parse(txttotal.Text) - float.Parse(txtcantidadpagada.Text)).ToString();
+                txtcambio.Text = (float.Parse(txtcantidadpagada.Text) - float.Parse(txttotal.Text)).ToString();
             }
             catch
             {

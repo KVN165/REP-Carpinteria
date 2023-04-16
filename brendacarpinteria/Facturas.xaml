@@ -98,9 +98,9 @@
         <Button Grid.Row="12" Grid.Column="5" Content="Ver Facturas" Click="Button_Click_5" Height="25" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,2" FontFamily="Verdana" Background="#FFFF7500"/>
         <!--Fila 14-->
         <Label Grid.Row="13" Grid.Column="0" Content="Subtotal:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
-        <TextBox x:Name="txtsubtotalfactura" Grid.Column="1" Grid.Row="13" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True" RenderTransformOrigin="0.501,0.5"/>
+        <TextBox x:Name="txtsubtotalfactura" Grid.Column="1" Grid.Row="13" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True" RenderTransformOrigin="0.501,0.5" FontFamily="Verdana" FontSize="13"/>
         <Label Grid.Column="2" Grid.Row="13" Content="Cantidad pagada:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcantidadpagada" Grid.Column="3" Grid.Row="13" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0" TextChanged="Txtcantidadpagada_TextChanged"/>
+        <TextBox x:Name="txtcantidadpagada" Grid.Column="3" Grid.Row="13" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0" TextChanged="Txtcantidadpagada_TextChanged" FontFamily="Verdana" FontSize="13"/>
         <WindowsFormsHost Grid.Row="13" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="5" GotMouseCapture="WindowsFormsHost_GotMouseCapture">
             <Forms:DataGridView x:Name="dgvCarrito" CellMouseClick="dgvCarrito_CellMouseClick"/>
         </WindowsFormsHost>
@@ -108,7 +108,7 @@
         <Label Grid.Column="0" Grid.Row="14" Content="Iva:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
         <TextBox x:Name="txtiva" Grid.Column="1" Grid.Row="14" Margin="5,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center" FontFamily="Verdana" FontSize="13"/>
         <Label Grid.Column="2" Grid.Row="14" Content="Cambio:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
-        <TextBox x:Name="txtcambio" Grid.Column="3" Grid.Row="14" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,5,5"/>
+        <TextBox x:Name="txtcambio" Grid.Column="3" Grid.Row="14" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,5,5" FontFamily="Verdana" FontSize="13"/>
         <!--Fila 16-->
         <Button x:Name="btnrealizarfactura" Grid.Row="15" Grid.Column="1" Content="Realizar factura" Click="Btnrealizarfactura_Click" IsEnabled="False" Margin="25,15,25,0" MaxHeight="50" FontSize="13" FontFamily="Verdana" Height="40" VerticalAlignment="Top" Background="#FFFF7500"/>
         <Button x:Name="btnlimpiar" Grid.Column="3" Grid.Row="15" Content="Limpiar campos" Margin="25,15,25,0" Click="Btnlimpiar_Click" FontSize="13" FontFamily="Verdana" MaxHeight="50" Height="40" VerticalAlignment="Top" Background="#FFFF7500"/>
