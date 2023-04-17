@@ -73,7 +73,7 @@ namespace brendacarpinteria
             c.DireccionC = txtdireccion.Text;
             c.Tl = txttel1.Text;
             c.Apellido = txtapellido.Text;
-            c.id = Convert.ToInt32(txtid.Text);
+            c.Identidad = Convert.ToInt64(txtid.Text);
             c.Actualizar();
             c.cargardatos(dgvclientes);
             btnagregar.IsEnabled = true;

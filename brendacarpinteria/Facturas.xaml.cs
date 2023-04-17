@@ -150,7 +150,7 @@ namespace Proyecto_Carpinteria
 
         public void Enviardatos_factura()
         {
-            clfactura.Id_cliente = Convert.ToInt32(txtidcliente.Text);
+            clfactura.Id_cliente = Convert.ToInt64(txtidcliente.Text);
             clfactura.Id_usuario = Convert.ToInt32(ClsFactura.Id_obtenido_factura);
             clfactura.Fecha_hora = DateTime.Now;
             clfactura.Subtotal = Convert.ToDecimal(txtsubtotalfactura.Text);
@@ -186,7 +186,7 @@ namespace Proyecto_Carpinteria
             }else if (txtcantidadpagada.Text == "")
             {
                 MessageBox.Show("Debe de ingresar una cantidad a paga", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }else if (Convert.ToInt32(txtcambio.Text) < 0)
+            }else if (Convert.ToDecimal(txtcambio.Text) < 0)
             {
                 MessageBox.Show("Se necesita pagar mas para realizar la factura!!!");
             }
@@ -225,6 +225,7 @@ namespace Proyecto_Carpinteria
                     txtapellidocliente.Clear();
                     txttelefonocliente.Clear();
                     txtdireccion.Clear();
+                    txtcantidadpagada.Text = "0";
                 }
                 catch (Exception ex)
                 {
@@ -813,6 +814,8 @@ namespace Proyecto_Carpinteria
                 Ticket1.TextoIzquierda("No Factura: " + ClsFactura.Id_obtenido_factura.ToString());
                 Ticket1.TextoIzquierda("Fecha: " + DateTime.Now.ToShortDateString() + "        Hora:" + DateTime.Now.ToString("hh:mm tt"));
                 Ticket1.TextoIzquierda("Le Atendió: " + txtnombreempleado.Text);
+                Ticket1.TextoIzquierda("Identidad Cliente: " +txtidcliente.Text);
+                Ticket1.TextoIzquierda("Cliente: " + txtnombrecliente.Text);
                 Ticket1.TextoIzquierda("");
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
 

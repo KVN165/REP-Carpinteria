@@ -21,7 +21,7 @@ namespace Proyecto_Carpinteria
         //detalles --- id_detalle, id_factura, id_producto, cantidad, precio_total
 
         private int id_factura;
-        private int id_cliente;
+        private long id_cliente;
         private int id_usuario;
         private DateTime fecha_hora = DateTime.Today;
         private decimal subtotal;
@@ -41,7 +41,7 @@ namespace Proyecto_Carpinteria
         DataTable dt;
 
         public int Id_factura { get => id_factura; set => id_factura = value; }
-        public int Id_cliente { get => id_cliente; set => id_cliente = value; }
+        public long Id_cliente { get => id_cliente; set => id_cliente = value; }
         public int Id_usuario { get => id_usuario; set => id_usuario = value; }
         public DateTime Fecha_hora { get => fecha_hora; set => fecha_hora = value; }
         public decimal Subtotal { get => subtotal; set => subtotal = value; }
