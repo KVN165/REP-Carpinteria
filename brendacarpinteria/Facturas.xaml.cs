@@ -498,21 +498,8 @@ namespace Proyecto_Carpinteria
                     string numerotxtbox = txtcantidadproducto.Text;
                     string numerosincero = numerotxtbox.TrimStart('0');
                     //Fin
-
-                    ///total_productos = 0;
-                    ///total_factura = 0;
-                    ///iva = 0;
                     btnrealizarfactura.IsEnabled = true;
                     dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtprecioproducto.Text, numerosincero, txtPrecioCantidad.Text);
-                    ///total_productos = cantidad_subtotal + total_productos;
-                    ///iva = total_productos * Convert.ToDecimal(0.15);
-                    ///iva = Math.Round(iva, 2);
-                    ///total_factura = total_productos + iva;
-                    //txtsubtotalfactura.Text = Convert.ToString(total_productos);
-                    ///txtiva.Text = Convert.ToString(iva);
-                    ///txttotal.Text = Convert.ToString(total_factura);
-                    ///dgvCarrito.ClearSelection();
-                    ///
                     SubTotalFactura();
 
                     dgvCarrito.Sort(dgvCarrito.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
@@ -902,20 +889,6 @@ namespace Proyecto_Carpinteria
                 Ticket1.TextoIzquierda(" ");
                 string impresora = "Microsoft XPS Document Writer";
                 Ticket1.ImprimirTiket(impresora);
-
-
-
-                /*
-                Fila = 0;
-                while (dataGridView1.RowCount > 0)//limpia el dgv
-                { dataGridView1.Rows.Remove(dataGridView1.CurrentRow); }
-                //LBLIDnuevaFACTURA.Text = ClaseFunciones.ClsFunciones.IDNUEVAFACTURA().ToString();
-
-                txtIdProducto.Text = lblNombre.Text =  txtCantidad.Text =textBox3.Text= "";
-                lblCostoApagar.Text = lbldevolucion.Text = lblPrecio.Text = "0";
-                txtIdProducto.Focus();
-                MessageBox.Show("Gracias por preferirnos");
-                */
         }
 
         private void Txtcambio_PreviewTextInput(object sender, TextCompositionEventArgs e)
