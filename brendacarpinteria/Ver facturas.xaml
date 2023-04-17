@@ -7,7 +7,7 @@
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" x:Class="brendacarpinteria.Ver_facturas"
         mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
-        Title="Ver acturas" Height="600" Width="750" MinHeight="600" MinWidth="650" Loaded="Window_Loaded" Icon="martillo.png">
+        Title="Ver acturas" Height="600" Width="810" MinHeight="600" MinWidth="800" Loaded="Window_Loaded" Icon="martillo.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -29,7 +29,13 @@
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Ver Facturas" Foreground="White" FontSize="30" FontFamily="Cascadia Mono"/>
 
-        <Button Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Height="20" Width="50" Content="Salir" Click="Button_Click"/>
+        
+        <Button x:Name="btncerrar" Grid.Column="3" Grid.Row="0" Content="" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom" Width="44" Height="34" BorderBrush="#FFFF6900" Foreground="White" Click="btncerrar_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Imagenes/cancelar.png" />
+            </Button.Background>
+        </Button>
+        
         <!---->
         
         
@@ -48,7 +54,8 @@
         <TextBox x:Name="txtidfactura" Margin="10" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextChanged="Txtidfactura_TextChanged" IsEnabled="False" Grid.Row="2" Grid.Column="1" Height="20"/>
         <Button Content="Refrescar facturas" HorizontalAlignment="Right" Margin="10" Height="30" VerticalAlignment="Top" Width="100" Click="Button_Click_1" Grid.Column="3" Grid.Row="1" Background="#FFFF7500"/>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"  Content="Palabra a buscar:"/>
-        <Button Content="Imprimir factura" HorizontalAlignment="Right" Margin="0,10,10,0" Height="30" VerticalAlignment="Top" Width="100" Grid.Column="3" Grid.Row="2" Background="#FFFF7500"/>
+        <Button Content="Imprimir factura" HorizontalAlignment="Right" Margin="0,10,10,0" Height="30" VerticalAlignment="Top" Width="100" Grid.Column="3" Grid.Row="2" Background="#FFFF7500" Click="Button_Click_2"/>
+        <Button Content="Limpiar" HorizontalAlignment="Right" Margin="0,7.4,26.6,0" Height="30" VerticalAlignment="Top" Width="100" Grid.Column="2" Grid.Row="2" Background="#FFFF7500" Click="limpiar"/>
 
     </Grid>
 </Window>
