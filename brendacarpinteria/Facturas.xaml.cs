@@ -226,6 +226,9 @@ namespace Proyecto_Carpinteria
                     txttelefonocliente.Clear();
                     txtdireccion.Clear();
                     txtcantidadpagada.Text = "0";
+                    txttotal.Text = "0";
+                    txtiva.Text = "0";
+                    txtsubtotalfactura.Text = "0";
                 }
                 catch (Exception ex)
                 {
@@ -432,7 +435,7 @@ namespace Proyecto_Carpinteria
 
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
-
+            txtcantidadpagada.Text = "0";
             //Comprobando que algunos campos no estén vacios
 
             if(txtcantidadproducto.Text == "" || txtcantidadproducto.Text.TrimStart('0') == "")
@@ -792,6 +795,7 @@ namespace Proyecto_Carpinteria
 
         private void Txttotal_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*
             try
             {
                 txtcambio.Text = (float.Parse(txttotal.Text) - float.Parse(txtcantidadpagada.Text)).ToString();
@@ -800,6 +804,7 @@ namespace Proyecto_Carpinteria
             {
                 txtcambio.Text = "0";
             }
+            */
         }
 
         private void mostrar_factura()
