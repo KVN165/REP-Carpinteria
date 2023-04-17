@@ -820,7 +820,7 @@ namespace Proyecto_Carpinteria
                 Ticket1.TextoIzquierda("Fecha: " + DateTime.Now.ToShortDateString() + "        Hora:" + DateTime.Now.ToString("hh:mm tt"));
                 Ticket1.TextoIzquierda("Le Atendió: " + txtnombreempleado.Text);
                 Ticket1.TextoIzquierda("Identidad Cliente: " +txtidcliente.Text);
-                Ticket1.TextoIzquierda("Cliente: " + txtnombrecliente.Text);
+                Ticket1.TextoIzquierda("Cliente: " + txtnombrecliente.Text+ " "+txtapellidocliente.Text);
                 Ticket1.TextoIzquierda("");
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
 
