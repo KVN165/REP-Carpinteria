@@ -54,7 +54,7 @@
                 <ImageBrush ImageSource="/girar (1).png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <TextBox x:Name="txtid" HorizontalAlignment="Left" Margin="46,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontFamily="Verdana" FontWeight="Bold" MaxLength="13"/>
+        <TextBox x:Name="txtid" HorizontalAlignment="Left" Margin="46,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontFamily="Verdana" FontWeight="Bold" MaxLength="13" PreviewTextInput="Txtid_PreviewTextInput"/>
         <Label Content="Identidad" HorizontalAlignment="Left" Margin="42,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,-0.73" FontFamily="Verdana"/>
         <Button x:Name="btnagregar" Content="Agregar" HorizontalAlignment="Left" Margin="42,428,0,0" VerticalAlignment="Top" Height="35" Width="81"  Background="#FFFF7500" Click="btnagregar_Click" TabIndex="4"/>
         <Button x:Name="btnactualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="157,428,0,0" VerticalAlignment="Top" Height="37" Width="80" RenderTransformOrigin="-0.637,1.325"  Background="#FFFF7500"  IsEnabled="False" Click="btnactualizar_Click" />

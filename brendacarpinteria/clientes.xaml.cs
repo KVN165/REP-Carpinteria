@@ -32,8 +32,21 @@ namespace brendacarpinteria
             c.cargardatos(dgvclientes);
         }
 
+        string campo;
+
+        private static bool validar_id(string campo)
+        {
+            string patron = "^(010[1-8]|02[0-8]|03[0-9]|04[0-5]|05[0-5]|06[0-2]|07[0-9]|08[0-9]|09[0-6]|10[0-6]|11[0-4]|120[0-9]|121[0-9]|130[1-2]|13[3-9]|14[0-1]|150[1-9]|151[1-9]|152[1-3]|160[1-6]|16[1-9]|170[1-9]|180[1-9])\\d{9}$";
+            MessageBox.Show(Convert.ToString(Regex.IsMatch(campo, patron)));
+            return Regex.IsMatch(campo, patron);
+            
+        }
+
         private void btnagregar_Click(object sender, RoutedEventArgs e)
         {
+            
+            bool es_valido = validar_id(txtid.Text);
+
             if (txtnombre.Text == String.Empty || txtapellido.Text == String.Empty || txtdireccion .Text == String.Empty ||txttel1.Text == String.Empty)
             {
                 MessageBox.Show("Por favor llene todos los campos");
@@ -42,14 +55,17 @@ namespace brendacarpinteria
             {
                 if(c.validarinsert(txtnombre.Text, txtapellido.Text) == false)
                 {
-                    if(Validartel(txttel1.Text) == false)
+                    if(!es_valido)
                     {
-                        MessageBox.Show("numero de telefono no valida");
+                        MessageBox.Show("La identidad no es válida");
+                    }
+                    else if (Validartel(txttel1.Text) == false)
+                    {
+                        MessageBox.Show("El número de teléfono no valido");
                     }
                     else
                     {
                         c.Identidad = Convert.ToInt64(txtid.Text);
-                        MessageBox.Show("long " + c.Identidad);
                         c.Nombre = txtnombre.Text;
                         c.DireccionC = txtdireccion.Text;
                         c.Tl = txttel1.Text;
@@ -61,7 +77,7 @@ namespace brendacarpinteria
                 }
                 else
                 {
-                    MessageBox.Show("datos ya existen ", "Datos existentes");
+                    MessageBox.Show("Los datos ya existen", "Datos existentes");
                 }
             }
             }
@@ -210,6 +226,24 @@ namespace brendacarpinteria
           
         }
 
+        private void Txtid_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            
+            Regex re = new Regex(@"(8|9|2|3)[ -]*([0-9][ -]*){8}");
+            if (re.IsMatch(e.Text))
+            {
+                e.Handled = true;
+            }
+            
+            /*
+            Regex re = new Regex("@^(010[1-8]|02[0-8]|03[0-9]|04[0-5]|05[0-5]|06[0-2]|07[0-9]|08[0-9]|09[0-6]|10[0-6]|11[0-4]|120[0-9]|121[0-9]|130[1-2]|13[3-9]|14[0-1]|150[1-9]|15[1-9]|160[1-6]|16[1-9]|170[1-9]|180[1-9])\\d{10}$");
+            if (re.IsMatch(e.Text))
+            {
+                e.Handled = true;
+            }
+            */
+        }
 
+        
     }
 }
