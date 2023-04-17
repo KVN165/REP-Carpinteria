@@ -69,5 +69,12 @@ namespace brendacarpinteria
             lblus.Content = a.No;
             lblFecha.Content = Convert.ToString(DateTime.Now.ToLongDateString());
         }
+
+        private void BtnFactura_Click_1(object sender, RoutedEventArgs e)
+        {
+            Proyecto_Carpinteria.Facturas formfacturas = new Proyecto_Carpinteria.Facturas();
+            formfacturas.Show();
+            this.Close();
+        }
     }
 }

@@ -80,6 +80,20 @@ namespace Proyecto_Carpinteria
             dgvCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 
             dgvCarrito.Sort(dgvCarrito.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
+
+            brendacarpinteria.ClsUsuario us = new brendacarpinteria.ClsUsuario();
+            if (us.Tipousuario == "Administrador")
+            {
+                //
+            }
+            else if (us.Tipousuario == "Cajero")
+            {
+                btn_formproducto.Content = "Ver Produtos";
+            }
+            else if (us.Tipousuario == "Bodeguero")
+            {
+                //
+            }
         }
 
         public void cargarlistaclientes()
@@ -204,9 +218,16 @@ namespace Proyecto_Carpinteria
                     //Limpiar campos
                     MessageBox.Show("La factura a sido creada!!", "Carrito editado", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    MessageBox.Show("Mostrando factura");
-                    mostrar_factura();
-
+                    MessageBoxResult resultado = MessageBox.Show("Desea imprimir una factura?", "Imprimir factura", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                    switch (resultado)
+                    {
+                        case MessageBoxResult.Yes:
+                            MessageBox.Show("La factura se a imprimido");
+                            mostrar_factura();
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                    }
 
                     btnrealizarfactura.IsEnabled = false;
                     txtidproducto.Clear();
@@ -737,7 +758,10 @@ namespace Proyecto_Carpinteria
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             brendacarpinteria.clientes clientesform = new brendacarpinteria.clientes();
-            clientesform.Show();
+            clientesform.btncerrar.Visibility = Visibility.Visible;
+            clientesform.btnregresar2.Visibility = Visibility.Hidden;
+            clientesform.ShowDialog();
+
         }
 
         private void BtnNuevo_Click(object sender, RoutedEventArgs e)
@@ -757,7 +781,10 @@ namespace Proyecto_Carpinteria
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             brendacarpinteria.productos productosform = new brendacarpinteria.productos();
-            productosform.Show();
+            productosform.btnregresar.Visibility = Visibility.Hidden;
+            productosform.btncerrar.Visibility = Visibility.Visible;
+            productosform.ShowDialog();
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

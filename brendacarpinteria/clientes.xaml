@@ -63,6 +63,11 @@
                 <ImageBrush ImageSource="/flecha-hacia-atras.png" />
             </Button.Background>
         </Button>
+        <Button x:Name="btncerrar" Content="" HorizontalAlignment="Left" Margin="831,-3,0,445.4" VerticalAlignment="Bottom" Width="44" Height="34" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFFF6900" Foreground="White" Click="btncerrar_Click" Visibility="Hidden"  >
+            <Button.Background>
+                <ImageBrush ImageSource="/Imagenes/cancelar.png" />
+            </Button.Background>
+        </Button>
     </Grid>
 
 </Window>

@@ -83,7 +83,7 @@
         <TextBox x:Name="txtdireccion" IsReadOnly="True" Margin="5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8" FontFamily="Verdana"/>
         <Label Grid.Column="3" Grid.Row="8" Content="Cantidad a Comprar:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
         <TextBox x:Name="txtcantidadproducto" Grid.Column="4" Grid.Row="8" VerticalAlignment="Center" FontFamily="Verdana" TextWrapping="Wrap" TextChanged="Txtcantidadproducto_TextChanged" PreviewTextInput="Txtcantidadproducto_PreviewTextInput" Margin="5,0"/>
-        <Button Content="Agregar nuevo producto" Margin="10,5" Click="Button_Click" Grid.Column="5" Grid.Row="8" FontFamily="Verdana" MaxWidth="180" Background="#FFFF7500"/>
+        <Button x:Name="btn_formproducto" Content="Agregar nuevo producto" Margin="10,5" Click="Button_Click" Grid.Column="5" Grid.Row="8" FontFamily="Verdana" MaxWidth="180" Background="#FFFF7500"/>
         <!--Fila 10-->
         <Button x:Name="btnNuevo" Content="Nuevo" Margin="35,15" Click="BtnNuevo_Click" Grid.Column="4" Grid.Row="9" FontFamily="Verdana" Background="#FFFF7500"/>
         <!--Fila 11-->

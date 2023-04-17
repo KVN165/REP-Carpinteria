@@ -50,7 +50,7 @@
         <Label x:Name="lblHora" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="00:00:00" ContentStringFormat="hh:mm:ss" FontFamily="Verdana" FontSize="18"/>
         <!--Fila 3-->
         <Button x:Name="btnClientes" Grid.Column="0" Grid.Row="3" Margin="45,15,10,15" MaxHeight="150" MaxWidth="500" Content="Clientes" Click="btnClientes_Click" Background="#FFFF7500" Foreground="White" TabIndex="4"/>
-        <Button x:Name="btnFactura" Grid.Column="1" Grid.Row="3" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Factura" Background="#FFFF7500" Foreground="White" TabIndex="5"/>
+        <Button x:Name="btnFactura" Grid.Column="1" Grid.Row="3" Margin="10 15 45 15" MaxHeight="150" MaxWidth="500" Content="Factura" Background="#FFFF7500" Foreground="White" TabIndex="5" Click="BtnFactura_Click_1"/>
         <!---->
     </Grid>
 </Window>

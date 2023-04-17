@@ -252,6 +252,27 @@ namespace brendacarpinteria
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            brendacarpinteria.ClsUsuario us = new brendacarpinteria.ClsUsuario();
+            if (us.Tipousuario == "Administrador")
+            {
+                //
+            }
+            else if (us.Tipousuario == "Cajero")
+            {
+                btnagregar.Visibility = Visibility.Hidden;
+                btnActualizar.Visibility = Visibility.Hidden;   
+            }
+            else if (us.Tipousuario == "Bodeguero")
+            {
+                //
+            }
+        }
 
+        private void btncancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

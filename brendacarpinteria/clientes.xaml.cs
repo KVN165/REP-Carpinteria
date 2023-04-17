@@ -32,7 +32,7 @@ namespace brendacarpinteria
             c.cargardatos(dgvclientes);
         }
 
-        string campo;
+        
 
         private static bool validar_id(string campo)
         {
@@ -244,6 +244,9 @@ namespace brendacarpinteria
             */
         }
 
-        
+        private void btncerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
