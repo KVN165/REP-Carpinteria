@@ -16,6 +16,8 @@ namespace brendacarpinteria
         //SqlCommand cmd;
         //DataTable dt;
 
+
+        private long identidad;
         private string cons;
         private string bus;
         private static bool validarc;
@@ -30,7 +32,7 @@ namespace brendacarpinteria
         public string Tl { get; set; }
         public string Cons { get => cons; set => cons = value; }
         public string Bus { get => bus; set => bus = value; }
-
+        public long Identidad { get => identidad; set => identidad = value; }
 
         public bool validarinsert(string nombre , string apellido )
         {
@@ -72,7 +74,8 @@ namespace brendacarpinteria
             conexion.Open();
             try
             {
-                SqlCommand cmd = new SqlCommand("insert into clientes values(@name,@ape,@dir,@tel)", conexion);
+                SqlCommand cmd = new SqlCommand("insert into clientes values(@id,@name,@ape,@dir,@tel)", conexion);
+                cmd.Parameters.AddWithValue("@id", Identidad);
                 cmd.Parameters.AddWithValue("@name", Nombre);
                 cmd.Parameters.AddWithValue("@ape", Apellido);
                 cmd.Parameters.AddWithValue("@dir", DireccionC);

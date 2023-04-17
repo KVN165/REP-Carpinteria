@@ -48,6 +48,8 @@ namespace brendacarpinteria
                     }
                     else
                     {
+                        c.Identidad = Convert.ToInt64(txtid.Text);
+                        MessageBox.Show("long " + c.Identidad);
                         c.Nombre = txtnombre.Text;
                         c.DireccionC = txtdireccion.Text;
                         c.Tl = txttel1.Text;

@@ -58,7 +58,7 @@
         <TextBox x:Name="txtnombreproducto" Grid.Column="4" Grid.Row="3" IsReadOnly="True" TextWrapping="Wrap" FontFamily="Verdana" Margin="5,0" VerticalAlignment="Center"/>
         <!--Fila 5-->
         <Label Grid.Column="2" Grid.Row="4" Content="Lista de Clientes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20,5" FontFamily="Verdana" Background="#FFA500"/>
-        <Label Grid.Column="0" Grid.Row="4" Content="ID del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" FontSize="12" Margin="0,0,5,0"/>
+        <Label Grid.Column="0" Grid.Row="4" Content="Identidad del Cliente:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" FontSize="12" Margin="0,0,5,0"/>
         <TextBox x:Name="txtidcliente" Grid.Column="1" Grid.Row="4" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" FontFamily="Verdana" Margin="5,0"/>
         <Label Grid.Column="3" Grid.Row="4" Content="Precio por Unidad:" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Verdana" Margin="0 0 5 0"/>
         <TextBox x:Name="txtprecioproducto" Grid.Column="4" Grid.Row="4" IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Verdana" Margin="5,0"/>
