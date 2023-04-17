@@ -55,7 +55,7 @@ namespace brendacarpinteria
             conexion.Open();
             try
             {
-                SqlDataAdapter cmd = new SqlDataAdapter("SELECT f.id_factura AS 'Id Factura', CONCAT(u.nombre,' ',u.apellido) AS 'Atendido por', CONCAT(c.nombre, ' ', c.apellido) AS 'Cliente',  f.fecha_hora AS 'Fecha', f.subtotal AS 'Subtotal', f.iva AS 'IVAA 15%', f.total AS 'Total de factura'FROM factura f inner join usuarios u on f.id_usuario = u.id_usuario inner join clientes c on f.id_cliente = c.id_cliente", conexion);
+                SqlDataAdapter cmd = new SqlDataAdapter("SELECT f.id_factura AS 'Id Factura', CONCAT(u.nombre,' ',u.apellido) AS 'Atendido por', CONCAT(c.nombre, ' ', c.apellido) AS 'Cliente',  f.fecha_hora AS 'Fecha', f.efectivo_pagado AS 'Efectivo pagado', f.subtotal AS 'Subtotal', f.iva AS 'IVA 15%', f.total AS 'Total de factura'FROM factura f inner join usuarios u on f.id_usuario = u.id_usuario inner join clientes c on f.id_cliente = c.id_cliente", conexion);
                 DataTable tablafactura = new DataTable();
                 cmd.Fill(tablafactura);
                 dgvFactura.DataSource = tablafactura;

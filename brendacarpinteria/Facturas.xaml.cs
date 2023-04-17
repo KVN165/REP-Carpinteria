@@ -156,10 +156,30 @@ namespace Proyecto_Carpinteria
             clfactura.Subtotal = Convert.ToDecimal(txtsubtotalfactura.Text);
             clfactura.Iva = Convert.ToDecimal(txtiva.Text);
             clfactura.Total = Convert.ToDecimal(txttotal.Text);
+            clfactura.Efectivo_pagado = Convert.ToDecimal(txtcantidadpagada.Text);
         }
 
         private void Btnrealizarfactura_Click(object sender, RoutedEventArgs e)
         {
+            /*
+             if(txtcantidadproducto.Text == "" || txtcantidadproducto.Text.TrimStart('0') == "")
+            {
+                MessageBox.Show("Debe ingresar una cantidad para comprar", "Faltan Datos!!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            } else if (txtprecioproducto.Text == "" || txtidproducto.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un producto!", "Faltan Datos!!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            } else if (Convert.ToInt32(txtcantidadproducto.Text) > Convert.ToInt32(txtcantidaddisponible.Text))
+            {
+                MessageBox.Show("No hay suficiente STOCK del producto solicitado", "Sin Stock en Inventario", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            } else if (Convert.ToInt32(txtcantidadpagada.Text) < Convert.ToInt32(txttotal.Text))
+            {
+                MessageBox.Show("Solicite más efectivo para continuar con la compra", "Monto no válido", MessageBoxButton.OK, MessageBoxImage.Warning);
+            } else
+             */
+
+
+
             if (txtidcliente.Text == "")
             {
                 MessageBox.Show("Debe de seleccionar a un cliente", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -169,7 +189,6 @@ namespace Proyecto_Carpinteria
             }else if (Convert.ToInt32(txtcambio.Text) < 0)
             {
                 MessageBox.Show("Se necesita pagar mas para realizar la factura!!!");
-
             }
             else
             {
@@ -187,7 +206,6 @@ namespace Proyecto_Carpinteria
 
                     MessageBox.Show("Mostrando factura");
                     mostrar_factura();
-                    MessageBox.Show("Factura mostrada");
 
 
                     btnrealizarfactura.IsEnabled = false;
@@ -373,52 +391,74 @@ namespace Proyecto_Carpinteria
         private void SubTotalFactura()
         {
             float costoTotal = 0;
-            int contar = 0;
+            int Totalfilas = 0;
 
-            contar = dgvCarrito.RowCount;
+            costoTotal = 0;
+            Totalfilas = 0;
+            total_productos = 0;
+            total_factura = 0;
+            iva = 0;
 
-            for (int i = 0; i < contar; i++)
+            Totalfilas = dgvCarrito.RowCount;
+
+            if (dgvCarrito.RowCount < 1)
             {
-                costoTotal += float.Parse(dgvCarrito.Rows[i].Cells[4].Value.ToString());
+
+            }
+            else
+            {
+                for (int i = 0; i < Totalfilas; i++)
+                {
+                    costoTotal += float.Parse(dgvCarrito.Rows[i].Cells[4].Value.ToString());
+                }
             }
 
+
+            total_productos = Convert.ToDecimal(costoTotal) + total_productos;
+            iva = total_productos * Convert.ToDecimal(0.15);
+            iva = Math.Round(iva, 2);
+            total_factura = total_productos + iva;
+
             txtsubtotalfactura.Text = costoTotal.ToString();
+            txtiva.Text = Convert.ToString(iva);
+            txttotal.Text = Convert.ToString(total_factura);
+
+
+           
+            dgvCarrito.ClearSelection();
+
         }
 
         private void Btnagregarcompra_Click(object sender, RoutedEventArgs e)
         {
-            if (txtcantidadproducto.Text == "" || txtcantidadproducto.Text.TrimStart('0') == "")
-            {
-                MessageBox.Show("Debe de agregar una cantidad para comprar", "Faltan datos", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else if (txtprecioproducto.Text == "")
-            {
-                MessageBox.Show("Debe de seleccionar un producto", "Fantan datos", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else if (Convert.ToInt32(txtcantidadproducto.Text) >  Convert.ToInt32(txtcantidaddisponible.Text))
-            {
-                MessageBox.Show("No hay suficiente cantidad en el inventario del producto solicidado", "Sin stock en inventario", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else if (txtidproducto.Text == "")
-            {
-                
-                
 
-                    
+            //Comprobando que algunos campos no estén vacios
 
-            }
-            else {
+            if(txtcantidadproducto.Text == "" || txtcantidadproducto.Text.TrimStart('0') == "")
+            {
+                MessageBox.Show("Debe ingresar una cantidad para comprar", "Faltan Datos!!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            } else if (txtprecioproducto.Text == "" || txtidproducto.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un producto!", "Faltan Datos!!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            } else if (Convert.ToInt32(txtcantidadproducto.Text) > Convert.ToInt32(txtcantidaddisponible.Text))
+            {
+                MessageBox.Show("No hay suficiente STOCK del producto solicitado", "Sin Stock en Inventario", MessageBoxButton.OK, MessageBoxImage.Warning);
+            } else
+            {
+                //Comprobar si el producto ya está en el carrito
+
                 ya_esta = false;
                 foreach (System.Windows.Forms.DataGridViewRow row in dgvCarrito.Rows)
                 {
                     int valor_id = Convert.ToInt32(row.Cells["id_producto"].Value);
                     if (valor_id == Convert.ToInt32(txtidproducto.Text))
-                    {
-                        
+                    { 
                         ya_esta = true;
                         break;
                     }
                 }
+
+                //Fin comprobación producto carrito
 
                 if (ya_esta == true)
                 {
@@ -426,23 +466,26 @@ namespace Proyecto_Carpinteria
                 }
                 else
                 {
-
-                    //verificar que no hay 0 al comienzo
+                    //Eliminar 0 al comienzo
                     string numerotxtbox = txtcantidadproducto.Text;
                     string numerosincero = numerotxtbox.TrimStart('0');
+                    //Fin
 
-
-
+                    ///total_productos = 0;
+                    ///total_factura = 0;
+                    ///iva = 0;
                     btnrealizarfactura.IsEnabled = true;
                     dgvCarrito.Rows.Add(txtidproducto.Text, txtnombreproducto.Text, txtprecioproducto.Text, numerosincero, txtPrecioCantidad.Text);
-                    total_productos = cantidad_subtotal + total_productos;
-                    iva = total_productos * Convert.ToDecimal(0.15);
-                    iva = Math.Round(iva, 2);
-                    total_factura = total_productos + iva;
+                    ///total_productos = cantidad_subtotal + total_productos;
+                    ///iva = total_productos * Convert.ToDecimal(0.15);
+                    ///iva = Math.Round(iva, 2);
+                    ///total_factura = total_productos + iva;
                     //txtsubtotalfactura.Text = Convert.ToString(total_productos);
-                    txtiva.Text = Convert.ToString(iva);
-                    txttotal.Text = Convert.ToString(total_factura);
-                    dgvCarrito.ClearSelection();
+                    ///txtiva.Text = Convert.ToString(iva);
+                    ///txttotal.Text = Convert.ToString(total_factura);
+                    ///dgvCarrito.ClearSelection();
+                    ///
+                    SubTotalFactura();
 
                     dgvCarrito.Sort(dgvCarrito.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
 
@@ -647,6 +690,11 @@ namespace Proyecto_Carpinteria
             if (dgvCarrito.Rows.Count == 0)
             {
                 btnrealizarfactura.IsEnabled = false;
+                MessageBox.Show("Sin datos en carrito");
+                txtsubtotalfactura.Text = "0";
+                txttotal.Text = "0";
+                txtiva.Text = "0";
+                
             }
             SubTotalFactura();
         }

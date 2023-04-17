@@ -94,7 +94,7 @@
         <Label Grid.Row="12" Grid.Column="0" Content="Fecha y Hora:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
         <TextBox x:Name="txtfecha" Grid.Column="1" Grid.Row="12" TextWrapping="Wrap" IsReadOnly="True" FontSize="13" FontFamily="Verdana" Margin="5,0" VerticalAlignment="Center"/>
         <Label Grid.Column="2" Grid.Row="12" Content="Total De Factura" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>
-        <TextBox x:Name="txttotal" Grid.Column="3" Grid.Row="12" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center" Margin="5,0" TextChanged="Txttotal_TextChanged"/>
+        <TextBox x:Name="txttotal" Grid.Column="3" Grid.Row="12" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center" Margin="5,0" TextChanged="Txttotal_TextChanged" FontFamily="Verdana" FontSize="13"/>
         <Button Grid.Row="12" Grid.Column="5" Content="Ver Facturas" Click="Button_Click_5" Height="25" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,2" FontFamily="Verdana" Background="#FFFF7500"/>
         <!--Fila 14-->
         <Label Grid.Row="13" Grid.Column="0" Content="Subtotal:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="13" FontFamily="Verdana"/>

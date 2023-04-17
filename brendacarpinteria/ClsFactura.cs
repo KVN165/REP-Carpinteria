@@ -32,6 +32,8 @@ namespace Proyecto_Carpinteria
 
         private static string usuario;
 
+        private decimal efectivo_pagado;
+
         
 
         SqlDataAdapter da;
@@ -47,6 +49,7 @@ namespace Proyecto_Carpinteria
         public decimal Total { get => total; set => total = value; }
         public static string Usuario { get => usuario; set => usuario = value; }
         public static string Id_obtenido_factura { get => id_obtenido_factura; set => id_obtenido_factura = value; }
+        public decimal Efectivo_pagado { get => efectivo_pagado; set => efectivo_pagado = value; }
 
         private string conexioncadena = "Data Source = localhost\\sqlexpress; Initial Catalog = Carpinteria_BD; Integrated Security=True";
 
@@ -56,13 +59,14 @@ namespace Proyecto_Carpinteria
             try
             {
                 conexion.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO factura(id_cliente, id_usuario, fecha_hora, subtotal, iva, total) VALUES(@id_cliente, @id_usuario, @fecha_hora, @subtotal, @iva, @total) SELECT SCOPE_IDENTITY();", conexion);
+                SqlCommand cmd = new SqlCommand("INSERT INTO factura(id_cliente, id_usuario, fecha_hora, subtotal, iva, total, efectivo_pagado) VALUES(@id_cliente, @id_usuario, @fecha_hora, @subtotal, @iva, @total, @efectivo_pagado) SELECT SCOPE_IDENTITY();", conexion);
                 cmd.Parameters.AddWithValue("@id_cliente", Id_cliente);
                 cmd.Parameters.AddWithValue("@id_usuario", Id_usuario);
                 cmd.Parameters.AddWithValue("@fecha_hora", Fecha_hora);
                 cmd.Parameters.AddWithValue("@subtotal", Subtotal);
                 cmd.Parameters.AddWithValue("@iva", Iva);
                 cmd.Parameters.AddWithValue("@total", Total);
+                cmd.Parameters.AddWithValue("@efectivo_pagado", Efectivo_pagado);
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 string id_factura_lectura = reader[0].ToString();
