@@ -266,5 +266,15 @@ namespace brendacarpinteria
                 e.Handled = true;
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgvinsumos.Columns[0].HeaderText = "Id Insumo";
+            dgvinsumos.Columns[1].HeaderText = "Nombre del insumo";
+            dgvinsumos.Columns[2].HeaderText = "Empresa";
+            dgvinsumos.Columns[3].HeaderText = "Descripcion";
+            dgvinsumos.Columns[4].HeaderText = "Precio de venta";
+            dgvinsumos.Columns[5].HeaderText = "Cantidad inventario";
+        }
     }
 }

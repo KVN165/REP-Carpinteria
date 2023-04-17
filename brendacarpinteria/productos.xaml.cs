@@ -268,6 +268,13 @@ namespace brendacarpinteria
             {
                 //
             }
+
+            dgvproductos.Columns[0].HeaderText = "Id Producto";
+            dgvproductos.Columns[1].HeaderText = "Nombre del producto";
+            dgvproductos.Columns[2].HeaderText = "Descripcion";
+            dgvproductos.Columns[3].HeaderText = "Precio de venta";
+            dgvproductos.Columns[4].HeaderText = "Cantidad";
+            dgvproductos.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void btncancelar_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Insumos"  Height="500" Width="900" Icon="/martillo.png">
+        Title="Insumos"  Height="500" Width="900" Icon="/martillo.png" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,-6">
         <Rectangle HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="900" Fill="#FFFF7500" Margin="0,-3,0,0"/>
         <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="42,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontWeight="Bold" PreviewTextInput="txtnombre_PreviewTextInput"/>
