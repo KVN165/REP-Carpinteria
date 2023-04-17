@@ -55,6 +55,9 @@ namespace Proyecto_Carpinteria
         static int id_producto;
         static int cantidad_comprada;
 
+        string cliente_nombre;
+        string cliente_apellido;
+
         //Clases
         ClsFactura clfactura = new ClsFactura();
         Clases.ClsDetalle detalleinfo = new Clases.ClsDetalle();
@@ -588,7 +591,7 @@ namespace Proyecto_Carpinteria
                     while (dr.Read())
                     {
                         txtidcliente.Text = dr["id_cliente"].ToString();
-                        txtnombrecliente.Text = dr["nombre"].ToString();
+                        txtnombrecliente.Text = nombrecompleto.ToString();
                         txtapellidocliente.Text = dr["apellido"].ToString();
                         txtdireccion.Text = dr["direccion"].ToString();
                         txttelefonocliente.Text = dr["telefono"].ToString();
@@ -847,7 +850,29 @@ namespace Proyecto_Carpinteria
                 Ticket1.TextoIzquierda("Fecha: " + DateTime.Now.ToShortDateString() + "        Hora:" + DateTime.Now.ToString("hh:mm tt"));
                 Ticket1.TextoIzquierda("Le Atendió: " + txtnombreempleado.Text);
                 Ticket1.TextoIzquierda("Identidad Cliente: " +txtidcliente.Text);
-                Ticket1.TextoIzquierda("Cliente: " + txtnombrecliente.Text+ " "+txtapellidocliente.Text);
+
+            //obteniendo nombres
+            
+
+            SqlConnection conexion = new SqlConnection(@"Data Source=localhost\sqlexpress; Initial Catalog=Carpinteria_BD; Integrated Security=True;");
+                conexion.Open();
+                string nombrecompleto = txtnombrecliente.Text;
+                string[] dividir_nombre = nombrecompleto.Split(' ');
+                SqlCommand cm = new SqlCommand("SELECT * FROM clientes WHERE nombre='" + dividir_nombre[0] + "' ;", conexion);
+                SqlDataReader dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    
+                    
+                    cliente_nombre = dr["nombre"].ToString();
+                    cliente_apellido = dr["apellido"].ToString();
+                }
+                conexion.Close();
+            
+            
+            //fin
+
+            Ticket1.TextoIzquierda("Cliente: " + cliente_nombre.ToString()+ " "+cliente_apellido.ToString());
                 Ticket1.TextoIzquierda("");
                 brendacarpinteria.climprimirfactura.CreaTicket.LineasGuion();
 
@@ -891,6 +916,28 @@ namespace Proyecto_Carpinteria
                 txtIdProducto.Focus();
                 MessageBox.Show("Gracias por preferirnos");
                 */
+        }
+
+        private void Txtcambio_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            
+        }
+
+        private void Txtcantidadpagada_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        
+
+
+        private void Txtcantidadpagada_KeyDown(object sender, KeyEventArgs e, String cadena)
+        {
+            
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.OemComma)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
 
     }

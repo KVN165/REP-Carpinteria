@@ -298,17 +298,9 @@ namespace brendacarpinteria
         private void limpiar(object sender, RoutedEventArgs e)
         {
             posicion = -1;
-            MessageBox.Show("posicion: "+posicion);
             dgvFactura.ClearSelection();
 
-            if(dgvFactura.CurrentRow == null)
-            {
-                MessageBox.Show("Es nulo");
-            }
-            else
-            {
-                MessageBox.Show("No es nulo");
-            }
+            dgvDetalles.Refresh();
         }
 
         private void btncerrar_Click(object sender, RoutedEventArgs e)
